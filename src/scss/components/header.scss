@@ -1,0 +1,79 @@
+.header {
+  @include flex-between-center;
+  padding: 16px 0;
+  &__list {
+    @include flex-center;
+    @include transition(right, 0.4s);
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    right: -200vw;
+    background-color: $mobile-menu-bg;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    @media screen and (min-width: $tablet) {
+      flex-direction: row;
+      gap: 40px;
+      position: initial;
+      width: auto;
+      height: auto;
+      background-color: transparent;
+    }
+    &_active {
+      right: 0;
+    }
+  }
+  &__link {
+    @include transition(color);
+    &:hover {
+      color: $nav-link-color-hover;
+    }
+  }
+  &__button {
+    margin-left: auto;
+    @media screen and (min-width: $tablet) {
+      margin-left: 0;
+      order: 1;
+    }
+  }
+  &__nav-btn {
+    width: 25px;
+    height: 20px;
+    margin-left: 30px;
+    border-top: 2px solid $gray;
+    border-bottom: 2px solid $gray;
+    background: none;
+    z-index: 1;
+    @media screen and (min-width: $tablet) {
+      display: none;
+    }
+    &::before {
+      content: "";
+      display: block;
+      height: 2px;
+      width: 100%;
+      background-color: $gray;
+    }
+    &_active {
+      border: none;
+      position: relative;
+      &::before {
+        transform: rotate(135deg);
+        position: absolute;
+        right: 0;
+      }
+      &::after {
+        transform: rotate(45deg);
+        position: absolute;
+        left: 0;
+        content: "";
+        display: block;
+        height: 2px;
+        width: 100%;
+        background-color: $gray;
+      }
+    }
+  }
+}
