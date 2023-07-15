@@ -1,7 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const SpriteLoaderPlugin = require("svg-sprite-loader/plugin");
 
 module.exports = {
   entry: {
@@ -26,10 +25,10 @@ module.exports = {
         },
       },
       {
-        test: /\.svg$/,
-        loader: "svg-sprite-loader",
-        options: {
-          extract: true,
+        test: /\.svg$/i,
+        type: "asset/resource",
+        generator: {
+          filename: "assets/icons/[name][ext]",
         },
       },
       {
@@ -44,7 +43,6 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           "css-loader",
-          "postcss-loader",
           {
             loader: "sass-loader",
             options: {
@@ -73,7 +71,6 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: "style.css",
     }),
-    new SpriteLoaderPlugin(),
   ],
   devServer: {
     static: "./dist",

@@ -10,6 +10,22 @@
   align-items: center;
 }
 
+@mixin flex-between-start {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
 @mixin transition($property, $duration: 0.2s) {
   transition: $duration $property ease-in-out;
+}
+
+@mixin heading-size($size) {
+  font-size: $size;
+  @media screen and (max-width: $tablet) {
+    font-size: calc($size * 0.8);
+  }
+  @media screen and (max-width: $mobile) {
+    font-size: calc($size * 0.7);
+  }
 }

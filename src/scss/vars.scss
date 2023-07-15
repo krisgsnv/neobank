@@ -1,4 +1,5 @@
 $font: 16px/1.12 "Ubuntu", sans-serif, "Arial", sans-serif;
+$primary-color: black;
 
 $navyblue: #003cff;
 $lightblue: #f5f4ff;
@@ -8,6 +9,7 @@ $lightgray: #eaecee;
 $gray: rgba(127, 146, 172, 0.7);
 $beidge: #b2a35f;
 $pink: #b4387a;
+$black: #1c1c1e;
 
 $body-bg: $lightblue;
 $button-bg: $navyblue;
@@ -16,8 +18,12 @@ $button-bg-disabled: $blue;
 $mobile-menu-bg: $lightgray;
 $button-color: white;
 $logo-color: $pink;
-$nav-link-color: $darkgray;
-$nav-link-color-hover: $beidge;
+$header-link-color: $darkgray;
+$header-link-color-hover: $beidge;
+$h1-color: $black;
+$h2-color: #1c1c1c;
+$h2-features-color: #0b132a;
+$additional-text: #4f5665;
 
 $dekstop: 1300px;
 $tablet: 920px;

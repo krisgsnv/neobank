@@ -1,14 +1,14 @@
 .button {
   background-color: $button-bg;
   color: $button-color;
-  padding: 12px;
+  padding: 16px;
   border-radius: 16px;
   font-weight: 700;
   letter-spacing: 0.02em;
-  font-size: 14px;
-  @media screen and (min-width: $tablet) {
-    font-style: 16px;
-    padding: 16px;
+  font-size: 16px;
+  @media screen and (max-width: $tablet) {
+    font-size: 14px;
+    padding: 12px;
   }
   &_default {
     @include transition(background-color);

@@ -4,22 +4,17 @@
   &__list {
     @include flex-center;
     @include transition(right, 0.4s);
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    right: -200vw;
-    background-color: $mobile-menu-bg;
-    display: flex;
-    gap: 20px;
-    flex-direction: column;
-    @media screen and (min-width: $tablet) {
-      flex-direction: row;
-      gap: 40px;
-      position: initial;
-      width: auto;
-      height: auto;
-      background-color: transparent;
+    gap: 40px;
+    @media screen and (max-width: $tablet) {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      top: 0;
+      right: -200vw;
+      background-color: $mobile-menu-bg;
+      display: flex;
+      gap: 20px;
+      flex-direction: column;
     }
     &_active {
       right: 0;
@@ -27,27 +22,29 @@
   }
   &__link {
     @include transition(color);
+    color: $header-link-color;
+    font-weight: 700;
+    letter-spacing: 0.02em;
     &:hover {
-      color: $nav-link-color-hover;
+      color: $header-link-color-hover;
     }
   }
   &__button {
-    margin-left: auto;
-    @media screen and (min-width: $tablet) {
-      margin-left: 0;
-      order: 1;
+    @media screen and (max-width: $tablet) {
+      margin-left: auto;
     }
   }
   &__nav-btn {
-    width: 25px;
-    height: 20px;
-    margin-left: 30px;
-    border-top: 2px solid $gray;
-    border-bottom: 2px solid $gray;
-    background: none;
-    z-index: 1;
-    @media screen and (min-width: $tablet) {
-      display: none;
+    display: none;
+    @media screen and (max-width: $tablet) {
+      display: block;
+      width: 25px;
+      height: 20px;
+      margin-left: 30px;
+      border-top: 2px solid $gray;
+      border-bottom: 2px solid $gray;
+      background: none;
+      z-index: 1;
     }
     &::before {
       content: "";

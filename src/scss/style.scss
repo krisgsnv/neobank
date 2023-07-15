@@ -1,5 +1,6 @@
 html {
   font: $font;
+  color: $primary-color;
 }
 
 body {
@@ -13,4 +14,17 @@ body {
   @media screen and (min-width: calc($dekstop + 30px)) {
     padding: 0 calc(50% - $dekstop / 2);
   }
+}
+
+.h1 {
+  @include heading-size(48px);
+  color: $h1-color;
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+.h2 {
+  @include heading-size(30px);
+  color: $h2-color;
+  font-weight: 500;
 }
