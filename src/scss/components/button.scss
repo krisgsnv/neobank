@@ -1,22 +1,22 @@
 .button {
-  background-color: $button-bg;
-  color: $button-color;
-  padding: 16px;
-  border-radius: 16px;
+  background-color: $navyblue;
+  color: white;
+  padding: 1rem;
+  border-radius: 1rem;
   font-weight: 700;
   letter-spacing: 0.02em;
-  font-size: 16px;
-  @media screen and (max-width: $tablet) {
-    font-size: 14px;
-    padding: 12px;
-  }
+  font-size: 1rem;
+  line-height: 1.12;
   &_default {
     @include transition(background-color);
     &:hover {
-      background-color: $button-bg-hover;
+      background-color: $blue;
     }
   }
   &_disabled {
-    background-color: $button-bg-disabled;
+    background-color: $blue;
+  }
+  &_subscribe {
+    background-color: $lightblue;
   }
 }
