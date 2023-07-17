@@ -2,7 +2,7 @@ html {
   font-family: $font;
   line-height: 1.12;
   color: $primary-color;
-  @media screen and (max-width: $mobile) {
+  @media screen and (max-width: $tablet) {
     font-size: 15px;
   }
   @media screen and (max-width: $mobile) {
@@ -12,30 +12,28 @@ html {
 
 body {
   background-color: $lightblue;
-  padding: 0 10px;
+  padding: 0 15px;
   min-width: 320px;
   overflow-x: hidden;
-  @media screen and (min-width: $tablet) {
-    padding: 0 15px;
-  }
   @media screen and (min-width: calc($dekstop + 30px)) {
     padding: 0 calc(50% - $dekstop / 2);
   }
 }
 
 .h1 {
-  @include heading-size(48px);
-  color: $h1-color;
+  font-size: toRem(48);
   font-weight: 700;
-  line-height: 1.05;
+  line-height: 1.1;
 }
 
 .h2 {
   font-size: toRem(30);
   font-weight: 500;
+  line-height: 1.2;
 }
 
 .h3 {
   font-size: toRem(20);
   font-weight: 500;
+  line-height: 1.3;
 }

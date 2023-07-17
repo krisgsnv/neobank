@@ -23,7 +23,7 @@
     </header>
     <section class="home-banner">
       <div class="home-banner__text">
-        <h1 class="h1">
+        <h1 class="h1 home-banner__h1">
           Choose the design you like and apply for card right now
         </h1>
         <button type="button" class="button button_default home-banner__button">
@@ -32,22 +32,22 @@
       </div>
       <div class="home-banner__cards">
         <img
-          src="<%= require('@/assets/images/home-banner/card1.png')%>"
+          src="<%= require('@/assets/images/card1.png')%>"
           alt="First card"
           class="home-banner__card"
         />
         <img
-          src="<%= require('@/assets/images/home-banner/card2.png')%>"
+          src="<%= require('@/assets/images/card2.png')%>"
           alt="Second card"
           class="home-banner__card"
         />
         <img
-          src="<%= require('@/assets/images/home-banner/card3.png')%>"
+          src="<%= require('@/assets/images/card3.png')%>"
           alt="Third card"
           class="home-banner__card"
         />
         <img
-          src="<%= require('@/assets/images/home-banner/card4.png')%>"
+          src="<%= require('@/assets/images/card4.png')%>"
           alt="Fourth card"
           class="home-banner__card"
         />
@@ -101,6 +101,15 @@
         </tbody>
       </table>
       <a href="/" class="exchange-rate__link">All courses</a>
+    </section>
+    <section class="geography">
+      <h2 class="h2 geography__h2">
+        You can use our services anywhere in the world
+      </h2>
+      <p class="geography__text">
+        Withdraw and transfer money online through our application
+      </p>
+      <object data="<%= require('@/assets/images/map.svg')%>" type="image/svg+xml" class="geography__map" title="Services map"></object>
     </section>
   </body>
 </html>

@@ -9,6 +9,11 @@
   @media screen and (max-width: $mobile) {
     margin-top: 50px;
   }
+  &__h1 {
+    line-height: 1.05;
+    color: $black;
+    @include heading-size(3rem);
+  }
   &__text {
     @media screen and (min-width: $mobile) {
       max-width: 70%;
@@ -45,7 +50,7 @@
 .features {
   font-family: "Rubik";
   margin-top: 8.6%;
-  background: url("@/assets/images/features/background.png") left top/39% auto
+  background: url("@/assets/images/features-bg.png") left top/39% auto
     no-repeat;
   padding: 5.7% 0 5% 44.8%;
   @media screen and (max-width: $tablet) {
@@ -61,7 +66,7 @@
   }
   &__h2 {
     @include heading-size(35px);
-    color: $h2-features-color;
+    color: #0b132a;
     font-weight: 500;
     line-height: 1.43;
   }
@@ -87,7 +92,7 @@
     line-height: 2.14;
     margin-top: 10px;
     &::before {
-      content: url("@/assets/icons/check.svg");
+      content: url("@/assets/images/check.svg");
       width: 23px;
       height: 24px;
       margin-right: 16px;
@@ -97,14 +102,16 @@
 
 .exchange-rate {
   $gradient: linear-gradient(
-    360deg,
-    rgba(178, 178, 178, 0.8) 0%,
-    rgba(178, 178, 178, 0) 100%
-  ),
-  rgba(244, 244, 244, 0.9);
+      360deg,
+      rgba(178, 178, 178, 0.8) 0%,
+      rgba(178, 178, 178, 0) 100%
+    ),
+    rgba(244, 244, 244, 0.9);
   margin-top: toRem(48);
   border-radius: toRem(28);
-  background: url("@/assets/images/exchange-rate/background.svg") calc(100% - 2rem) calc(100% - toRem(92))/toRem(120) no-repeat, $gradient;
+  background: url("@/assets/images/exchange-bg.svg")
+      calc(100% - 2rem) calc(100% - toRem(92)) / toRem(120) no-repeat,
+    $gradient;
   box-shadow: 0px 2px 4px 0px rgba(187, 187, 187, 0.2),
     0px 0px 4px 0px rgba(0, 0, 0, 0.08);
   padding: 2rem;
@@ -119,6 +126,9 @@
       flex-direction: column;
       align-items: flex-start;
     }
+  }
+  &__h2 {
+    color: $black;
   }
   &__additional-info {
     font-weight: 500;
@@ -178,8 +188,29 @@
     }
   }
   &__link {
-    display: block;
+    display: inline-block;
     margin-top: toRem(51);
     color: white;
+    font-weight: 700;
+  }
+}
+
+.geography {
+  margin-top: 3rem;
+  text-align: center;
+  &__h2 {
+    min-height: toRem(50);
+    @include flex-center;
+    color: #1c1c1c;
+  }
+  &__text {
+    min-height: toRem(50);
+    @include flex-center;
+    font-weight: 500;
+    color: $black;
+    margin-top: 0.5rem;
+  }
+  &__map{
+    margin-top: 3rem;
   }
 }
