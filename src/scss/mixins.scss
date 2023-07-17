@@ -16,6 +16,12 @@
   align-items: flex-start;
 }
 
+@mixin flex-start-center {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
 @mixin transition($property, $duration: 0.2s) {
   transition: $duration $property ease-in-out;
 }

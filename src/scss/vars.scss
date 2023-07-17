@@ -1,4 +1,4 @@
-$font: 16px/1.12 "Ubuntu", sans-serif, "Arial", sans-serif;
+$font: "Ubuntu", sans-serif, "Arial", sans-serif;
 $primary-color: black;
 
 $navyblue: #003cff;
@@ -6,7 +6,7 @@ $lightblue: #f5f4ff;
 $blue: #7796c0;
 $darkgray: #1d1929;
 $lightgray: #eaecee;
-$gray: rgba(127, 146, 172, 0.7);
+$gray: #808080;
 $beidge: #b2a35f;
 $pink: #b4387a;
 $black: #1c1c1e;
@@ -24,6 +24,7 @@ $h1-color: $black;
 $h2-color: #1c1c1c;
 $h2-features-color: #0b132a;
 $additional-text: #4f5665;
+$mobile-burger: rgba(127, 146, 172, 0.7);
 
 $dekstop: 1300px;
 $tablet: 920px;

@@ -47,7 +47,7 @@ module.exports = {
             loader: "sass-loader",
             options: {
               additionalData:
-                "@import '@/scss/vars.scss';@import '@/scss/mixins.scss';",
+                "@import '@/scss/vars.scss';@import '@/scss/mixins.scss';@import '@/scss/functions.scss';",
             },
           },
         ],

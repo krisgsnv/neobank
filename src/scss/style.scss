@@ -1,6 +1,13 @@
 html {
-  font: $font;
+  font-family: $font;
+  line-height: 1.12;
   color: $primary-color;
+  @media screen and (max-width: $mobile) {
+    font-size: 15px;
+  }
+  @media screen and (max-width: $mobile) {
+    font-size: 14px;
+  }
 }
 
 body {
@@ -24,7 +31,11 @@ body {
 }
 
 .h2 {
-  @include heading-size(30px);
-  color: $h2-color;
+  font-size: toRem(30);
+  font-weight: 500;
+}
+
+.h3 {
+  font-size: toRem(20);
   font-weight: 500;
 }

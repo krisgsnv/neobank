@@ -22,14 +22,10 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    gap: 16px;
+    gap: 1rem;
     align-self: flex-start;
     @media screen and (max-width: $tablet) {
-      gap: 10px;
-    }
-    @media screen and (max-width: $mobile) {
-      gap: 5px;
-      grid-template-columns: repeat(2, auto);
+      grid-template-columns: repeat(2, minmax(auto, 190px));
     }
   }
   &__card {
@@ -79,6 +75,9 @@
   }
   &__list {
     margin-top: 25px;
+    @media screen and (max-width: $tablet) {
+      margin-top: 15px;
+    }
   }
   &__list-item {
     display: flex;
@@ -93,5 +92,94 @@
       height: 24px;
       margin-right: 16px;
     }
+  }
+}
+
+.exchange-rate {
+  $gradient: linear-gradient(
+    360deg,
+    rgba(178, 178, 178, 0.8) 0%,
+    rgba(178, 178, 178, 0) 100%
+  ),
+  rgba(244, 244, 244, 0.9);
+  margin-top: toRem(48);
+  border-radius: toRem(28);
+  background: url("@/assets/images/exchange-rate/background.svg") calc(100% - 2rem) calc(100% - toRem(92))/toRem(120) no-repeat, $gradient;
+  box-shadow: 0px 2px 4px 0px rgba(187, 187, 187, 0.2),
+    0px 0px 4px 0px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  @media screen and (max-width: $mobile) {
+    background-position-y: calc(100% - 6rem), top, top;
+    background-size: 6rem, auto, auto;
+  }
+  &__heading {
+    @include flex-between-center;
+    min-height: toRem(50);
+    @media screen and (max-width: $mobile) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+  &__additional-info {
+    font-weight: 500;
+    margin-left: 1.5rem;
+    text-align: right;
+    @media screen and (max-width: $mobile) {
+      margin-left: 0;
+      margin-top: 1rem;
+      text-align: left;
+    }
+  }
+  &__h3 {
+    @include flex-start-center;
+    margin-top: toRem(24);
+    min-height: toRem(50);
+  }
+  &__table {
+    width: 100%;
+  }
+  &__table-body {
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    @media screen and (max-width: $tablet) {
+      display: flex;
+      padding-right: 8rem;
+    }
+    @media screen and (max-width: $mobile) {
+      column-gap: 15%;
+    }
+  }
+  &__table-row {
+    display: block;
+    margin-top: 2rem;
+    @media screen and (max-width: $tablet) {
+      margin-top: 1rem;
+    }
+  }
+  &__currency {
+    display: inline-block;
+    margin-right: 2rem;
+    @media screen and (max-width: $tablet) {
+      width: 100%;
+      margin-right: 0;
+      margin-top: 1rem;
+    }
+    @media screen and (max-width: $mobile) {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  &__currency-name {
+    display: inline-block;
+    margin-right: toRem(20);
+    color: $gray;
+    @media screen and (max-width: $mobile) {
+      margin-bottom: 0.5rem;
+    }
+  }
+  &__link {
+    display: block;
+    margin-top: toRem(51);
+    color: white;
   }
 }
