@@ -1,0 +1,289 @@
+.home-banner {
+  @include flex-between-start;
+  margin-top: toRem(131);
+  gap: 32px;
+  @media screen and (max-width: $tablet) {
+    margin-top: 6rem;
+    flex-direction: column;
+  }
+  &__h1 {
+    line-height: 1.05;
+    color: $black;
+    @include heading-size(3rem);
+  }
+  &__text {
+    @media screen and (min-width: $mobile) {
+      max-width: 70%;
+    }
+
+    @media screen and (min-width: $tablet) {
+      max-width: 48.5%;
+    }
+  }
+  &__cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1rem;
+    align-self: flex-start;
+    @media screen and (max-width: $tablet) {
+      grid-template-columns: repeat(2, minmax(auto, 190px));
+    }
+  }
+  &__card {
+    border-radius: 13px;
+    object-fit: contain;
+    overflow: hidden;
+    max-width: 100%;
+  }
+  &__button {
+    margin-top: toRem(36);
+  }
+}
+
+.features {
+  font-family: $font-rubik;
+  margin-top: 8.6%;
+  background: url("@/assets/images/features-bg.png") left top/39% auto no-repeat;
+  padding: 5.7% 0 5% 44.8%;
+  @media screen and (max-width: $tablet) {
+    padding-left: 0;
+    padding-bottom: 20%;
+    background-position: bottom right;
+    background-size: 47%;
+  }
+  @media screen and (max-width: $mobile) {
+    padding-bottom: 260px;
+    background-position: bottom center;
+    background-size: 285px;
+  }
+  &__h2 {
+    font-size: toRem(35);
+    color: #0b132a;
+    font-weight: 500;
+    min-height: toRem(50);
+  }
+  &__text {
+    color: $additional-text;
+    min-height: toRem(30);
+    margin-top: toRem(20);
+  }
+  &__list {
+    margin-top: toRem(25);
+  }
+  &__list-item {
+    display: flex;
+    align-items: center;
+    color: $additional-text;
+    font-size: toRem(14);
+    min-height: toRem(30);
+    margin-top: toRem(10);
+    &::before {
+      content: url("@/assets/images/check.svg");
+      width: 23px;
+      height: 24px;
+      margin-right: 1rem;
+    }
+  }
+}
+
+.exchange-rate {
+  $gradient: linear-gradient(
+      360deg,
+      rgba(178, 178, 178, 0.8) 0%,
+      rgba(178, 178, 178, 0) 100%
+    ),
+    rgba(244, 244, 244, 0.9);
+  margin-top: toRem(48);
+  border-radius: toRem(28);
+  background: url("@/assets/images/exchange-bg.svg") calc(100% - 2rem)
+      calc(100% - toRem(92)) / toRem(120) no-repeat,
+    $gradient;
+  box-shadow: 0px 2px 4px 0px rgba(187, 187, 187, 0.2),
+    0px 0px 4px 0px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  @media screen and (max-width: $mobile) {
+    background-position-y: calc(100% - 6rem), top, top;
+    background-size: 6rem, auto, auto;
+  }
+  &__heading {
+    @include flex-between-center;
+    min-height: toRem(50);
+    @media screen and (max-width: $mobile) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+  &__h2 {
+    color: $black;
+    font-weight: 500;
+  }
+  &__additional-info {
+    font-weight: 500;
+    margin-left: 1.5rem;
+    text-align: right;
+    @media screen and (max-width: $mobile) {
+      margin-left: 0;
+      margin-top: 1rem;
+      text-align: left;
+    }
+  }
+  &__h3 {
+    @include flex-start-center;
+    margin-top: toRem(24);
+    min-height: toRem(50);
+  }
+  &__table {
+    width: 100%;
+  }
+  &__table-body {
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    line-height: 1.12;
+    @media screen and (max-width: $tablet) {
+      display: flex;
+      padding-right: 8rem;
+    }
+    @media screen and (max-width: $mobile) {
+      column-gap: 15%;
+    }
+  }
+  &__table-row {
+    display: block;
+    margin-top: 2rem;
+    @media screen and (max-width: $tablet) {
+      margin-top: 0;
+    }
+  }
+  &__currency {
+    display: inline-block;
+    margin-right: 2rem;
+    @media screen and (max-width: $tablet) {
+      width: 100%;
+      margin-right: 0;
+      margin-top: 1rem;
+    }
+    @media screen and (max-width: $mobile) {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  &__currency-name {
+    display: inline-block;
+    margin-right: toRem(20);
+    color: $gray;
+    @media screen and (max-width: $mobile) {
+      margin-bottom: 0.5rem;
+    }
+  }
+  &__link {
+    display: inline-block;
+    margin-top: toRem(51);
+    color: white;
+    font-weight: 700;
+  }
+}
+
+.geography {
+  margin-top: 3rem;
+  text-align: center;
+  &__h2 {
+    min-height: toRem(50);
+    @include flex-center;
+    color: #1c1c1c;
+    font-weight: 500;
+  }
+  &__text {
+    min-height: toRem(50);
+    @include flex-center;
+    font-weight: 500;
+    color: $black;
+    margin-top: 0.5rem;
+    @media screen and (max-width: $mobile) {
+      margin-top: 1rem;
+    }
+  }
+  &__map {
+    margin-top: 3rem;
+  }
+}
+
+.support {
+  margin-top: 4rem;
+  text-align: center;
+  &__heading {
+    color: $orange;
+    font-size: toRem(24);
+    font-weight: 700;
+    letter-spacing: 0.03rem;
+  }
+  &__h2 {
+    margin-top: toRem(30);
+    &_fullwidth {
+      display: block;
+      margin-top: toRem(27);
+      font-weight: 500;
+    }
+  }
+  &__form {
+    @include flex-between-center;
+    margin: toRem(62) auto 0;
+    border-radius: toRem(20);
+    background: white;
+    box-shadow: 0px 10px 20px 0px rgba(54, 58, 120, 0.1);
+    padding: toRem(22) toRem(32);
+    width: 100%;
+    max-width: toRem(525);
+    @media screen and (max-width: $mobile) {
+      margin-bottom: 0.5rem;
+      padding: 0.875rem 1.5rem;
+    }
+    &::before {
+      content: "";
+      background: url("@/assets/images/email.svg") center/contain no-repeat;
+      min-width: 28px;
+      height: 37px;
+      display: block;
+      @media screen and (max-width: $mobile) {
+        min-width: 20px;
+      }
+    }
+  }
+  &__input {
+    font-family: $font-nunito;
+    font-size: toRem(20);
+    margin-left: toRem(10);
+    flex-grow: 1;
+    text-overflow: ellipsis;
+    min-width: toRem(100);
+    &::placeholder {
+      color: #9092b0;
+    }
+  }
+  &__button {
+    position: relative;
+    line-height: 1.269;
+    margin-left: toRem(10);
+    padding: toRem(13) toRem(30) toRem(13) toRem(55);
+    background-color: #686df1;
+    @media screen and (max-width: $mobile) {
+      padding: toRem(13) toRem(20) toRem(13) toRem(40);
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 14px;
+      background: url("@/assets/images/send.svg") top no-repeat;
+      display: block;
+      width: 30px;
+      height: 38px;
+      margin-right: 10px;
+      @media screen and (max-width: $mobile) {
+       background-size: contain;
+       height: 33px;
+       left: 6px;
+      }
+    }
+  }
+}

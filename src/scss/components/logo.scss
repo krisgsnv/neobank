@@ -1,0 +1,9 @@
+.logo {
+  color: $pink;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  @media screen and (max-width: $tablet) {
+    font-size: 20px;
+  }
+}
