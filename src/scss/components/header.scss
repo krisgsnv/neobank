@@ -3,12 +3,12 @@ $mobile-burger: rgba(127, 146, 172, 0.7);
   line-height: 1.12;
   &__inner {
     @include flex-between-center;
-    padding: 16px 0;
+    padding: 1rem 0;
   }
   &__list {
     @include flex-center;
     @include transition(right, 0.4s);
-    gap: 40px;
+    gap: toRem(40);
     @media screen and (max-width: $tablet) {
       position: fixed;
       width: 100vw;
@@ -17,7 +17,7 @@ $mobile-burger: rgba(127, 146, 172, 0.7);
       right: -200vw;
       background-color: $lightgray;
       display: flex;
-      gap: 20px;
+      gap: toRem(20);
       flex-direction: column;
       font-size: 1.6rem;
     }
@@ -43,9 +43,9 @@ $mobile-burger: rgba(127, 146, 172, 0.7);
     display: none;
     @media screen and (max-width: $tablet) {
       display: block;
-      width: 25px;
-      height: 20px;
-      margin-left: 30px;
+      width: toRem(25);
+      height: toRem(20);
+      margin-left: toRem(30);
       border-top: 2px solid $mobile-burger;
       border-bottom: 2px solid $mobile-burger;
       background: none;

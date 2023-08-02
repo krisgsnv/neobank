@@ -41,7 +41,6 @@ const renderCurrencyExchange = (quotes = ["USD", "TRY", "CHF", "EUR", "JPY", "CN
     getCurrencyExchange(quotes)
       .then((result) => [...result.entries()])
       .then((entries) => {
-        console.log("xt")
         localStorage.setItem("currency-exchange", JSON.stringify(entries));
         table.innerHTML = "";
         table.append(renderTable(entries));

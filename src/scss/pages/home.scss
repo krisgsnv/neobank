@@ -1,7 +1,7 @@
 .home-banner {
   @include flex-between-start;
   margin-top: toRem(131);
-  gap: 32px;
+  gap: 2rem;
   @media screen and (max-width: $tablet) {
     margin-top: 6rem;
     flex-direction: column;
@@ -27,11 +27,11 @@
     gap: 1rem;
     align-self: flex-start;
     @media screen and (max-width: $tablet) {
-      grid-template-columns: repeat(2, minmax(auto, 190px));
+      grid-template-columns: repeat(2, minmax(auto, toRem(190)));
     }
   }
   &__card {
-    border-radius: 13px;
+    border-radius: toRem(13);
     object-fit: contain;
     overflow: hidden;
     max-width: 100%;
@@ -53,9 +53,9 @@
     background-size: 47%;
   }
   @media screen and (max-width: $mobile) {
-    padding-bottom: 260px;
+    padding-bottom: toRem(260);
     background-position: bottom center;
-    background-size: 285px;
+    background-size: toRem(285);
   }
   &__h2 {
     font-size: toRem(35);
@@ -80,8 +80,8 @@
     margin-top: toRem(10);
     &::before {
       content: url("@/assets/images/check.svg");
-      width: 23px;
-      height: 24px;
+      width: toRem(23);
+      height: toRem(24);
       margin-right: 1rem;
     }
   }
@@ -237,9 +237,6 @@
 
 .news-slider {
   margin-top: toRem(46);
-  &__wrapper {
-    //column-gap: toRem(80);
-  }
   &__spinner {
     margin: 0 auto;
   }
@@ -304,11 +301,11 @@
     &::before {
       content: "";
       background: url("@/assets/images/email.svg") center/contain no-repeat;
-      min-width: 28px;
-      height: 37px;
+      min-width: toRem(28);
+      height: toRem(37);
       display: block;
       @media screen and (max-width: $mobile) {
-        min-width: 20px;
+        min-width: toRem(20);
       }
     }
   }
@@ -336,16 +333,16 @@
       content: "";
       position: absolute;
       top: 0;
-      left: 14px;
+      left: toRem(14);
       background: url("@/assets/images/send.svg") top no-repeat;
       display: block;
-      width: 30px;
-      height: 38px;
-      margin-right: 10px;
+      width: toRem(30);
+      height: toRem(38);
+      margin-right: toRem(10);
       @media screen and (max-width: $mobile) {
         background-size: contain;
-        height: 33px;
-        left: 6px;
+        height: toRem(33);
+        left: toRem(6);
       }
     }
   }

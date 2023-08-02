@@ -9,9 +9,6 @@
   font-weight: 500;
   @include flex-column;
   height: 100%;
-  //flex-basis: 20rem;
-  // flex-basis: 24.6%;
-  // margin-right: 6.155%;
   &__img {
     width: 100%;
     height: toRem(120);
