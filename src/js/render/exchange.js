@@ -50,7 +50,7 @@ const renderCurrencyExchange = (quotes) => {
         const errorMessage = document.createElement("p");
         errorMessage.textContent =
           "We're sorry, but there was an error processing your request.";
-
+        table.innerHTML = "";
         parentBlock.insertBefore(errorMessage, spinner);
       })
       .finally(() => spinner.classList.add("spinner_hidden"));

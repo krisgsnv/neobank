@@ -91,8 +91,8 @@ const renderNews = () => {
         const errorMessage = document.createElement("p");
         errorMessage.textContent =
           "We're sorry, but there was an error processing your request.";
-
-        parentBlock.insertBefore(errorMessage, spinner);
+        parentBlock.innerHTML = "";
+        parentBlock.append(errorMessage);
       })
       .finally(() => {
         spinner.classList.add("spinner_hidden");
