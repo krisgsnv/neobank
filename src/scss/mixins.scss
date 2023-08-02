@@ -22,6 +22,35 @@
   align-items: center;
 }
 
+@mixin flex-start-stretch {
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+@mixin flex-start {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+@mixin flex-start-end {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+@mixin flex-end-start {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
 @mixin transition($property, $duration: 0.2s) {
   transition: $duration $property ease-in-out;
 }

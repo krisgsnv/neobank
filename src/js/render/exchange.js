@@ -1,13 +1,10 @@
-import { getCookie, setCookie } from "./cookie";
-import getCurrencyExchange from "./exchange";
+import getCurrencyExchange from "../api/exchange";
 
-const exchangeBlock = document.querySelector(".exchange");
-const exchangeSpinner = exchangeBlock.querySelector(".spinner");
+const parentBlock = document.querySelector(".exchange");
+const spinner = parentBlock.querySelector(".spinner");
+const table = document.querySelector(".exchange__table");
 
 const renderTable = (data) => {
-  const table = document.createElement("table");
-  table.classList.add("exchange__table");
-
   const tbody = document.createElement("tbody");
   tbody.classList.add("exchange__table-body");
   table.appendChild(tbody);
@@ -30,20 +27,23 @@ const renderTable = (data) => {
       });
     }
   });
-  return table;
+  return tbody;
 };
 
-export const renderCurrencyExchange = (quotes) => {
-  const cookiesData = getCookie("currency-exchange");
-  if (cookiesData) {
-    exchangeSpinner.classList.add("spinner_hidden");
-    exchangeBlock.insertBefore(renderTable(JSON.parse(cookiesData)), exchangeSpinner);
+const renderCurrencyExchange = (quotes) => {
+  const currencyExchange = localStorage.getItem("currency-exchange");
+
+  if (currencyExchange) {
+    spinner.classList.add("spinner_hidden");
+    table.innerHTML = "";
+    table.append(renderTable(JSON.parse(currencyExchange)));
   } else {
     getCurrencyExchange(quotes)
       .then((result) => [...result.entries()])
       .then((entries) => {
-        setCookie("currency-exchange", JSON.stringify(entries), 15 * 60);
-        exchangeBlock.insertBefore(renderTable(entries), exchangeSpinner);
+        localStorage.setItem("currency-exchange", JSON.stringify(entries));
+        table.innerHTML = "";
+        table.append(renderTable(entries));
       })
       .catch((error) => {
         console.error(error);
@@ -51,8 +51,10 @@ export const renderCurrencyExchange = (quotes) => {
         errorMessage.textContent =
           "We're sorry, but there was an error processing your request.";
 
-        exchangeBlock.insertBefore(errorMessage, exchangeSpinner);
+        parentBlock.insertBefore(errorMessage, spinner);
       })
-      .finally(() => exchangeSpinner.classList.add("spinner_hidden"));
+      .finally(() => spinner.classList.add("spinner_hidden"));
   }
 };
+
+export default renderCurrencyExchange;

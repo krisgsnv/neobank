@@ -1,6 +1,8 @@
 import axios from "axios";
 
 const getCurrencyExchange = async (quotes) => {
+  const API_KEY = "bcfd35641dmsh5d24916a72c1c70p126c56jsn667ba9720d6f";
+
   const options = {
     method: "GET",
     url: "https://currency-exchange.p.rapidapi.com/exchange",
@@ -9,7 +11,7 @@ const getCurrencyExchange = async (quotes) => {
       q: "1",
     },
     headers: {
-      "X-RapidAPI-Key": "bcfd35641dmsh5d24916a72c1c70p126c56jsn667ba9720d6f",
+      "X-RapidAPI-Key": API_KEY,
       "X-RapidAPI-Host": "currency-exchange.p.rapidapi.com",
     },
   };

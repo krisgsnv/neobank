@@ -137,8 +137,6 @@
     max-width: 55%;
   }
   &__spinner {
-    width: 60px;
-    height: 60px;
     margin: 0 auto;
   }
   &__table {
@@ -216,6 +214,63 @@
   }
 }
 
+.news {
+  margin-top: 3rem;
+  text-align: center;
+  &__h2 {
+    min-height: toRem(50);
+    @include flex-center;
+    color: #1c1c1c;
+    font-weight: 500;
+  }
+  &__text {
+    min-height: toRem(50);
+    @include flex-center;
+    font-weight: 500;
+    color: $black;
+    margin-top: 0.5rem;
+    @media screen and (max-width: $mobile) {
+      margin-top: 1rem;
+    }
+  }
+}
+
+.news-slider {
+  margin-top: toRem(46);
+  &__wrapper {
+    //column-gap: toRem(80);
+  }
+  &__spinner {
+    margin: 0 auto;
+  }
+  &__slide {
+    height: auto;
+  }
+  &__nav {
+    @include flex-end-start;
+    margin-top: 3rem;
+  }
+  &__nav-btn {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    border: 1px solid transparent;
+    @include flex-center;
+    &_prev {
+      background-color: white;
+      border-color: $navyblue;
+    }
+    &_next {
+      background-color: $navyblue;
+      margin-left: toRem(20);
+    }
+    @media screen and (max-width: $mobile) {
+      width: 3.5rem;
+      height: 3.5rem;
+    }
+  }
+}
+
 .support {
   margin-top: 4rem;
   text-align: center;
@@ -288,9 +343,9 @@
       height: 38px;
       margin-right: 10px;
       @media screen and (max-width: $mobile) {
-       background-size: contain;
-       height: 33px;
-       left: 6px;
+        background-size: contain;
+        height: 33px;
+        left: 6px;
       }
     }
   }
