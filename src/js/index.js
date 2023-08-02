@@ -6,12 +6,10 @@ import renderNews, { initializeSlider } from "./render/news";
 
 import { setIntervalUpdatingHtml } from "./utils";
 
-const quotes = ["USD", "TRY", "CHF", "EUR", "JPY", "CNY"];
-
-renderCurrencyExchange(quotes);
+renderCurrencyExchange();
 renderNews();
 
-setIntervalUpdatingHtml("exchange-reload-time", "exchange", 15, () => renderCurrencyExchange(quotes));
+setIntervalUpdatingHtml("exchange-reload-time", "currency-exchange", 15, renderCurrencyExchange);
 setIntervalUpdatingHtml("news-reload-time", "news", 15, renderNews);
 
 initializeSlider();

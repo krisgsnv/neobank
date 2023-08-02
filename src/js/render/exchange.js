@@ -30,7 +30,7 @@ const renderTable = (data) => {
   return tbody;
 };
 
-const renderCurrencyExchange = (quotes) => {
+const renderCurrencyExchange = (quotes = ["USD", "TRY", "CHF", "EUR", "JPY", "CNY"]) => {
   const currencyExchange = localStorage.getItem("currency-exchange");
 
   if (currencyExchange) {
@@ -41,6 +41,7 @@ const renderCurrencyExchange = (quotes) => {
     getCurrencyExchange(quotes)
       .then((result) => [...result.entries()])
       .then((entries) => {
+        console.log("xt")
         localStorage.setItem("currency-exchange", JSON.stringify(entries));
         table.innerHTML = "";
         table.append(renderTable(entries));
