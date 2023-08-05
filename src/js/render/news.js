@@ -60,6 +60,7 @@ export const initializeSlider = () => {
     observeSlideChildren: true,
 
     navigation: {
+      disabledClass: "news-slider__nav-btn_disabled",
       nextEl: ".news-slider__nav-btn_next",
       prevEl: ".news-slider__nav-btn_prev",
     },

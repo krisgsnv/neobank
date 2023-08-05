@@ -132,6 +132,7 @@
     @include flex-start-center;
     margin-top: toRem(24);
     min-height: toRem(50);
+    font-weight: 500;
   }
   &__error {
     max-width: 55%;
@@ -146,9 +147,11 @@
     font-weight: 700;
     letter-spacing: 0.4px;
     line-height: 1.12;
+    font-size: toRem(20);
     @media screen and (max-width: $tablet) {
       display: flex;
       padding-right: 8rem;
+      font-size: 1rem;
     }
     @media screen and (max-width: $mobile) {
       column-gap: 15%;
@@ -187,6 +190,7 @@
     margin-top: toRem(51);
     color: white;
     font-weight: 700;
+    font-size: toRem(20);
   }
 }
 
@@ -237,6 +241,7 @@
 
 .news-slider {
   margin-top: toRem(46);
+  overflow: hidden;
   &__spinner {
     margin: 0 auto;
   }
@@ -246,20 +251,25 @@
   &__nav {
     @include flex-end-start;
     margin-top: 3rem;
+    column-gap: toRem(20);
   }
   &__nav-btn {
     width: 4rem;
     height: 4rem;
     border-radius: 50%;
-    border: 1px solid transparent;
-    @include flex-center;
-    &_prev {
-      background-color: white;
-      border-color: $navyblue;
-    }
-    &_next {
+    border: 1px solid $navyblue;
+    background-color: white;
+    color: #222;
+    @include transition(background-color);
+    &:hover:enabled {
       background-color: $navyblue;
-      margin-left: toRem(20);
+      color: white;
+    }
+    @include flex-center;
+    &_disabled {
+      background-color: #efefef;
+      color: #b1b1b1;
+      border-color: #b1b1b1;
     }
     @media screen and (max-width: $mobile) {
       width: 3.5rem;
