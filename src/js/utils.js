@@ -22,18 +22,22 @@ export const haveEmptyValues = (obj) => {
   return Object.values(obj).some((el) => (!el ? true : false));
 };
 
+export const setMinutesFromNow = (minutes) => {
+  return new Date().setTime(new Date().getTime() + minutes * 60 * 1000);
+}
+
 export const setIntervalCallback = (name, minutes, callback) => {
   let reloadTime = localStorage.getItem(name);
   const currentTime = new Date().getTime();
 
   if (!reloadTime) {
-    reloadTime = new Date().setTime(currentTime + minutes * 60 * 1000);
+    reloadTime = setMinutesFromNow(15);
     localStorage.setItem(name, reloadTime);
   }
 
   if (currentTime >= +reloadTime) {
     callback();
-    reloadTime = new Date().setTime(currentTime + minutes * 60 * 1000);
+    reloadTime = setMinutesFromNow(15);
     localStorage.setItem(name, reloadTime);
   }
 };

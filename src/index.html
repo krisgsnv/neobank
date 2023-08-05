@@ -82,7 +82,15 @@
               Update every 15 minutes, MSC 09.08.2022
             </p>
           </div>
-          <h3 class="h3 exchange__h3">Currency</h3>
+          <div class="exchange__heading exchange__heading_quotes">
+            <h3 class="h3 exchange__h3">Currency</h3>
+            <form>
+              <details class="exchange__multiselect multiselect">
+                <summary class="multiselect__heading">Select quotes</summary>
+                <div class="multiselect__dropdown"></div>
+              </details>
+            </form>
+          </div>
           <table class="exchange__table"></table>
           <div class="exchange__spinner spinner"></div>
           <a href="/" class="exchange__link">All courses</a>

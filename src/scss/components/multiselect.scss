@@ -1,0 +1,48 @@
+.multiselect {
+  cursor: pointer;
+  position: relative;
+  &__heading {
+    @include flex-between-center;
+    list-style-type: none;
+    outline: none;
+    background-color: #ececec;
+    padding: toRem(13) 1rem;
+    border-radius: toRem(6);
+    border: 1px solid rgba(128, 128, 128, 0.2);
+    color: $additional-text;
+    &::-webkit-details-marker {
+      display: none;
+    }
+    &:after {
+      content: url("@/assets/images/expand-down.svg");
+      flex-basis: toRem(24);
+      height: toRem(24);
+    }
+  }
+  &_open &__heading {
+    border-radius: toRem(6) toRem(6) 0 0;
+    &:after {
+      transform: rotate(180deg);
+    }
+  }
+  &__dropdown {
+    @include flex-column;
+    position: absolute;
+    width: 100%;
+    background-color: #f9f9f9;
+    border-radius: 0 0 toRem(6) toRem(6);
+    overflow: hidden;
+  }
+  &__option {
+    cursor: inherit;
+    display: flex;
+    border-top: 1px solid #d7d7d7;
+  }
+  &__option-value {
+    padding: 0.5rem 1rem;
+    width: 100%;
+  }
+  &__checkbox:checked + &__option-value {
+    background-color: #bbb;
+  }
+}

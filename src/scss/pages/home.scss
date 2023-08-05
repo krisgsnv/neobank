@@ -113,6 +113,14 @@
       flex-direction: column;
       align-items: flex-start;
     }
+    &_quotes {
+      margin-top: toRem(24);
+      @media screen and (max-width: $tablet) {
+        margin-top: 1rem;
+        flex-direction: column-reverse;
+        align-items: flex-start;
+      }
+    }
   }
   &__h2 {
     color: $black;
@@ -130,7 +138,6 @@
   }
   &__h3 {
     @include flex-start-center;
-    margin-top: toRem(24);
     min-height: toRem(50);
     font-weight: 500;
   }
@@ -138,7 +145,10 @@
     max-width: 55%;
   }
   &__spinner {
-    margin: 0 auto;
+    margin: 1.5rem auto;
+    @media screen and (max-width: $mobile) {
+      width: 2.5rem;
+    }
   }
   &__table {
     max-width: 100%;
@@ -148,8 +158,8 @@
     letter-spacing: 0.4px;
     line-height: 1.12;
     font-size: toRem(20);
+    display: flex;
     @media screen and (max-width: $tablet) {
-      display: flex;
       padding-right: 8rem;
       font-size: 1rem;
     }
@@ -158,6 +168,7 @@
     }
   }
   &__table-row {
+    @include flex-column;
     @media screen and (max-width: $tablet) {
       display: block;
       margin-top: 0;
@@ -191,6 +202,9 @@
     color: white;
     font-weight: 700;
     font-size: toRem(20);
+  }
+  &__multiselect {
+    width: 11rem;
   }
 }
 
