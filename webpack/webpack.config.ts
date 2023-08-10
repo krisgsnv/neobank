@@ -5,6 +5,9 @@ module.exports = {
   entry: path.resolve(__dirname, "..", "./src/index.tsx"),
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
+    alias: {
+      "@": path.resolve(__dirname, "..", "./src"),
+    },
   },
   module: {
     rules: [
@@ -17,6 +20,32 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          "style-loader",
+          "css-loader",
+          {
+            loader: "sass-loader",
+            options: {
+              additionalData:
+                "@import '@/assets/scss/vars.scss';@import '@/assets/scss/mixins.scss';@import '@/assets/scss/functions.scss';",
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif)$/i,
+        type: "asset/resource",
+      },
+      {
+        test: /\.svg$/i,
+        type: "asset/inline",
+      },
     ],
   },
   output: {
@@ -28,5 +57,5 @@ module.exports = {
       template: path.resolve(__dirname, "..", "./src/index.html"),
     }),
   ],
-  mode: "development"
+  mode: "development",
 };
