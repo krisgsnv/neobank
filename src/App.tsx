@@ -5,7 +5,7 @@ import card3 from "@/assets/images/card3.png"
 import card4 from "@/assets/images/card4.png"
 import map from "@/assets/images/map.svg"
 import logo from "@/assets/images/logo.png"
-
+import Loan from "./pages/Loan";
 export const App = () => (
   <>
     <header className="header">
@@ -54,7 +54,8 @@ export const App = () => (
     </header>
     <main>
       <div className="container">
-        <section className="home-banner">
+        <Loan />
+        {/* <section className="home-banner">
           <div className="home-banner__text">
             <h1 className="h1 home-banner__h1">
               Choose the design you like and apply for card right now
@@ -202,7 +203,7 @@ export const App = () => (
               Subscribe
             </button>
           </form>
-        </section>
+        </section> */}
       </div>
     </main>
     <footer className="footer">
