@@ -1,0 +1,120 @@
+.exchange {
+  $gradient: linear-gradient(
+      360deg,
+      rgba(178, 178, 178, 0.8) 0%,
+      rgba(178, 178, 178, 0) 100%
+    ),
+    rgba(244, 244, 244, 0.9);
+  margin-top: toRem(48);
+  border-radius: toRem(28);
+  background: url("@/assets/images/exchange-bg.svg") calc(100% - 2rem)
+      calc(100% - toRem(92)) / toRem(120) no-repeat,
+    $gradient;
+  box-shadow: 0px 2px 4px 0px rgba(187, 187, 187, 0.2),
+    0px 0px 4px 0px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  @media screen and (max-width: $mobile) {
+    background-position-y: calc(100% - 6rem), top, top;
+    background-size: 6rem, auto, auto;
+  }
+  &__heading {
+    @include flex-between-center;
+    min-height: toRem(50);
+    @media screen and (max-width: $mobile) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    &_quotes {
+      margin-top: toRem(24);
+      @media screen and (max-width: $tablet) {
+        margin-top: 1rem;
+        flex-direction: column-reverse;
+        align-items: flex-start;
+      }
+    }
+  }
+  &__h2 {
+    color: $black;
+    font-weight: 500;
+  }
+  &__additional-info {
+    font-weight: 500;
+    margin-left: 1.5rem;
+    text-align: right;
+    @media screen and (max-width: $mobile) {
+      margin-left: 0;
+      margin-top: 1rem;
+      text-align: left;
+    }
+  }
+  &__h3 {
+    @include flex-start-center;
+    min-height: toRem(50);
+    font-weight: 500;
+  }
+  &__error {
+    max-width: 55%;
+  }
+  &__spinner {
+    margin: 1.5rem auto;
+    @media screen and (max-width: $mobile) {
+      width: 2.5rem;
+    }
+  }
+  &__table {
+    max-width: 100%;
+  }
+  &__table-body {
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    line-height: 1.12;
+    font-size: toRem(20);
+    display: flex;
+    @media screen and (max-width: $tablet) {
+      padding-right: 8rem;
+      font-size: 1rem;
+    }
+    @media screen and (max-width: $mobile) {
+      column-gap: 15%;
+    }
+  }
+  &__table-row {
+    @include flex-column;
+    @media screen and (max-width: $tablet) {
+      display: block;
+      margin-top: 0;
+    }
+  }
+  &__currency {
+    padding-right: 2rem;
+    padding-top: 2rem;
+    @media screen and (max-width: $tablet) {
+      display: inline-block;
+      width: 100%;
+      padding-right: 0;
+      padding-top: 1rem;
+    }
+    @media screen and (max-width: $mobile) {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  &__currency-name {
+    display: inline-block;
+    margin-right: toRem(20);
+    color: $gray;
+    @media screen and (max-width: $mobile) {
+      margin-bottom: 0.5rem;
+    }
+  }
+  &__link {
+    display: inline-block;
+    margin-top: toRem(51);
+    color: white;
+    font-weight: 700;
+    font-size: toRem(20);
+  }
+  &__multiselect {
+    width: 11rem;
+  }
+}

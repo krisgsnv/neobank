@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AccordionContext } from "../../../containers/FAQ";
+import { AccordionContext } from "@/components/containers/FAQ";
 import "./style.scss";
 
 export type AccordionItemType = {

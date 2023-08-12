@@ -1,5 +1,5 @@
 import FAQAnswer from "./FAQAnswer";
-import Accordion from "../../ui/Accordion";
+import Accordion from "@/components/ui/Accordion";
 
 import "./style.scss";
 import { createContext, useState } from "react";

@@ -1,0 +1,59 @@
+.news {
+  margin-top: 3rem;
+  text-align: center;
+  &__h2 {
+    min-height: toRem(50);
+    @include flex-center;
+    color: #1c1c1c;
+    font-weight: 500;
+  }
+  &__text {
+    min-height: toRem(50);
+    @include flex-center;
+    font-weight: 500;
+    color: $black;
+    margin-top: 0.5rem;
+    @media screen and (max-width: $mobile) {
+      margin-top: 1rem;
+    }
+  }
+}
+
+.news-slider {
+  margin-top: toRem(46);
+  overflow: hidden;
+  &__spinner {
+    margin: 0 auto;
+  }
+  &__slide {
+    height: auto;
+  }
+  &__nav {
+    @include flex-end-start;
+    margin-top: 3rem;
+    column-gap: toRem(20);
+  }
+  &__nav-btn {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    border: 1px solid $navyblue;
+    background-color: white;
+    color: #222;
+    @include transition(background-color);
+    &:hover:enabled {
+      background-color: $navyblue;
+      color: white;
+    }
+    @include flex-center;
+    &_disabled {
+      background-color: #efefef;
+      color: #b1b1b1;
+      border-color: #b1b1b1;
+    }
+    @media screen and (max-width: $mobile) {
+      width: 3.5rem;
+      height: 3.5rem;
+    }
+  }
+}
