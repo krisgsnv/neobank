@@ -19,7 +19,7 @@
       height: toRem(24);
     }
   }
-  &_open &__heading {
+  &[open] &__heading {
     border-radius: toRem(6) toRem(6) 0 0;
     &:after {
       transform: rotate(180deg);

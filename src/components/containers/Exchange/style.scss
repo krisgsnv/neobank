@@ -73,6 +73,7 @@
     @media screen and (max-width: $tablet) {
       padding-right: 8rem;
       font-size: 1rem;
+      flex-direction: column;
     }
     @media screen and (max-width: $mobile) {
       column-gap: 15%;
@@ -81,7 +82,7 @@
   &__table-row {
     @include flex-column;
     @media screen and (max-width: $tablet) {
-      display: block;
+      flex-direction: row;
       margin-top: 0;
     }
   }
@@ -91,8 +92,8 @@
     @media screen and (max-width: $tablet) {
       display: inline-block;
       width: 100%;
-      padding-right: 0;
       padding-top: 1rem;
+      white-space: nowrap;
     }
     @media screen and (max-width: $mobile) {
       display: flex;
