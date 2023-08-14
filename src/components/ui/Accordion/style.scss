@@ -1,0 +1,35 @@
+.accordion {
+  border: 1px solid #e2e8f0;
+}
+
+.accordion-item {
+  padding: 2rem;
+  font-size: 1rem;
+  border-top: 1px solid #e2e8f0;
+  &:first-child {
+    border-top: 0;
+  }
+  [open] &__title::after {
+    transform: rotate(180deg);
+  }
+  &__title {
+    @include flex-between-start;
+    cursor: pointer;
+    color: $black;
+    font-weight: 500;
+    font-size: inherit;
+    &::after {
+      content: url("@/assets/images/expand-down.svg");
+      flex-basis: 1.5rem;
+      height: 1.5rem;
+    }
+    &::marker {
+      display: none;
+    }
+  }
+  &__content {
+    margin-top: toRem(56);
+    color: $brown;
+    font-size: inherit;
+  }
+}
