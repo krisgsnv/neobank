@@ -1,14 +1,12 @@
-import { Navigation } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-
 import { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import LocalStorage from "@/services/LocalStorage";
-import "./style.scss";
 import News from "@/services/News";
-
 import { NewsItems, NewsType } from "@/types/News";
 import NewsSliderItem from "./NewsSliderItem";
 import NewsSliderNav from "./NewsSliderNav";
+import { sliderProps } from "./sliderProps";
+import "./style.scss";
 
 const NewsSlider = () => {
   const [timer, setTimer] = useState(new Date());
@@ -61,43 +59,23 @@ const NewsSlider = () => {
       {news.status === "loading" ? (
         <div className="news-slider__spinner spinner"></div>
       ) : news.status === "success" && news.items ? (
-        <Swiper
-          modules={[Navigation]}
-          slidesPerView={1.3}
-          slidesPerGroup={1}
-          spaceBetween={20}
-          slidesOffsetBefore={4}
-          slidesOffsetAfter={4}
-          allowTouchMove={false}
-          observer={true}
-          observeParents={true}
-          observeSlideChildren={true}
-          navigation={{
-            disabledClass: "news-slider-nav__btn_disabled",
-            nextEl: ".news-slider-nav__btn_next",
-            prevEl: ".news-slider-nav__btn_prev",
-          }}
-          wrapperClass="news-slider__wrapper"
-          breakpoints={{
-            500: { slidesPerView: 1.45, spaceBetween: 40 },
-            700: { slidesPerView: 2.45, spaceBetween: 60 },
-            1200: { slidesPerView: 3.45, spaceBetween: 80 },
-          }}
-        >
-          {news.items.map((item) => (
-            <SwiperSlide
-              tag="article"
-              className="news-slider__slide"
-              key={item.title}
-            >
-              <NewsSliderItem {...item} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        <>
+          <Swiper {...sliderProps}>
+            {news.items.map((item) => (
+              <SwiperSlide
+                tag="article"
+                className="news-slider__slide"
+                key={item.title}
+              >
+                <NewsSliderItem {...item} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+          <NewsSliderNav />
+        </>
       ) : (
         <p>We're sorry, but there was an error processing your request.</p>
       )}
-      <NewsSliderNav />
     </div>
   );
 };

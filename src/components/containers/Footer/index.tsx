@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import logo from "@/assets/images/logo.png";
 
 import "./style.scss";
@@ -22,34 +23,34 @@ const Footer = () => {
         <nav className="footer__nav">
           <ul className="footer__list">
             <li>
-              <a href="/">About bank</a>
+              <Link to="/">About bank</Link>
             </li>
             <li>
-              <a href="/">Ask a Question</a>
+              <Link to="/">Ask a Question</Link>
             </li>
             <li>
-              <a href="/">Quality of service</a>
+              <Link to="/">Quality of service</Link>
             </li>
             <li>
-              <a href="/">Requisites</a>
+              <Link to="/">Requisites</Link>
             </li>
             <li>
-              <a href="/">Press center</a>
+              <Link to="/">Press center</Link>
             </li>
             <li>
-              <a href="/">Bank career</a>
+              <Link to="/">Bank career</Link>
             </li>
             <li>
-              <a href="/">Investors</a>
+              <Link to="/">Investors</Link>
             </li>
             <li>
-              <a href="/">Analytics</a>
+              <Link to="/">Analytics</Link>
             </li>
             <li>
-              <a href="/">Business and processes</a>
+              <Link to="/">Business and processes</Link>
             </li>
             <li>
-              <a href="/">Compliance and business ethics</a>
+              <Link to="/">Compliance and business ethics</Link>
             </li>
           </ul>
         </nav>

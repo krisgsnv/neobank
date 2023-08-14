@@ -30,7 +30,7 @@ $mobile-burger: rgba(127, 146, 172, 0.7);
     color: $darkgray;
     font-weight: 700;
     letter-spacing: 0.02em;
-    &:hover {
+    &:hover, &_active {
       color: $beidge;
     }
   }

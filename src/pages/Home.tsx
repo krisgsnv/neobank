@@ -7,14 +7,14 @@ import News from "@/components/containers/News";
 import Support from "@/components/containers/Support";
 
 const Home = () => (
-  <PageLayout>
+  <>
     <HomeBanner />
     <Features />
     <Exchange />
     <Geography />
     <News />
     <Support />
-  </PageLayout>
+  </>
 );
 
 export default Home;

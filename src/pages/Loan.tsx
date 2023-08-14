@@ -4,11 +4,11 @@ import FAQ from "@/components/containers/FAQ";
 import Rates from "@/components/containers/Rates";
 
 const Loan = () => (
-  <PageLayout>
+  <>
     <Rates />
     <Cashback />
     <FAQ />
-  </PageLayout>
+  </>
 );
 
 export default Loan;

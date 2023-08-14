@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./style.scss";
 
 const Header = () => {
@@ -5,30 +6,30 @@ const Header = () => {
     <header className="header">
       <div className="container">
         <div className="header__inner">
-          <a href="/" className="logo">
+          <Link to="/" className="logo">
             NeoBank
-          </a>
+          </Link>
           <nav>
             <ul className="header__list">
               <li>
-                <a href="/" className="header__link nav-link">
+                <Link to="/loan" className="header__link nav-link">
                   Credit card
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/" className="header__link nav-link">
+                <Link to="/" className="header__link nav-link">
                   Product
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/" className="header__link nav-link">
+                <Link to="/" className="header__link nav-link">
                   Account
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/" className="header__link nav-link">
+                <Link to="/" className="header__link nav-link">
                   Resources
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>
