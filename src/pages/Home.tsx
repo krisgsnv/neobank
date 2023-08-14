@@ -1,4 +1,3 @@
-import PageLayout from "@/components/layout/PageLayout";
 import HomeBanner from "@/components/containers/HomeBanner";
 import Features from "@/components/containers/Features";
 import Exchange from "@/components/containers/Exchange";

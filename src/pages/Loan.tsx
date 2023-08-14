@@ -1,13 +1,12 @@
-import PageLayout from "@/components/layout/PageLayout";
-import Cashback from "@/components/containers/Cashback";
-import FAQ from "@/components/containers/FAQ";
-import Rates from "@/components/containers/Rates";
+import CardSteps from "@/components/containers/CardSteps";
+import LoanBanner from "@/components/containers/LoanBanner";
+import LoanTabs from "@/components/containers/LoanTabs";
 
 const Loan = () => (
   <>
-    <Rates />
-    <Cashback />
-    <FAQ />
+    <LoanBanner />
+    <LoanTabs />
+    <CardSteps />
   </>
 );
 
