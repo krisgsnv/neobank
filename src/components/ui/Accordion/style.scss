@@ -4,7 +4,6 @@
 
 .accordion-item {
   padding: 2rem;
-  font-size: 1rem;
   border-top: 1px solid #e2e8f0;
   &:first-child {
     border-top: 0;
@@ -17,7 +16,7 @@
     cursor: pointer;
     color: $black;
     font-weight: 500;
-    font-size: inherit;
+    font-size: 1rem;
     &::after {
       content: url("@/assets/images/expand-down.svg");
       flex-basis: 1.5rem;
@@ -30,6 +29,6 @@
   &__content {
     margin-top: toRem(56);
     color: $brown;
-    font-size: inherit;
+    font-size: 1rem;
   }
 }
