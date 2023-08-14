@@ -16,8 +16,7 @@ const Tabs = (props: TabsPropsType) => {
   };
 
   const tabsButtonClasses = (i: number) =>
-    classNames({
-      tabs__button: true,
+    classNames("tabs__button", {
       tabs__button_active: i === active,
     });
 

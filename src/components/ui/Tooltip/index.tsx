@@ -4,15 +4,12 @@ import "./style.scss";
 
 type TooltipPropsType = {
   text: string;
-  className: string;
+  className?: string;
   children?: React.ReactNode;
 };
 
 const Tooltip = (props: TooltipPropsType) => {
-  let tooltipClasses = classNames({
-    tooltip: true,
-    [props.className]: props.className,
-  });
+  let tooltipClasses = classNames("tooltip", props.className);
 
   const [visible, setVisible] = useState(false);
 

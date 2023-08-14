@@ -1,0 +1,15 @@
+.label {
+  color: #1a202c;
+  font-weight: 500;
+  &__asterisk {
+    color: $red;
+    margin-left: 5px;
+  }
+  &_vertical {
+    @include flex-column;
+  }
+  &_horizontal {
+    @include flex-start;
+    flex-direction: row;
+  }
+}

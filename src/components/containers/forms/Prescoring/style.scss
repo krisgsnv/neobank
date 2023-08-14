@@ -1,0 +1,28 @@
+.prescoring {
+  @include flex-between-stretch;
+  flex-wrap: wrap;
+  &__left {
+    flex-grow: 1;
+    margin-right: toRem(40);
+  }
+  &__right {
+    flex-grow: 1;
+    margin-left: toRem(40);
+  }
+  &__heading {
+    @include flex-between-start;
+  }
+  &__steps {
+    font-weight: 500;
+    margin-top: toRem(7);
+  }
+  &__choosen-amount {
+    display: block;
+    margin-top: 1rem;
+    margin-bottom: toRem(10);
+  }
+  &__divider {
+    opacity: 0.2;
+    width: toRem(220);
+  }
+}

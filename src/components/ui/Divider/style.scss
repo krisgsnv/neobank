@@ -1,0 +1,17 @@
+.divider {
+  border-color: $gray;
+  border-width: 1px;
+  opacity: 0.4;
+  &_vertical {
+    min-height: 100%;
+  }
+  &_horizontal {
+    width: 100%;
+  }
+  &_dashed {
+    border-style: dashed;
+  }
+  &_solid {
+    border-style: solid;
+  }
+}
