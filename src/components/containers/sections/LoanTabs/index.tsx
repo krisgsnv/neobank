@@ -1,8 +1,8 @@
-import AboutCard from "@/components/containers/AboutCard";
+import AboutCard from "@/components/containers/sections/AboutCard";
 import Tabs from "@/components/ui/Tabs";
-import Cashback from "@/components/containers/Cashback";
-import FAQ from "@/components/containers/FAQ";
-import Rates from "@/components/containers/Rates";
+import Cashback from "@/components/containers/sections/Cashback";
+import FAQ from "@/components/containers/sections/FAQ";
+import Rates from "@/components/containers/sections/Rates";
 import "./style.scss";
 
 const items = [

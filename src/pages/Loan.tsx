@@ -1,6 +1,6 @@
-import CardSteps from "@/components/containers/CardSteps";
-import LoanBanner from "@/components/containers/LoanBanner";
-import LoanTabs from "@/components/containers/LoanTabs";
+import CardSteps from "@/components/containers/sections/CardSteps";
+import LoanBanner from "@/components/containers/banners/LoanBanner";
+import LoanTabs from "@/components/containers/sections/LoanTabs";
 
 const Loan = () => (
   <>

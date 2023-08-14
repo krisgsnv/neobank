@@ -1,9 +1,9 @@
-import HomeBanner from "@/components/containers/HomeBanner";
-import Features from "@/components/containers/Features";
-import Exchange from "@/components/containers/Exchange";
-import Geography from "@/components/containers/Geography";
-import News from "@/components/containers/News";
-import Support from "@/components/containers/Support";
+import HomeBanner from "@/components/containers/banners/HomeBanner";
+import Features from "@/components/containers/sections/Features";
+import Exchange from "@/components/containers/sections//Exchange";
+import Geography from "@/components/containers/sections/Geography";
+import News from "@/components/containers/sections/News";
+import Support from "@/components/containers/sections/Support";
 
 const Home = () => (
   <>

@@ -1,5 +1,5 @@
-import Header from "@/components/containers/Header";
-import Footer from "@/components/containers/Footer";
+import Header from "@/components/containers/sections/Header";
+import Footer from "@/components/containers/sections/Footer";
 
 type PageLayoutPropsType = {
   children?: React.ReactNode
