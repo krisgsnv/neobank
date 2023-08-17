@@ -1,5 +1,7 @@
+import { Link } from "react-scroll";
 import card from "@/assets/images/card1.png";
 import Tooltip from "@/components/ui/Tooltip";
+import Button from "@/components/ui/Button";
 
 import "./style.scss";
 const LoanBanner = () => {
@@ -45,12 +47,12 @@ const LoanBanner = () => {
           </div>
         </Tooltip>
       </div>
-      <button
-        type="button"
-        className="button button_default loan-banner__button"
-      >
-        Apply for card
-      </button>
+      <Link to="prescoring" smooth={true} spy={true}>
+        <Button
+          text="Apply for card"
+          className="button_default loan-banner__button"
+        />
+      </Link>
       <img src={card} alt="Card" className="loan-banner__card" />
     </section>
   );

@@ -1,8 +1,7 @@
 import axios from "axios";
+import { ExchangeDataType } from "@/types/Exchange";
 
-export type ExchangeDataType = [string, number][] | null;
-
-const Exchange = {
+const ExchangeService = {
   get: async (quotes: string[]): Promise<ExchangeDataType> => {
     const API_KEY = "bcfd35641dmsh5d24916a72c1c70p126c56jsn667ba9720d6f";
 
@@ -39,4 +38,4 @@ const Exchange = {
   },
 };
 
-export default Exchange;
+export default ExchangeService;

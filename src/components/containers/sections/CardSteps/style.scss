@@ -1,23 +1,20 @@
 .card-steps {
-  margin-top: 6rem;
+  margin-top: 3rem;
   &__h2 {
     @include heading-size(toRem(30));
     text-align: center;
   }
-
   &__list {
     counter-reset: counter;
     @include flex-start;
     margin-top: toRem(18);
     column-gap: 10%;
-
     @media screen and (max-width: $tablet) {
       @include flex-column;
       align-items: stretch;
       row-gap: 2rem;
     }
   }
-
   &__list-item {
     position: relative;
     &::before {
@@ -31,7 +28,6 @@
       border-radius: 50%;
       background: #d9d9d9;
     }
-
     &::after {
       content: "";
       background-color: $gray;
@@ -41,7 +37,6 @@
       position: absolute;
       left: calc(3rem + toRem(36));
       top: toRem(23);
-
       @media screen and (max-width: $tablet) {
         width: calc(100% - calc(3rem + toRem(18)));
         left: calc(3rem + toRem(18));
@@ -54,7 +49,6 @@
     margin-left: toRem(18);
     text-align: center;
     font-weight: 500;
-
     @media screen and (max-width: $tablet) {
       text-align: left;
     }

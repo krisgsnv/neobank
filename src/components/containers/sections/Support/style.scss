@@ -1,3 +1,4 @@
+@import "@/components/ui/Input/style.scss";
 .support {
   margin-top: 4rem;
   text-align: center;
@@ -50,7 +51,7 @@
       color: #9092b0;
     }
   }
-  &__button {
+  &__button.button {
     position: relative;
     line-height: 1.269;
     margin-left: toRem(10);
@@ -75,5 +76,13 @@
         left: toRem(6);
       }
     }
+  }
+  &__message {
+    color: $additional-text;
+    margin-top: 3rem;
+  }
+  &__error {
+    @extend .input-error;
+    margin-top: 1.5rem;
   }
 }

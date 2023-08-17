@@ -1,36 +1,51 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import classNames from "classnames";
 import "./style.scss";
 
 const Header = () => {
+  const links = [
+    {
+      text: "Credit card",
+      url: "/loan",
+    },
+    {
+      text: "Product",
+      url: "/",
+    },
+    {
+      text: "Account",
+      url: "/",
+    },
+    {
+      text: "Resources",
+      url: "/",
+    },
+  ];
+
+  const [activeLink, setActiveLink] = useState(-1);
+
+  const linkClasses = (i: number) =>
+    classNames("header__link nav-link", {
+      header__link_active: i === activeLink,
+    });
+
   return (
     <header className="header">
       <div className="container">
         <div className="header__inner">
-          <Link to="/" className="logo">
+          <Link to="/" className="logo" onClick={() => setActiveLink(-1)}>
             NeoBank
           </Link>
           <nav>
             <ul className="header__list">
-              <li>
-                <Link to="/loan" className="header__link nav-link">
-                  Credit card
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className="header__link nav-link">
-                  Product
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className="header__link nav-link">
-                  Account
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className="header__link nav-link">
-                  Resources
-                </Link>
-              </li>
+              {links.map((link, i) => (
+                <li key={link.text} onClick={() => setActiveLink(i)}>
+                  <Link to={link.url} className={linkClasses(i)}>
+                    {link.text}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </nav>
           <button

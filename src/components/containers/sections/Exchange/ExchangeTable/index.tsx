@@ -1,18 +1,19 @@
+import { ExchangeDataType } from "@/types/Exchange";
 import "./style.scss";
 
 type ExchangeTablePropTypes = {
-  items: [string, number][];
+  list: ExchangeDataType;
 };
 
 const ExchangeTable = (props: ExchangeTablePropTypes) => {
   return (
     <table className="exchange__table">
       <tbody className="exchange__table-body">
-        {props.items.map((_, i) => {
+        {props.list?.map((_, i) => {
           if (i % 2 === 0) {
             return (
               <tr key={i} className="exchange__table-row">
-                {props.items.slice(i, i + 2).map(([key, value]) => {
+                {props.list?.slice(i, i + 2).map(([key, value]) => {
                   return (
                     <td key={key} className="exchange__currency">
                       <span className="exchange__currency-name">{key}:</span>

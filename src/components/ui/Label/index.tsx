@@ -2,18 +2,19 @@ import classNames from "classnames";
 import "./style.scss";
 
 const defaultProps = {
-    direction: "vertical"
-  };
+  direction: "vertical",
+};
 
 type LabelPropsType = {
   text: string;
   children?: React.ReactNode;
   required?: boolean;
+  classNames?: string;
   direction?: "horizontal" | "vertical";
 };
 
 const Label = (props: LabelPropsType) => {
-  const labelClasses = classNames("label", {
+  const labelClasses = classNames("label", props.classNames, {
     label_required: props.required,
     label_horizontal: props.direction === "horizontal",
     label_vertical: props.direction === "vertical",

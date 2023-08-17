@@ -3,7 +3,7 @@ import { getCurrentDate } from "@/utils/date";
 import ExchangeTable from "./ExchangeTable";
 import Multiselect from "@/components/ui/Multiselect";
 import LocalStorage from "@/services/LocalStorage";
-import { ExchangeDataType } from "@/services/Exchange";
+import { ExchangeType, ExchangeDataType } from "@/types/Exchange";
 import ExchangeService from "@/services/Exchange";
 
 import "./style.scss";
@@ -13,46 +13,82 @@ const quotes = {
   optional: ["TRY", "CHF", "JPY", "CNY"],
 };
 
-type ExchangeType = {
-  status: "loading" | "success" | "error";
-  data: ExchangeDataType;
-};
-
 const Exchange = () => {
   const date = getCurrentDate();
-  const selectedQuotes =
-    LocalStorage.get<string[]>("selected-quotes") || quotes.optional;
-  const [quotesList, setQuotesList] = useState<string[]>(selectedQuotes);
+  // const [timer, setTimer] = useState(new Date());
+  // const [selectedQuotes, setSelectedQuotes] = useState<string[]>(
+  //   LocalStorage.get("selected-quotes") || quotes.optional,
+  // );
+
   const [currencyExchange, setCurrencyExchange] = useState<ExchangeType>({
     status: "loading",
-    data: LocalStorage.get<ExchangeDataType>("currency-exchange"),
+    list: LocalStorage.get<ExchangeDataType>("currency-exchange"),
+    optional: quotes.optional,
   });
 
   useEffect(() => {
-    if (currencyExchange.data) {
-      setCurrencyExchange({
-        status: "success",
-        data: LocalStorage.get<ExchangeDataType>("currency-exchange"),
-      });
-    } else {
-      ExchangeService.get([...quotes.required, ...quotesList])
-        .then((entries) => {
-          LocalStorage.set("currency-exchange", entries);
-          setCurrencyExchange({ status: "success", data: entries });
-        })
-        .catch((error) => {
-          console.error(error);
-          setCurrencyExchange({ status: "error", data: null });
+    ExchangeService.get([
+      ...quotes.required,
+      ...currencyExchange.optional,
+    ]).then((result) => {
+      if (result) {
+        LocalStorage.set("currency-exchange", result);
+        setCurrencyExchange((prev) => {
+          return { ...prev, status: "success", list: result };
         });
-    }
-  }, [quotesList]);
+      } else {
+        setCurrencyExchange((prev) => {
+          return { ...prev, status: "error" };
+        });
+      }
+    });
+  }, [currencyExchange.optional]);
 
-  const changeHandler = (data: string[]) => {
+  // const updateNews = (currentTime: number, interval: number) => {
+  //   console.log(optionalQuotes);
 
-    // LocalStorage.set("selected-quotes", data);
-    // setQuotesList(data);
-    
+  //   ExchangeService.get([...quotes.required, ...optionalQuotes]).then(
+  //     (result) => {
+  //       if (result) {
+  //         LocalStorage.set("currency-exchange", result);
+  //         setCurrencyExchange({
+  //           status: "success",
+  //           items: result,
+  //         });
+  //       }
+  //     },
+  //   );
+  //   LocalStorage.set("exchange-reload-time", currentTime + interval);
+  // };
 
+  // useEffect(() => {
+  //   const currentTime = new Date().getTime();
+  //   const reloadTime = LocalStorage.get<number>("exchange-reload-time");
+  //   const interval = 15 * 60 * 1000;
+
+  //   if (LocalStorage.get<ExchangeDataType>("currency-exchange")) {
+  //     setCurrencyExchange({
+  //       status: "success",
+  //       items: LocalStorage.get<ExchangeDataType>("currency-exchange"),
+  //     });
+  //   }
+  //   if (reloadTime) {
+  //     if (currentTime >= reloadTime) {
+  //       updateNews(currentTime, interval);
+  //     }
+  //   } else {
+  //     updateNews(currentTime, interval);
+  //   }
+  //   const timerInterval = setInterval(() => {
+  //     setTimer(new Date());
+  //   }, 5000);
+  //   return () => clearInterval(timerInterval);
+  // }, [timer]);
+
+  const changeHandler = (optional: string[]) => {
+    setCurrencyExchange((prev) => {
+      return { ...prev, optional };
+    });
   };
 
   return (
@@ -65,7 +101,7 @@ const Exchange = () => {
       </div>
       {currencyExchange.status === "loading" ? (
         <div className="exchange__spinner spinner"></div>
-      ) : currencyExchange.status === "success" && currencyExchange.data ? (
+      ) : currencyExchange.status === "success" ? (
         <>
           <div className="exchange__heading exchange__heading_quotes">
             <h3 className="h3 exchange__h3">Currency</h3>
@@ -73,10 +109,10 @@ const Exchange = () => {
               changeHandler={changeHandler}
               items={quotes.optional}
               name="exchange"
-              selected={selectedQuotes}
+              selected={quotes.optional}
             />
           </div>
-          <ExchangeTable items={currencyExchange.data} />
+          <ExchangeTable list={currencyExchange.list} />
         </>
       ) : (
         <p>We're sorry, but there was an error processing your request.</p>

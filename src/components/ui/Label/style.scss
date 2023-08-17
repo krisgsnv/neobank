@@ -4,6 +4,8 @@
   &__asterisk {
     color: $red;
     margin-left: 5px;
+    font-weight: 500;
+    vertical-align: text-top;
   }
   &_vertical {
     @include flex-column;
