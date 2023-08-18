@@ -1,8 +1,8 @@
+import { useState } from "react";
 import classNames from "classnames";
 import { useFormContext, FieldValues, RegisterOptions } from "react-hook-form";
-
+import { useDetectClickOutside } from "react-detect-click-outside";
 import "./style.scss";
-import { useState } from "react";
 
 const defaultProps = {
   type: "text",
@@ -40,6 +40,10 @@ const Select = (props: SelectPropsType) => {
 
   const toggleOpen = () => setOpen((prevState) => !prevState);
 
+  const select = useDetectClickOutside({
+    onTriggered: () => setOpen(false),
+  });
+
   const selectHandler = (item: Option, i: number) => {
     if (i !== selected) {
       setValue(props.name, item.value);
@@ -51,7 +55,7 @@ const Select = (props: SelectPropsType) => {
   return (
     <div className="select">
       <input type="hidden" {...register(props.name, props.registerParams)} />
-      <div onClick={toggleOpen} className={selectClasses}>
+      <div onClick={toggleOpen} ref={select} className={selectClasses}>
         {props.options[selected].label}
       </div>
       {open && (

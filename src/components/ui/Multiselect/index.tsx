@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useDetectClickOutside } from "react-detect-click-outside";
 import "./style.scss";
+import classNames from "classnames";
 
 type MultiselectPropTypes = {
   items: string[];
@@ -16,6 +18,15 @@ const Multiselect = (props: MultiselectPropTypes) => {
     };
   });
 
+  const [open, setOpen] = useState(false);
+
+  const multiselectClasses = classNames("exchange__multiselect multiselect", {
+    multiselect_open: open,
+  });
+
+  const multiselect = useDetectClickOutside({
+    onTriggered: () => setOpen(false),
+  });
   const [checkboxState, setCheckboxState] = useState(checkboxInitial);
 
   const changeHandler = (i: number) => {
@@ -30,28 +41,36 @@ const Multiselect = (props: MultiselectPropTypes) => {
     });
   };
 
+  const clickHandler = () => {
+    if (!open) {
+      setOpen(true);
+    }
+  };
+
   return (
-    <form>
-      <details className="exchange__multiselect multiselect">
+    <form ref={multiselect} onClick={() => clickHandler()}>
+      <details className={multiselectClasses}>
         <summary className="multiselect__heading">Select quotes</summary>
-        <div className="multiselect__dropdown">
-          {props.items.map((item, i) => {
-            return (
-              <label key={item} className="multiselect__option">
-                <input
-                  className="multiselect__checkbox"
-                  type="checkbox"
-                  hidden
-                  name={props.name}
-                  value={item}
-                  onChange={() => changeHandler(i)}
-                  checked={checkboxState[i].checked}
-                />
-                <span className="multiselect__option-value">{item}</span>
-              </label>
-            );
-          })}
-        </div>
+        {open && (
+          <div className="multiselect__dropdown">
+            {props.items.map((item, i) => {
+              return (
+                <label key={item} className="multiselect__option">
+                  <input
+                    className="multiselect__checkbox"
+                    type="checkbox"
+                    hidden
+                    name={props.name}
+                    value={item}
+                    onChange={() => changeHandler(i)}
+                    checked={checkboxState[i].checked}
+                  />
+                  <span className="multiselect__option-value">{item}</span>
+                </label>
+              );
+            })}
+          </div>
+        )}
       </details>
     </form>
   );
