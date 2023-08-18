@@ -1,10 +1,7 @@
-@import "@/assets/scss/style.scss";
-
 .news {
   margin-top: 3rem;
   text-align: center;
   &__h2 {
-    @extend .h2;
     min-height: toRem(50);
     @include flex-center;
     color: #1c1c1c;

@@ -3,7 +3,6 @@
   @include flex-start-stretch;
   flex-wrap: wrap;
   gap: toRem(40);
-
   &__item {
     padding: 2rem;
     background: 2rem 2rem no-repeat;
@@ -12,21 +11,17 @@
       0px 0px 8px 0px rgba(0, 0, 0, 0.08);
     flex-basis: calc((100% - toRem(80)) * 1 / 3);
     flex-grow: 1;
-
     &::before {
       display: block;
       width: 40px;
       height: 40px;
     }
-
-    &_light {
+    &:nth-child(odd) {
       background-color: $lightgray;
     }
-
-    &_dark {
+    &:nth-child(even) {
       background-color: rgba(127, 146, 172, 0.7);
     }
-
     @each $icon in "money", "calendar", "clock", "bag", "card" {
       &_#{$icon} {
         &::before {
@@ -34,28 +29,38 @@
         }
       }
     }
-
     @media screen and (max-width: $tablet) {
       padding: 1.5rem;
       flex-basis: calc((100% - toRem(20)) * 1 / 2);
+      &:nth-child(3),
+      &:nth-child(2),
+      &:last-child {
+        background-color: $lightgray;
+      }
+      &:nth-child(1),
+      &:nth-child(4) {
+        background-color: rgba(127, 146, 172, 0.7);
+      }
     }
-
     @media screen and (max-width: $mobile) {
       flex-basis: 100%;
+      &:nth-child(odd) {
+        background-color: $lightgray;
+      }
+      &:nth-child(even) {
+        background-color: rgba(127, 146, 172, 0.7);
+      }
     }
   }
-
   &__title {
     display: block;
     margin-top: 2rem;
     @include heading-size(toRem(30));
     letter-spacing: toRem(0.6);
-
     @media screen and (max-width: $tablet) {
       margin-top: 1.3rem;
     }
   }
-
   &__description {
     font-weight: 500;
     line-height: 1.2;
@@ -65,7 +70,6 @@
       margin-top: 1.2rem;
     }
   }
-
   @media screen and (max-width: $tablet) {
     gap: toRem(20);
   }

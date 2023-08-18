@@ -1,5 +1,4 @@
 @import "@/components/ui/Input/style.scss";
-@import "@/assets/scss/style.scss";
 
 .support {
   margin-top: 4rem;
@@ -11,7 +10,6 @@
     letter-spacing: 0.03rem;
   }
   &__h2 {
-    @extend .h2;
     margin-top: toRem(30);
     &_fullwidth {
       display: block;

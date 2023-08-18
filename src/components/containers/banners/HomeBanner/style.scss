@@ -9,7 +9,6 @@
     flex-direction: column;
   }
   &__h1 {
-    @extend .h1;
     line-height: 1.05;
     color: $black;
     @include heading-size(3rem);
