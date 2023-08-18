@@ -64,9 +64,9 @@
 @mixin heading-size($size) {
   font-size: $size;
   @media screen and (max-width: $tablet) {
-    font-size: calc($size * 0.8);
+    font-size: calc($size * 0.9);
   }
   @media screen and (max-width: $mobile) {
-    font-size: calc($size * 0.7);
+    font-size: calc($size * 0.85);
   }
 }

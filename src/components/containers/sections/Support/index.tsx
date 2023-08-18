@@ -37,7 +37,7 @@ const Support = () => {
   return (
     <section className="support">
       <p className="support__heading">Support</p>
-      <h2 className="h2 support__h2">
+      <h2 className="support__h2">
         Subscribe Newsletter & get
         <span className="support__h2_fullwidth">Bank News</span>
       </h2>

@@ -1,5 +1,9 @@
+require("dotenv").config();
+
 const path = require("path");
+const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
 
 module.exports = {
   entry: path.resolve(__dirname, "..", "./src/index.tsx"),
@@ -56,24 +60,32 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "..", "./src/index.html"),
     }),
+    new NodePolyfillPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NEWS_API_KEY: JSON.stringify(process.env.NEWS_API_KEY),
+        EXCHANGE_API_KEY: JSON.stringify(process.env.EXCHANGE_API_KEY)
+      }
+    }),
   ],
   mode: "development",
   devServer: {
     port: 3000,
     proxy: {
-      '/application': {
+      "/application": {
         target: "http://localhost:3000",
-        router: () => "http://localhost:8080"
+        router: () => "http://localhost:8080",
       },
-      '/email': {
+      "/email": {
         target: "http://localhost:3000",
-        router: () => "http://localhost:8080"
-      }
+        router: () => "http://localhost:8080",
+      },
     },
     headers: {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
-    }
-  }
+      "Access-Control-Allow-Headers":
+        "X-Requested-With, content-type, Authorization",
+    },
+  },
 };

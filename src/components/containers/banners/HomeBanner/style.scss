@@ -1,3 +1,5 @@
+@import "@/assets/scss/style.scss";
+
 .home-banner {
   @include flex-between-start;
   margin-top: toRem(131);
@@ -7,6 +9,7 @@
     flex-direction: column;
   }
   &__h1 {
+    @extend .h1;
     line-height: 1.05;
     color: $black;
     @include heading-size(3rem);

@@ -1,11 +1,10 @@
+import axios from "axios";
+import "dotenv/config";
 import { NewsItemType, NewsItems } from "@/types/News";
 import { containsHTML, haveEmptyValues, isValidSrc } from "@/utils/validation";
-import axios from "axios";
 
 const News = {
   get: async (): Promise<NewsItems> => {
-    const API_KEY = "5fd452a43fd84dd48e9fdf3e66fee6b9";
-
     const options = {
       method: "GET",
       url: "https://newsapi.org/v2/top-headlines",
@@ -13,7 +12,7 @@ const News = {
         country: "us",
         category: "business",
         pageSize: 30,
-        apiKey: API_KEY,
+        apiKey: process.env.NEWS_API_KEY,
       },
     };
 

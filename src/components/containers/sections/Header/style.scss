@@ -5,6 +5,15 @@ $mobile-burger: rgba(127, 146, 172, 0.7);
     @include flex-between-center;
     padding: 1rem 0;
   }
+  &__logo {
+    color: $pink;
+    font-size: toRem(24);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    @media screen and (max-width: $tablet) {
+      font-size: toRem(20);
+    }
+  }
   &__list {
     @include flex-center;
     @include transition(right, 0.4s);
@@ -23,6 +32,7 @@ $mobile-burger: rgba(127, 146, 172, 0.7);
     }
     &_active {
       right: 0;
+      z-index: 1;
     }
   }
   &__link {
@@ -30,7 +40,8 @@ $mobile-burger: rgba(127, 146, 172, 0.7);
     color: $darkgray;
     font-weight: 700;
     letter-spacing: 0.02em;
-    &:hover, &_active {
+    &:hover,
+    &_active {
       color: $beidge;
     }
   }

@@ -9,7 +9,7 @@ const NewsSliderItem = (props:NewsItemType) => {
         src={props.urlToImage}
         alt={props.title}
       />
-      <h3 className="h3 news-slider-item__title">{props.title}</h3>
+      <h3 className="news-slider-item__title">{props.title}</h3>
       <p className="news-slider-item__description">{props.description}</p>
     </a>
   );

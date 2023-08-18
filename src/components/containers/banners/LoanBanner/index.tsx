@@ -47,11 +47,8 @@ const LoanBanner = () => {
           </div>
         </Tooltip>
       </div>
-      <Link to="prescoring" smooth={true} spy={true}>
-        <Button
-          text="Apply for card"
-          className="button_default loan-banner__button"
-        />
+      <Link to="prescoring" className="loan-banner__anchor" smooth={true}>
+        <Button text="Apply for card" />
       </Link>
       <img src={card} alt="Card" className="loan-banner__card" />
     </section>

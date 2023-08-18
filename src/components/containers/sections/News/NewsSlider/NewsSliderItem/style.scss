@@ -1,3 +1,5 @@
+@import "@/assets/scss/style.scss";
+
 .news-slider-item {
   padding: 2rem;
   border-radius: toRem(28);
@@ -15,6 +17,7 @@
     object-fit: cover;
   }
   &__title {
+    @extend .h3;
     margin-top: 2rem;
     font-weight: inherit;
     line-height: 1.25;

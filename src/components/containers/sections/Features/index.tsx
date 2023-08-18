@@ -3,7 +3,7 @@ import "./style.scss";
 const Features = () => {
   return (
     <section className="features">
-      <h2 className="h2 features__h2">We Provide Many Features You Can Use</h2>
+      <h2 className="features__h2">We Provide Many Features You Can Use</h2>
       <p className="features__text">
         You can explore the features that we provide with fun and have their own
         functions each feature

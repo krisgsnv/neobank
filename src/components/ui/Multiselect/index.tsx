@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import "./style.scss";
-import LocalStorage from "@/services/LocalStorage";
 
 type MultiselectPropTypes = {
   items: string[];
   name: string;
-  changeHandler: (data:string[], e?: React.ChangeEvent) => void;
+  changeHandler: (data: string[], e?: React.ChangeEvent) => void;
   selected?: string[];
 };
 
@@ -20,16 +19,16 @@ const Multiselect = (props: MultiselectPropTypes) => {
   const [checkboxState, setCheckboxState] = useState(checkboxInitial);
 
   const changeHandler = (i: number) => {
-    setCheckboxState((prevState) =>
-      prevState.map((item, index) =>
+    setCheckboxState((prevState) => {
+      const updated = prevState.map((item, index) =>
         index === i ? { ...item, checked: !item.checked } : item,
-      ),
-    );
+      );
+      props.changeHandler(
+        updated.filter((item) => item.checked).map((item) => item.value),
+      );
+      return updated;
+    });
   };
-
-  useEffect(() => {
-    props.changeHandler(checkboxState.filter((item) => item.checked).map(item => item.value))
-  }, [checkboxState])
 
   return (
     <form>

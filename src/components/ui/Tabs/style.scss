@@ -21,6 +21,9 @@
     background-color: transparent;
     border-bottom: 2px solid transparent;
     @include transition(border-color);
+    @media screen and (max-width: $mobile) {
+      padding: 0 0.7rem toRem(12);
+    }
     &_active {
       border-color: $brown;
     }

@@ -15,7 +15,8 @@
     background-size: toRem(285);
   }
   &__h2 {
-    font-size: toRem(35);
+    @include heading-size(toRem(35));
+    line-height: 1.2;
     color: #0b132a;
     font-weight: 500;
     min-height: toRem(50);

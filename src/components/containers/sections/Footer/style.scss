@@ -18,7 +18,7 @@
     align-items: flex-start;
   }
   &__phone {
-    font-size: toRem(30);
+    @include heading-size(toRem(30));
     font-weight: 700;
   }
   &__mail {

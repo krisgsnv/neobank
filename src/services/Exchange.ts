@@ -1,10 +1,9 @@
 import axios from "axios";
+import "dotenv/config";
 import { ExchangeDataType } from "@/types/Exchange";
 
 const ExchangeService = {
   get: async (quotes: string[]): Promise<ExchangeDataType> => {
-    const API_KEY = "bcfd35641dmsh5d24916a72c1c70p126c56jsn667ba9720d6f";
-
     const options = {
       method: "GET",
       url: "https://currency-exchange.p.rapidapi.com/exchange",
@@ -14,7 +13,7 @@ const ExchangeService = {
         from: "",
       },
       headers: {
-        "X-RapidAPI-Key": API_KEY,
+        "X-RapidAPI-Key": process.env.EXCHANGE_API_KEY,
         "X-RapidAPI-Host": "currency-exchange.p.rapidapi.com",
       },
     };

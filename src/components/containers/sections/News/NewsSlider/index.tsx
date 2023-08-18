@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import LocalStorage from "@/services/LocalStorage";
+import { LocalStorage } from "ttl-localstorage";
+
 import News from "@/services/News";
-import { NewsItems, NewsType } from "@/types/News";
+import { NewsType } from "@/types/News";
 import NewsSliderItem from "./NewsSliderItem";
 import NewsSliderNav from "./NewsSliderNav";
+import Loader from "@/components/ui/Loader";
 import { sliderProps } from "./sliderProps";
 import "./style.scss";
 
@@ -15,49 +17,35 @@ const NewsSlider = () => {
     items: null,
   });
 
-  const updateNews = (currentTime: number, interval: number) => {
-    News.get()
-      .then((data) => News.filter(data))
-      .then((filtered) => {
-        if (filtered) {
-          LocalStorage.set("news", filtered);
-          setNews({
-            status: "success",
-            items: filtered,
-          });
-        }
-      });
-    LocalStorage.set("news-reload-time", currentTime + interval);
-  };
-
   useEffect(() => {
-    const currentTime = new Date().getTime();
-    const reloadTime = LocalStorage.get<number>("news-reload-time");
-    const interval = 15 * 60 * 1000;
-
-    if (LocalStorage.get<NewsItems>("news")) {
+    if (LocalStorage.get("news")) {
       setNews({
         status: "success",
-        items: LocalStorage.get<NewsItems>("news"),
+        items: LocalStorage.get("news"),
       });
-    }
-    if (reloadTime) {
-      if (currentTime >= reloadTime) {
-        updateNews(currentTime, interval);
-      }
     } else {
-      updateNews(currentTime, interval);
+      News.get()
+        .then((data) => News.filter(data))
+        .then((filtered) => {
+          if (filtered) {
+            LocalStorage.put("news", filtered, 15 * 60);
+            setNews({
+              status: "success",
+              items: filtered,
+            });
+          }
+        });
     }
     const timerInterval = setInterval(() => {
       setTimer(new Date());
-    }, 5000);
+    }, 3000);
     return () => clearInterval(timerInterval);
   }, [timer]);
 
   return (
     <div className="news-slider">
       {news.status === "loading" ? (
-        <div className="news-slider__spinner spinner"></div>
+        <Loader className="news-slider__spinner" />
       ) : news.status === "success" && news.items ? (
         <>
           <Swiper {...sliderProps}>

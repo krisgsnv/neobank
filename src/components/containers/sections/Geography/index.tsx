@@ -5,7 +5,7 @@ import "./style.scss";
 const Geography = () => {
   return (
     <section className="geography">
-      <h2 className="h2 geography__h2">
+      <h2 className="geography__h2">
         You can use our services anywhere in the world
       </h2>
       <p className="geography__text">

@@ -1,3 +1,5 @@
+@import "@/assets/scss/style.scss";
+
 .exchange {
   $gradient: linear-gradient(
       360deg,
@@ -16,6 +18,7 @@
   @media screen and (max-width: $mobile) {
     background-position-y: calc(100% - 6rem), top, top;
     background-size: 6rem, auto, auto;
+    padding: 1.5rem;
   }
   &__heading {
     @include flex-between-center;
@@ -34,6 +37,7 @@
     }
   }
   &__h2 {
+    @extend .h2;
     color: $black;
     font-weight: 500;
   }
@@ -48,6 +52,7 @@
     }
   }
   &__h3 {
+    @extend .h3;
     @include flex-start-center;
     min-height: toRem(50);
     font-weight: 500;
