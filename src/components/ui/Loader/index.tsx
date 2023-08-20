@@ -5,8 +5,8 @@ type LoaderPropsType = {
   className?: string;
 };
 
-const Loader = (props: LoaderPropsType) => {
-  const loaderClasses = classNames("loader", props.className);
+const Loader = ({ className }: LoaderPropsType) => {
+  const loaderClasses = classNames("loader", className);
   return <div className={loaderClasses}></div>;
 };
 

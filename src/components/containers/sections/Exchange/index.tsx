@@ -72,7 +72,7 @@ const Exchange = () => {
           <div className="exchange__heading exchange__heading_quotes">
             <h3 className="exchange__h3">Currency</h3>
             <Multiselect
-              changeHandler={(data) => changeHandler(data)}
+              propsChangeHandler={(data) => changeHandler(data)}
               items={quotes.optional}
               name="exchange"
               selected={currencyExchange.optional}

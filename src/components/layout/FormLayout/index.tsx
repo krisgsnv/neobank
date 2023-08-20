@@ -6,10 +6,10 @@ type FormLayoutPropsType = {
   className?: string;
 };
 
-const FormLayout = (props: FormLayoutPropsType) => {
-  const layoutClasses = classNames("form-layout", props.className);
+const FormLayout = ({ children, className }: FormLayoutPropsType) => {
+  const layoutClasses = classNames("form-layout", className);
 
-  return <div className={layoutClasses}>{props.children}</div>;
+  return <div className={layoutClasses}>{children}</div>;
 };
 
 export default FormLayout;

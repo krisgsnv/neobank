@@ -13,20 +13,26 @@ type LabelPropsType = {
   direction?: "horizontal" | "vertical";
 };
 
-const Label = (props: LabelPropsType) => {
-  const labelClasses = classNames("label", props.classNames, {
-    label_required: props.required,
-    label_horizontal: props.direction === "horizontal",
-    label_vertical: props.direction === "vertical",
+const Label = ({
+  text,
+  children,
+  required,
+  classNames,
+  direction,
+}: LabelPropsType) => {
+  const labelClasses = classNames("label", classNames, {
+    label_required: required,
+    label_horizontal: direction === "horizontal",
+    label_vertical: direction === "vertical",
   });
 
   return (
     <label className={labelClasses}>
       <span className="label__text">
-        {props.text}
-        {props.required ? <sup className="label__asterisk">*</sup> : ""}
+        {text}
+        {required ? <sup className="label__asterisk">*</sup> : ""}
       </span>
-      {props.children}
+      {children}
     </label>
   );
 };

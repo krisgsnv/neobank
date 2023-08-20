@@ -6,7 +6,7 @@ type TabsPropsType = {
   items: { title: string; content: JSX.Element | string }[];
 };
 
-const Tabs = (props: TabsPropsType) => {
+const Tabs = ({ items }: TabsPropsType) => {
   const [active, setActive] = useState(0);
 
   const changeActive = (i: number) => {
@@ -20,7 +20,7 @@ const Tabs = (props: TabsPropsType) => {
       tabs__button_active: i === active,
     });
 
-  const tabsHeader = props.items.map((item, i) => (
+  const tabsHeader = items.map((item, i) => (
     <li key={item.title}>
       <button
         type="button"
@@ -34,7 +34,7 @@ const Tabs = (props: TabsPropsType) => {
   return (
     <div className="tabs">
       <ul className="tabs__header">{tabsHeader}</ul>
-      {props.items[active]?.content}
+      {items[active]?.content}
     </div>
   );
 };

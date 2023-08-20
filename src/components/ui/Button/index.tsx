@@ -14,14 +14,14 @@ type ButtonPropsType = {
   disabled?: boolean;
 };
 
-const Button = (props: ButtonPropsType) => {
-  const buttonClasses = classNames("button", props.className, {
-    button_default: !props.disabled,
-    button_disabled: props.disabled,
+const Button = ({ text, className, type, disabled }: ButtonPropsType) => {
+  const buttonClasses = classNames("button", className, {
+    button_default: !disabled,
+    button_disabled: disabled,
   });
   return (
-    <button type={props.type} className={buttonClasses} disabled={props.disabled}>
-      {props.text}
+    <button type={type} className={buttonClasses} disabled={disabled}>
+      {text}
     </button>
   );
 };

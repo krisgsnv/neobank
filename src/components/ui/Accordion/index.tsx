@@ -12,23 +12,23 @@ type AccordionPropType = {
   items: AccordionItemType[];
 };
 
-const Accordion = (props: AccordionPropType) => {
+const Accordion = ({ activeItem, setActiveItem, items }: AccordionPropType) => {
   const clickHandler = (e: React.MouseEvent, id: number) => {
     e.preventDefault();
-    if (id === props.activeItem) {
-      props.setActiveItem(0);
+    if (id === activeItem) {
+      setActiveItem(0);
     } else {
-      props.setActiveItem(id);
+      setActiveItem(id);
     }
   };
   return (
     <div className="accordion">
-      {props.items.map((item) => (
+      {items.map((item) => (
         <details
           key={item.id}
           className="accordion-item"
           onClick={(e) => clickHandler(e, item.id)}
-          open={props.activeItem == item.id}
+          open={activeItem == item.id}
         >
           <summary className="accordion-item__title">{item.title}</summary>
           <div className="accordion-item__content">{item.content}</div>

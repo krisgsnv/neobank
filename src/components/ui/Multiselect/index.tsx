@@ -6,15 +6,20 @@ import classNames from "classnames";
 type MultiselectPropTypes = {
   items: string[];
   name: string;
-  changeHandler: (data: string[], e?: React.ChangeEvent) => void;
+  propsChangeHandler: (data: string[], e?: React.ChangeEvent) => void;
   selected?: string[];
 };
 
-const Multiselect = (props: MultiselectPropTypes) => {
-  const checkboxInitial = props.items.map((item) => {
+const Multiselect = ({
+  items,
+  name,
+  propsChangeHandler,
+  selected,
+}: MultiselectPropTypes) => {
+  const checkboxInitial = items.map((item) => {
     return {
       value: item,
-      checked: props.selected?.includes(item) || false,
+      checked: selected?.includes(item) || false,
     };
   });
 
@@ -34,7 +39,7 @@ const Multiselect = (props: MultiselectPropTypes) => {
       const updated = prevState.map((item, index) =>
         index === i ? { ...item, checked: !item.checked } : item,
       );
-      props.changeHandler(
+      propsChangeHandler(
         updated.filter((item) => item.checked).map((item) => item.value),
       );
       return updated;
@@ -53,14 +58,14 @@ const Multiselect = (props: MultiselectPropTypes) => {
         <summary className="multiselect__heading">Select quotes</summary>
         {open && (
           <div className="multiselect__dropdown">
-            {props.items.map((item, i) => {
+            {items.map((item, i) => {
               return (
                 <label key={item} className="multiselect__option">
                   <input
                     className="multiselect__checkbox"
                     type="checkbox"
                     hidden
-                    name={props.name}
+                    name={name}
                     value={item}
                     onChange={() => changeHandler(i)}
                     checked={checkboxState[i].checked}

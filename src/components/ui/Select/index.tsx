@@ -20,9 +20,9 @@ type SelectPropsType = {
   registerParams?: RegisterOptions;
 };
 
-const Select = (props: SelectPropsType) => {
+const Select = ({name, selectedIndex, options, registerParams}: SelectPropsType) => {
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState(props.selectedIndex);
+  const [selected, setSelected] = useState(selectedIndex);
   const {
     register,
     setValue,
@@ -46,7 +46,7 @@ const Select = (props: SelectPropsType) => {
 
   const selectHandler = (item: Option, i: number) => {
     if (i !== selected) {
-      setValue(props.name, item.value);
+      setValue(name, item.value);
       setSelected(i);
     }
     toggleOpen();
@@ -54,13 +54,13 @@ const Select = (props: SelectPropsType) => {
 
   return (
     <div className="select">
-      <input type="hidden" {...register(props.name, props.registerParams)} />
+      <input type="hidden" {...register(name, registerParams)} />
       <div onClick={toggleOpen} ref={select} className={selectClasses}>
-        {props.options[selected].label}
+        {options[selected].label}
       </div>
       {open && (
         <div className="select__options multiselect__dropdown">
-          {props.options.map((item, i) => {
+          {options.map((item, i) => {
             return (
               <div
                 key={item.label}

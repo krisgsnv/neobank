@@ -8,8 +8,8 @@ type TooltipPropsType = {
   children?: React.ReactNode;
 };
 
-const Tooltip = (props: TooltipPropsType) => {
-  let tooltipClasses = classNames("tooltip", props.className);
+const Tooltip = ({ text, className, children }: TooltipPropsType) => {
+  let tooltipClasses = classNames("tooltip", className);
 
   const [visible, setVisible] = useState(false);
 
@@ -24,9 +24,9 @@ const Tooltip = (props: TooltipPropsType) => {
   return (
     <div className="tooltip-wrapper">
       <div className="tooltip-target" onMouseEnter={show} onMouseLeave={hide}>
-        {props.children}
+        {children}
       </div>
-      {visible && <p className={tooltipClasses}>{props.text}</p>}
+      {visible && <p className={tooltipClasses}>{text}</p>}
     </div>
   );
 };

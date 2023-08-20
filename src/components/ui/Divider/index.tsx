@@ -7,12 +7,12 @@ type DividerPropTypes = {
   className?: string;
 };
 
-const Divider = (props: DividerPropTypes) => {
-  const dividerClasses = classNames('divider', props.className, {
-    divider_dashed: props.type === "dashed",
-    divider_solid: props.type === "solid",
-    divider_vertical: props.position === "vertical",
-    divider_horizontal: props.position === "horizontal",
+const Divider = ({ position, type, className }: DividerPropTypes) => {
+  const dividerClasses = classNames("divider", className, {
+    divider_dashed: type === "dashed",
+    divider_solid: type === "solid",
+    divider_vertical: position === "vertical",
+    divider_horizontal: position === "horizontal",
   });
 
   return <div className={dividerClasses}></div>;
