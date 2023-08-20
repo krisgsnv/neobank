@@ -55,6 +55,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "..", "./build"),
     filename: "bundle.js",
+    publicPath: "/",
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -62,15 +63,16 @@ module.exports = {
     }),
     new NodePolyfillPlugin(),
     new webpack.DefinePlugin({
-      'process.env': {
+      "process.env": {
         NEWS_API_KEY: JSON.stringify(process.env.NEWS_API_KEY),
-        EXCHANGE_API_KEY: JSON.stringify(process.env.EXCHANGE_API_KEY)
-      }
+        EXCHANGE_API_KEY: JSON.stringify(process.env.EXCHANGE_API_KEY),
+      },
     }),
   ],
   mode: "development",
   devServer: {
     port: 3000,
+    historyApiFallback: true,
     proxy: {
       "/application": {
         target: "http://localhost:3000",

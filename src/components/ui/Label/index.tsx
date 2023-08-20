@@ -9,7 +9,7 @@ type LabelPropsType = {
   text: string;
   children?: React.ReactNode;
   required?: boolean;
-  classNames?: string;
+  className?: string;
   direction?: "horizontal" | "vertical";
 };
 
@@ -17,10 +17,10 @@ const Label = ({
   text,
   children,
   required,
-  classNames,
+  className,
   direction,
 }: LabelPropsType) => {
-  const labelClasses = classNames("label", classNames, {
+  const labelClasses = classNames("label", className, {
     label_required: required,
     label_horizontal: direction === "horizontal",
     label_vertical: direction === "vertical",
