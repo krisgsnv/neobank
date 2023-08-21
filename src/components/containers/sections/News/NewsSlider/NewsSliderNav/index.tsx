@@ -1,6 +1,6 @@
 import "./style.scss";
 
-const NewsSliderNav = () => {
+const NewsSliderNav = (): JSX.Element => {
   return (
     <div className="news-slider-nav">
       <button

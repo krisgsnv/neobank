@@ -1,6 +1,7 @@
 import "./style.scss";
 import { useState } from "react";
-import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
+import type { SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import EmailService from "@/services/Email";
@@ -8,30 +9,34 @@ import LocalStorage from "@/services/LocalStorage";
 import Button from "@/components/ui/Button";
 import schema from "@/utils/schemas/subscribe";
 
-type SubscribeFormData = {
+interface SubscribeFormData {
   email: string;
-};
+}
 
-const Support = () => {
+const Support = (): JSX.Element => {
   const [subscribe, setSubscribe] = useState(
-    LocalStorage.get<boolean>("subscribed"),
+    LocalStorage.get<boolean>("subscribed")
   );
 
   const methods = useForm<SubscribeFormData>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schema)
   });
 
   const {
     register,
     formState: { errors },
-    handleSubmit,
+    handleSubmit
   } = methods;
 
   const submitHandler: SubmitHandler<SubscribeFormData> = (data) => {
-    EmailService.subscribe(data).then(() => {
-      LocalStorage.set("subscribed", true);
-      setSubscribe(true);
-    });
+    EmailService.subscribe(data)
+      .then(() => {
+        LocalStorage.set("subscribed", true);
+        setSubscribe(true);
+      })
+      .catch(() => {
+        setSubscribe(false);
+      });
   };
 
   return (
@@ -43,7 +48,7 @@ const Support = () => {
       </h2>
       {subscribe ? (
         <p className="support__message">
-          You are already subscribed to the bank's newsletter
+          You are already subscribed to the bank&#39;s newsletter
         </p>
       ) : (
         <FormProvider {...methods}>

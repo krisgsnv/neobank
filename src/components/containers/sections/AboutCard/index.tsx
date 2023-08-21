@@ -1,6 +1,6 @@
 import "./style.scss";
 
-const AboutCard = () => {
+const AboutCard = (): JSX.Element => {
   return (
     <section className="about-card">
       <div className="about-card__item about-card__item_light about-card__item_money">

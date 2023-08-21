@@ -9,10 +9,10 @@ const items = [
   { title: "About card", content: <AboutCard /> },
   { title: "Rates and conditions", content: <Rates /> },
   { title: "Cashback", content: <Cashback /> },
-  { title: "FAQ", content: <FAQ /> },
+  { title: "FAQ", content: <FAQ /> }
 ];
 
-const LoanTabs = () => {
+const LoanTabs = (): JSX.Element => {
   return (
     <section className="loan-tabs">
       <Tabs items={items} />

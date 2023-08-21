@@ -2,22 +2,26 @@ import { useState } from "react";
 import classNames from "classnames";
 import "./style.scss";
 
-type TooltipPropsType = {
+interface TooltipPropsType {
   text: string;
   className?: string;
   children?: React.ReactNode;
-};
+}
 
-const Tooltip = ({ text, className, children }: TooltipPropsType) => {
-  let tooltipClasses = classNames("tooltip", className);
+const Tooltip = ({
+  text,
+  className,
+  children
+}: TooltipPropsType): JSX.Element => {
+  const tooltipClasses = classNames("tooltip", className);
 
   const [visible, setVisible] = useState(false);
 
-  const show = () => {
+  const show = (): void => {
     setVisible(true);
   };
 
-  const hide = () => {
+  const hide = (): void => {
     setVisible(false);
   };
 

@@ -5,7 +5,7 @@ import Geography from "@/components/containers/sections/Geography";
 import News from "@/components/containers/sections/News";
 import Support from "@/components/containers/sections/Support";
 
-const Home = () => (
+const Home = (): JSX.Element => (
   <>
     <HomeBanner />
     <Features />

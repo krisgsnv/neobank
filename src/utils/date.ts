@@ -1,6 +1,4 @@
-import { parse, isDate, isMatch } from "date-fns";
-
-export const getCurrentDate = () => {
+export const getCurrentDate = (): string => {
   return new Date().toLocaleDateString();
 };
 

@@ -6,7 +6,7 @@ import card4 from "@/assets/images/card4.png";
 import Button from "@/components/ui/Button";
 import "./style.scss";
 
-const HomeBanner = () => {
+const HomeBanner = (): JSX.Element => {
   return (
     <section className="home-banner">
       <div className="home-banner__text">

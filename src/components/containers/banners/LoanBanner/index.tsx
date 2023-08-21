@@ -4,7 +4,7 @@ import Tooltip from "@/components/ui/Tooltip";
 import Button from "@/components/ui/Button";
 
 import "./style.scss";
-const LoanBanner = () => {
+const LoanBanner = (): JSX.Element => {
   return (
     <section className="loan-banner">
       <h1 className="h1 loan-banner__h1">Platinum digital credit card</h1>

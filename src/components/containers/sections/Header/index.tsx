@@ -4,43 +4,43 @@ import classNames from "classnames";
 import Button from "@/components/ui/Button";
 import "./style.scss";
 
-const Header = () => {
+const Header = (): JSX.Element => {
   const links = [
     {
       text: "Credit card",
-      url: "/loan",
+      url: "/loan"
     },
     {
       text: "Product",
-      url: "/",
+      url: "/"
     },
     {
       text: "Account",
-      url: "/",
+      url: "/"
     },
     {
       text: "Resources",
-      url: "/",
-    },
+      url: "/"
+    }
   ];
 
   const [activeLink, setActiveLink] = useState(-1);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const linkClasses = (i: number) =>
+  const linkClasses = (i: number): string =>
     classNames("header__link nav-link", {
-      header__link_active: i === activeLink,
+      header__link_active: i === activeLink
     });
 
   const listClasses = classNames("header__list", {
-    header__list_active: menuOpen,
+    header__list_active: menuOpen
   });
 
   const navBtnClasses = classNames("header__nav-btn", {
-    "header__nav-btn_active": menuOpen,
+    "header__nav-btn_active": menuOpen
   });
 
-  const linkClickHandler = (i:number) => {
+  const linkClickHandler = (i: number): void => {
     setActiveLink(i);
     setMenuOpen(false);
   };
@@ -52,14 +52,21 @@ const Header = () => {
           <Link
             to="/"
             className="header__logo"
-            onClick={() => setActiveLink(-1)}
+            onClick={() => {
+              setActiveLink(-1);
+            }}
           >
             NeoBank
           </Link>
           <nav>
             <ul className={listClasses}>
               {links.map((link, i) => (
-                <li key={link.text} onClick={() => linkClickHandler(i)}>
+                <li
+                  key={link.text}
+                  onClick={() => {
+                    linkClickHandler(i);
+                  }}
+                >
                   <Link to={link.url} className={linkClasses(i)}>
                     {link.text}
                   </Link>
@@ -72,7 +79,9 @@ const Header = () => {
             type="button"
             className={navBtnClasses}
             title="Menu"
-            onClick={() => setMenuOpen((prev) => !prev)}
+            onClick={() => {
+              setMenuOpen((prev) => !prev);
+            }}
           ></button>
         </div>
       </div>

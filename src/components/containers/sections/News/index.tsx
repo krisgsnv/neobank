@@ -1,7 +1,7 @@
 import "./style.scss";
 import NewsSlider from "./NewsSlider";
 
-const News = () => {
+const News = (): JSX.Element => {
   return (
     <section className="news">
       <h2 className="news__h2">Current news from the world of finance</h2>

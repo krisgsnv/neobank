@@ -1,6 +1,6 @@
 import axios from "axios";
 import "dotenv/config";
-import { NewsItemType, NewsItems } from "@/types/News";
+import type { NewsItemType, NewsItems } from "@/types/News";
 import { containsHTML, haveEmptyValues, isValidSrc } from "@/utils/validation";
 
 const News = {
@@ -12,8 +12,8 @@ const News = {
         country: "us",
         category: "business",
         pageSize: 30,
-        apiKey: process.env.NEWS_API_KEY,
-      },
+        apiKey: process.env.NEWS_API_KEY
+      }
     };
 
     try {
@@ -28,14 +28,14 @@ const News = {
   filter: async (news: NewsItems) => {
     if (news) {
       const imagePromises = news.map(
-        ({ url, urlToImage, title, description }) =>
-          isValidSrc({ url, urlToImage, title, description }, "urlToImage"),
+        async ({ url, urlToImage, title, description }) =>
+          await isValidSrc({ url, urlToImage, title, description }, "urlToImage")
       );
       const imagePromisesResult = await Promise.allSettled(imagePromises);
       const fulfilled = (
         imagePromisesResult.filter(
-          (promise) => promise.status === "fulfilled" && promise.value,
-        ) as PromiseFulfilledResult<NewsItemType>[]
+          (promise) => promise.status === "fulfilled" && promise.value
+        ) as unknown as Array<PromiseFulfilledResult<NewsItemType>>
       ).map((result) => result.value);
 
       return fulfilled.filter(({ url, urlToImage, title, description }) => {
@@ -45,7 +45,7 @@ const News = {
     } else {
       return null;
     }
-  },
+  }
 };
 
 export default News;

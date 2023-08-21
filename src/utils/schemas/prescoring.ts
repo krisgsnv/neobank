@@ -41,7 +41,7 @@ const schema = yup.object().shape({
   passportNumber: yup
     .string()
     .matches(/^\d{6}$/, "The series must be 6 digits")
-    .required(),
+    .required()
 });
 
 export default schema;

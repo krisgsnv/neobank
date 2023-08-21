@@ -1,6 +1,6 @@
 import "./style.scss";
 
-const CardSteps = () => {
+const CardSteps = (): JSX.Element => {
   return (
     <section className="card-steps">
       <h2 className="h2 card-steps__h2">How to get a card</h2>
@@ -12,7 +12,7 @@ const CardSteps = () => {
         </li>
         <li className="card-steps__list-item">
           <p className="card-steps__text">
-            Find out the bank's decision immediately after filling out the
+            Find out the bank&#39;s decision immediately after filling out the
             application
           </p>
         </li>

@@ -2,22 +2,22 @@ import { useState } from "react";
 import classNames from "classnames";
 import "./style.scss";
 
-type TabsPropsType = {
-  items: { title: string; content: JSX.Element | string }[];
-};
+interface TabsPropsType {
+  items: Array<{ title: string; content: JSX.Element | string }>;
+}
 
-const Tabs = ({ items }: TabsPropsType) => {
+const Tabs = ({ items }: TabsPropsType): JSX.Element => {
   const [active, setActive] = useState(0);
 
-  const changeActive = (i: number) => {
+  const changeActive = (i: number): void => {
     if (i !== active) {
       setActive(i);
     }
   };
 
-  const tabsButtonClasses = (i: number) =>
+  const tabsButtonClasses = (i: number): string =>
     classNames("tabs__button", {
-      tabs__button_active: i === active,
+      tabs__button_active: i === active
     });
 
   const tabsHeader = items.map((item, i) => (
@@ -25,7 +25,9 @@ const Tabs = ({ items }: TabsPropsType) => {
       <button
         type="button"
         className={tabsButtonClasses(i)}
-        onClick={() => changeActive(i)}
+        onClick={() => {
+          changeActive(i);
+        }}
       >
         {item.title}
       </button>

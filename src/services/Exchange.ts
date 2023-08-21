@@ -1,6 +1,6 @@
 import axios from "axios";
 import "dotenv/config";
-import { ExchangeDataType } from "@/types/Exchange";
+import type { ExchangeDataType } from "@/types/Exchange";
 
 const ExchangeService = {
   get: async (quotes: string[]): Promise<ExchangeDataType> => {
@@ -10,19 +10,19 @@ const ExchangeService = {
       params: {
         to: "RUB",
         q: "1",
-        from: "",
+        from: ""
       },
       headers: {
         "X-RapidAPI-Key": process.env.EXCHANGE_API_KEY,
-        "X-RapidAPI-Host": "currency-exchange.p.rapidapi.com",
-      },
+        "X-RapidAPI-Host": "currency-exchange.p.rapidapi.com"
+      }
     };
 
     try {
       if (quotes.length) {
-        const promises = quotes.map((quote) => {
+        const promises = quotes.map(async (quote) => {
           options.params.from = quote;
-          return axios.request(options);
+          return await axios.request(options);
         });
 
         const request = await Promise.all(promises);
@@ -34,7 +34,7 @@ const ExchangeService = {
       console.error(error);
       return null;
     }
-  },
+  }
 };
 
 export default ExchangeService;

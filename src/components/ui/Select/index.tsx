@@ -1,50 +1,56 @@
 import { useState } from "react";
 import classNames from "classnames";
-import { useFormContext, FieldValues, RegisterOptions } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
+import type { FieldValues, RegisterOptions } from "react-hook-form";
 import { useDetectClickOutside } from "react-detect-click-outside";
 import "./style.scss";
 
 const defaultProps = {
-  type: "text",
+  type: "text"
 };
 
-type Option = {
+interface Option {
   value: unknown;
   label: string;
-};
+}
 
-type SelectPropsType = {
+interface SelectPropsType {
   name: string;
   selectedIndex: number;
   options: Option[];
   registerParams?: RegisterOptions;
-};
+}
 
-const Select = ({name, selectedIndex, options, registerParams}: SelectPropsType) => {
+const Select = ({
+  name,
+  selectedIndex,
+  options,
+  registerParams
+}: SelectPropsType): JSX.Element => {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(selectedIndex);
-  const {
-    register,
-    setValue,
-    formState: { errors },
-  } = useFormContext<FieldValues>();
+  const { register, setValue } = useFormContext<FieldValues>();
 
   const selectClasses = classNames("select__value", {
-    select__value_open: open,
+    select__value_open: open
   });
 
-  const optionClasses = (i: number) =>
+  const optionClasses = (i: number): string =>
     classNames("select__option multiselect__option multiselect__option-value", {
-      select__option_selected: i === selected,
+      select__option_selected: i === selected
     });
 
-  const toggleOpen = () => setOpen((prevState) => !prevState);
+  const toggleOpen = (): void => {
+    setOpen((prevState) => !prevState);
+  };
 
   const select = useDetectClickOutside({
-    onTriggered: () => setOpen(false),
+    onTriggered: () => {
+      setOpen(false);
+    }
   });
 
-  const selectHandler = (item: Option, i: number) => {
+  const selectHandler = (item: Option, i: number): void => {
     if (i !== selected) {
       setValue(name, item.value);
       setSelected(i);
@@ -65,7 +71,9 @@ const Select = ({name, selectedIndex, options, registerParams}: SelectPropsType)
               <div
                 key={item.label}
                 className={optionClasses(i)}
-                onClick={() => selectHandler(item, i)}
+                onClick={() => {
+                  selectHandler(item, i);
+                }}
               >
                 {item.label}
               </div>

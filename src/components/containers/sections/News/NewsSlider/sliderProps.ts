@@ -14,12 +14,12 @@ export const sliderProps = {
   navigation: {
     disabledClass: "news-slider-nav__btn_disabled",
     nextEl: ".news-slider-nav__btn_next",
-    prevEl: ".news-slider-nav__btn_prev",
+    prevEl: ".news-slider-nav__btn_prev"
   },
   wrapperClass: "news-slider__wrapper",
   breakpoints: {
     500: { slidesPerView: 1.45, spaceBetween: 40 },
     700: { slidesPerView: 2.45, spaceBetween: 60 },
-    1200: { slidesPerView: 3.45, spaceBetween: 80 },
-  },
+    1200: { slidesPerView: 3.45, spaceBetween: 80 }
+  }
 };

@@ -1,11 +1,11 @@
 import classNames from "classnames";
 import "./style.scss";
 
-type LoaderPropsType = {
+interface LoaderPropsType {
   className?: string;
-};
+}
 
-const Loader = ({ className }: LoaderPropsType) => {
+const Loader = ({ className }: LoaderPropsType): JSX.Element => {
   const loaderClasses = classNames("loader", className);
   return <div className={loaderClasses}></div>;
 };

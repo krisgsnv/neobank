@@ -5,7 +5,7 @@ import Loan from "@/pages/Loan";
 import "@/assets/scss/index.scss";
 import PageLayout from "@/components/layout/PageLayout";
 
-export const App = () => (
+export const App = (): JSX.Element => (
   <PageLayout>
     <Routes>
       <Route path="/" element={<Home />} />

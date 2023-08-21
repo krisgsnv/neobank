@@ -1,4 +1,4 @@
-export type PrescoringFormData = {
+export interface PrescoringFormData {
   amount: number;
   term: number;
   firstName: string;

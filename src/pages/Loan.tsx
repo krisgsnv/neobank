@@ -3,7 +3,7 @@ import LoanBanner from "@/components/containers/banners/LoanBanner";
 import LoanTabs from "@/components/containers/sections/LoanTabs";
 import Prescoring from "@/components/containers/forms/Prescoring";
 
-const Loan = () => (
+const Loan = (): JSX.Element => (
   <>
     <LoanBanner />
     <LoanTabs />

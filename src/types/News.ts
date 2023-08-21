@@ -1,4 +1,4 @@
-export type NewsItemType = {
+export interface NewsItemType {
   title: string;
   description: string;
   url: string;
@@ -14,7 +14,7 @@ export type NewsItemType = {
 
 export type NewsItems = NewsItemType[] | null;
 
-export type NewsType = {
+export interface NewsType {
   status: "loading" | "success" | "error";
   items: NewsItems;
 };

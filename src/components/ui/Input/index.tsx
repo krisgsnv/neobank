@@ -1,34 +1,39 @@
 import classNames from "classnames";
-import { useFormContext, FieldValues, RegisterOptions } from "react-hook-form";
-
+import { useFormContext } from "react-hook-form";
+import type { FieldValues, RegisterOptions } from "react-hook-form";
 import "./style.scss";
 
 const defaultProps = {
-  type: "text",
+  type: "text"
 };
 
-type InputPropsType = {
+interface InputPropsType {
   name: string;
   type?: string;
   placeholder?: string;
   registerParams?: RegisterOptions;
   className?: string;
-};
+}
 
-const Input = ({name, type, placeholder, registerParams, className}: InputPropsType) => {
+const Input = ({
+  name,
+  type,
+  placeholder,
+  registerParams,
+  className
+}: InputPropsType): JSX.Element => {
   const {
     register,
     formState: { errors, isSubmitted },
-    getFieldState,
+    getFieldState
   } = useFormContext<FieldValues>();
 
-  const errorMessage = errors[name]?.message;
+  const errorMessage = errors[name]?.message?.toString();
 
   const inputClasses = classNames("input", className, {
     input_error: getFieldState(name).invalid,
-    input_success: isSubmitted && !getFieldState(name).invalid,
+    input_success: isSubmitted && !getFieldState(name).invalid
   });
-
   return (
     <>
       <input
@@ -37,7 +42,7 @@ const Input = ({name, type, placeholder, registerParams, className}: InputPropsT
         className={inputClasses}
         {...register(name, registerParams)}
       />
-      {errorMessage && <p className="input-error">{errorMessage.toString()}</p>}
+      {errorMessage && <p className="input-error">{errorMessage}</p>}
     </>
   );
 };

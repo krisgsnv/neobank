@@ -1,11 +1,11 @@
-import { ExchangeDataType } from "@/types/Exchange";
+import type { ExchangeDataType } from "@/types/Exchange";
 import "./style.scss";
 
-type ExchangeTablePropTypes = {
+interface ExchangeTablePropTypes {
   list: ExchangeDataType;
-};
+}
 
-const ExchangeTable = ({list}: ExchangeTablePropTypes) => {
+const ExchangeTable = ({ list }: ExchangeTablePropTypes): JSX.Element => {
   return (
     <table className="exchange__table">
       <tbody className="exchange__table-body">
@@ -13,17 +13,15 @@ const ExchangeTable = ({list}: ExchangeTablePropTypes) => {
           if (i % 2 === 0) {
             return (
               <tr key={i} className="exchange__table-row">
-                {list?.slice(i, i + 2).map(([key, value]) => {
-                  return (
-                    <td key={key} className="exchange__currency">
-                      <span className="exchange__currency-name">{key}:</span>
-                      {value.toFixed(2)}
-                    </td>
-                  );
-                })}
+                {list?.slice(i, i + 2).map(([key, value]) => (
+                  <td key={key} className="exchange__currency">
+                    <span className="exchange__currency-name">{key}:</span>
+                    {value.toFixed(2)}
+                  </td>
+                ))}
               </tr>
             );
-          }
+          } else return "";
         })}
       </tbody>
     </table>

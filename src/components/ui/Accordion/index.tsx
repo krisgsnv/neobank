@@ -1,19 +1,23 @@
 import "./style.scss";
 
-export type AccordionItemType = {
+export interface AccordionItemType {
   id: number;
   title: string;
   content: JSX.Element | string;
 };
 
-type AccordionPropType = {
+interface AccordionPropType {
   activeItem: number;
   setActiveItem: React.Dispatch<React.SetStateAction<number>>;
   items: AccordionItemType[];
-};
+}
 
-const Accordion = ({ activeItem, setActiveItem, items }: AccordionPropType) => {
-  const clickHandler = (e: React.MouseEvent, id: number) => {
+const Accordion = ({
+  activeItem,
+  setActiveItem,
+  items
+}: AccordionPropType): JSX.Element => {
+  const clickHandler = (e: React.MouseEvent, id: number): void => {
     e.preventDefault();
     if (id === activeItem) {
       setActiveItem(0);
@@ -27,8 +31,10 @@ const Accordion = ({ activeItem, setActiveItem, items }: AccordionPropType) => {
         <details
           key={item.id}
           className="accordion-item"
-          onClick={(e) => clickHandler(e, item.id)}
-          open={activeItem == item.id}
+          onClick={(e) => {
+            clickHandler(e, item.id);
+          }}
+          open={activeItem === item.id}
         >
           <summary className="accordion-item__title">{item.title}</summary>
           <div className="accordion-item__content">{item.content}</div>

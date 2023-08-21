@@ -1,6 +1,6 @@
 import "./style.scss";
 
-const Features = () => {
+const Features = (): JSX.Element => {
   return (
     <section className="features">
       <h2 className="features__h2">We Provide Many Features You Can Use</h2>

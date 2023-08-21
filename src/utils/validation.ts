@@ -1,16 +1,20 @@
-export const containsHTML = (str: string) => /<\/?[a-z][\s\S]*>/i.test(str);
+export const containsHTML = (str: string): boolean =>
+  /<\/?[a-z][\s\S]*>/i.test(str);
 
-export const isValidSrc = (result: { [key: string]: string }, prop:string) => {
-  return new Promise((resolve, reject) => {
+export const isValidSrc = async (
+  result: Record<string, string>,
+  prop: string
+): Promise<Record<string, string> | false> => {
+  return await new Promise((resolve, reject) => {
     try {
-      let image = document.createElement("img");
+      const image = document.createElement("img");
       image.src = result[prop];
 
       image.onload = () => {
         resolve(result);
       };
       image.onerror = () => {
-        reject(false);
+        resolve(false);
       };
     } catch (error) {
       console.error(error);
@@ -18,6 +22,6 @@ export const isValidSrc = (result: { [key: string]: string }, prop:string) => {
   });
 };
 
-export const haveEmptyValues = (obj: { [key: string]: string }) => {
-  return Object.values(obj).some((el) => (!el ? true : false));
+export const haveEmptyValues = (obj: Record<string, string>): boolean => {
+  return Object.values(obj).some((el) => !el);
 };

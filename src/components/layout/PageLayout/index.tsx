@@ -1,11 +1,11 @@
 import Header from "@/components/containers/sections/Header";
 import Footer from "@/components/containers/sections/Footer";
 
-type PageLayoutPropsType = {
+interface PageLayoutPropsType {
   children?: React.ReactNode;
-};
+}
 
-const PageLayout = ({ children }: PageLayoutPropsType) => {
+const PageLayout = ({ children }: PageLayoutPropsType): JSX.Element => {
   return (
     <>
       <Header />

@@ -4,20 +4,25 @@ import "./style.scss";
 const defaultProps = {
   text: "Button",
   type: "button",
-  disabled: false,
+  disabled: false
 };
 
-type ButtonPropsType = {
+interface ButtonPropsType {
   text?: string;
   className?: string;
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
-};
+}
 
-const Button = ({ text, className, type, disabled }: ButtonPropsType) => {
+const Button = ({
+  text,
+  className,
+  type,
+  disabled
+}: ButtonPropsType): JSX.Element => {
   const buttonClasses = classNames("button", className, {
     button_default: !disabled,
-    button_disabled: disabled,
+    button_disabled: disabled
   });
   return (
     <button type={type} className={buttonClasses} disabled={disabled}>

@@ -7,10 +7,10 @@ const LocalStorage = {
     const value = localStorage.getItem(key);
     return (value ? JSON.parse(value) : defaultValue) as T;
   },
-  
+
   remove: (key: string) => {
     localStorage.removeItem(key);
-  },
+  }
 };
 
 export default LocalStorage;

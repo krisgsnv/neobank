@@ -2,7 +2,7 @@ import map from "@/assets/images/map.svg";
 
 import "./style.scss";
 
-const Geography = () => {
+const Geography = (): JSX.Element => {
   return (
     <section className="geography">
       <h2 className="geography__h2">

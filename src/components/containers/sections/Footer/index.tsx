@@ -3,7 +3,7 @@ import logo from "@/assets/images/logo.png";
 
 import "./style.scss";
 
-const Footer = () => {
+const Footer = (): JSX.Element => {
   return (
     <footer className="footer">
       <div className="container">

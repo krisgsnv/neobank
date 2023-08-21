@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
+import type { SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Element } from "react-scroll";
 
@@ -11,7 +12,7 @@ import Button from "@/components/ui/Button";
 import Select from "@/components/ui/Select";
 import Loader from "@/components/ui/Loader";
 
-import { PrescoringFormData } from "@/types/Prescoring";
+import type { PrescoringFormData } from "@/types/Prescoring";
 import PrescoringService from "@/services/Prescoring";
 import schema from "@/utils/schemas/prescoring";
 import { replaceToDigits } from "@/utils/string";
@@ -19,28 +20,28 @@ import "./style.scss";
 
 type StatusType = "start" | "loading";
 
-const Prescoring = () => {
+const Prescoring = (): JSX.Element => {
   const [status, setStatus] = useState<StatusType>("start");
   const methods = useForm<PrescoringFormData>({
     resolver: yupResolver(schema),
     defaultValues: {
       amount: 150000,
       middleName: null,
-      term: 6,
-    },
+      term: 6
+    }
   });
 
   const { handleSubmit, getValues } = methods;
   const formValues = getValues();
   const [amount, setAmount] = useState(formValues.amount);
 
-  const changeAmountHandler = (e: React.ChangeEvent) => {
+  const changeAmountHandler = (e: React.ChangeEvent): void => {
     const target = e.target as HTMLInputElement;
     target.value = replaceToDigits(`${target.value}`);
     setAmount(+target.value);
   };
 
-  const numberChangeHandler = (e: React.ChangeEvent) => {
+  const numberChangeHandler = (e: React.ChangeEvent): void => {
     const target = e.target as HTMLInputElement;
     target.value = replaceToDigits(target.value);
   };
@@ -49,7 +50,6 @@ const Prescoring = () => {
     PrescoringService.get(data);
     setStatus("loading");
   };
-
   return (
     <Element name="prescoring">
       <section className="prescoring">
@@ -74,7 +74,7 @@ const Prescoring = () => {
                           placeholder="Set amount"
                           name="amount"
                           registerParams={{
-                            onChange: changeAmountHandler,
+                            onChange: changeAmountHandler
                           }}
                         />
                       </Label>
@@ -118,7 +118,7 @@ const Prescoring = () => {
                           { value: 6, label: "6 month" },
                           { value: 12, label: "12 month" },
                           { value: 18, label: "18 month" },
-                          { value: 24, label: "24 month" },
+                          { value: 24, label: "24 month" }
                         ]}
                       />
                     </Label>
@@ -136,7 +136,7 @@ const Prescoring = () => {
                         placeholder="0000"
                         name="passportSeries"
                         registerParams={{
-                          onChange: numberChangeHandler,
+                          onChange: numberChangeHandler
                         }}
                       />
                     </Label>
@@ -145,7 +145,7 @@ const Prescoring = () => {
                         placeholder="000000"
                         name="passportNumber"
                         registerParams={{
-                          onChange: numberChangeHandler,
+                          onChange: numberChangeHandler
                         }}
                       />
                     </Label>
