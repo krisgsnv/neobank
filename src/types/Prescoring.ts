@@ -5,7 +5,7 @@ export interface PrescoringFormData {
   lastName: string;
   middleName: string | null;
   email: string;
-  birthdate: Date;
+  birthdate: string;
   passportSeries: string;
   passportNumber: string;
 };

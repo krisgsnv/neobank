@@ -49,6 +49,7 @@ const Prescoring = (): JSX.Element => {
   const submitHandler: SubmitHandler<PrescoringFormData> = (data) => {
     PrescoringService.get(data);
     setStatus("loading");
+    console.log(data);
   };
   return (
     <Element name="prescoring">
