@@ -1,0 +1,52 @@
+.cashback {
+  margin-top: 2rem;
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    gap: toRem(40);
+    @media screen and (max-width: $tablet) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+    @media screen and (max-width: $mobile) {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+  &__item {
+    @include flex-column;
+    justify-content: space-between;
+    padding: 2rem;
+    border-radius: toRem(28);
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2),
+      0px 0px 8px 0px rgba(0, 0, 0, 0.08);
+    &:nth-child(odd) {
+      background: $lightgray;
+    }
+    &:nth-child(even) {
+      background: rgba(136, 179, 184, 0.6);
+    }
+    @media screen and (max-width: $tablet) and (min-width: $mobile) {
+      &:first-child,
+      &:nth-child(n + 4) {
+        background: $lightgray;
+      }
+      &:nth-child(2),
+      &:nth-child(3),
+      &:last-child {
+        background: rgba(136, 179, 184, 0.6);
+      }
+    }
+  }
+  &__item-title {
+    color: rgba(67, 67, 67, 0.9);
+    min-height: calc(1.474rem * 2);
+    @media screen and (max-width: $mobile) {
+      min-height: auto;
+    }
+  }
+  &__item-description {
+    @include heading-size(toRem(36));
+  }
+}

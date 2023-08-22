@@ -1,0 +1,115 @@
+.loan-banner {
+  display: grid;
+  align-items: center;
+  justify-items: start;
+  grid-template-columns: 56.39% 1fr;
+  column-gap: 10.6%;
+  padding: 3rem 9% 3rem 2rem;
+  border-radius: toRem(29);
+  background: linear-gradient(
+    180deg,
+    rgba(203, 213, 224, 0.62) 0%,
+    rgba(254, 235, 200, 0.56) 100%
+  );
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2),
+    0px 0px 8px 0px rgba(0, 0, 0, 0.08);
+  @media screen and (max-width: $tablet) {
+    grid-template-columns: 40% minmax(toRem(210), 38%);
+    column-gap: 5%;
+    justify-content: space-between;
+  }
+  @media screen and (max-width: $mobile) {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+  }
+  &__h1 {
+    color: white;
+    letter-spacing: 0.06rem;
+    @include heading-size(3rem);
+    grid-column: 1;
+    @media screen and (max-width: $tablet) {
+      grid-column-end: 3;
+    }
+  }
+  &__text {
+    margin-top: 3rem;
+    font-weight: 500;
+    line-height: 1.12;
+    letter-spacing: 0.03rem;
+    margin-right: 19%;
+    grid-column: 1;
+    @media screen and (max-width: $tablet) {
+      grid-column-end: 3;
+      margin-top: 2rem;
+    }
+    @media screen and (max-width: $mobile) {
+      margin-top: 1.5rem;
+    }
+  }
+  &__features {
+    @include flex-start;
+    margin-top: 2rem;
+    line-height: 1.12;
+    column-gap: 12.33%;
+    row-gap: 2rem;
+    grid-column: 1;
+    width: 100%;
+    @media screen and (max-width: $tablet) {
+      @include flex-column;
+    }
+    @media screen and (max-width: $mobile) {
+      row-gap: 1.4rem;
+    }
+  }
+  &__tooltip {
+    top: calc(100% + 6px);
+    width: toRem(170);
+    &_left {
+      left: -2rem;
+    }
+    &_center {
+      left: toRem(-18);
+    }
+    &_right {
+      left: toRem(-10);
+    }
+    @media screen and (max-width: $tablet) {
+      left: -1rem;
+    }
+  }
+  &__feature {
+    @include flex-column;
+  }
+  &__feature-title {
+    font-size: toRem(20);
+    letter-spacing: 0.02rem;
+  }
+  &__sum {
+    white-space: nowrap;
+  }
+  &__feature-description {
+    margin-top: 0.5rem;
+    letter-spacing: 0.02rem;
+    font-weight: 500;
+  }
+  &__anchor {
+    margin-top: 2rem;
+    grid-column: 1;
+  }
+  &__card {
+    border-radius: 5.26%/8.89%;
+    transform: rotate(10deg);
+    margin-bottom: 5px;
+    width: 100%;
+    grid-row: 1/5;
+    grid-column-end: -1;
+    @media screen and (max-width: $tablet) {
+      grid-row-start: 3;
+    }
+    @media screen and (max-width: $mobile) {
+      transform: none;
+      width: toRem(210);
+      margin-top: 2rem;
+    }
+  }
+}

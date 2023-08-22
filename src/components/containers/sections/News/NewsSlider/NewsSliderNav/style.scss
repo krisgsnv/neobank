@@ -1,0 +1,28 @@
+.news-slider-nav {
+  @include flex-end-start;
+  margin-top: 3rem;
+  column-gap: toRem(20);
+  &__btn {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    border: 1px solid $navyblue;
+    background-color: white;
+    color: #222;
+    @include transition(background-color);
+    &:hover:enabled {
+      background-color: $navyblue;
+      color: white;
+    }
+    @include flex-center;
+    &_disabled {
+      background-color: #efefef;
+      color: #b1b1b1;
+      border-color: #b1b1b1;
+    }
+    @media screen and (max-width: $mobile) {
+      width: 3.5rem;
+      height: 3.5rem;
+    }
+  }
+}

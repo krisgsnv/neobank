@@ -1,0 +1,65 @@
+.prescoring {
+  padding-top: toRem(46);
+  &__content {
+    @include flex-between-stretch;
+    flex-wrap: wrap;
+  }
+  &__heading {
+    display: grid;
+    grid-template-columns: 1fr 2px 1fr;
+    width: 100%;
+    gap: toRem(40);
+    @media screen and (max-width: $tablet) {
+      grid-template-columns: 1fr;
+    }
+  }
+  &__title {
+    @include flex-between-start;
+    gap: 1.5rem;
+  }
+  &__steps {
+    font-weight: 500;
+    margin-top: toRem(7);
+    white-space: nowrap;
+  }
+  &__range {
+    margin-top: 2rem;
+  }
+  &__choosen-amount {
+    display: block;
+    margin-top: 1rem;
+    margin-bottom: toRem(10);
+  }
+  &__divider {
+    opacity: 0.2;
+    width: toRem(220);
+  }
+}
+
+.prescoring-form {
+  margin-top: 2rem;
+  flex-basis: 100%;
+  &__fields {
+    margin-top: toRem(26);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    @media screen and (max-width: $tablet) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media screen and (max-width: $mobile) {
+      grid-template-columns: 1fr;
+    }
+  }
+  &__submit {
+    border-radius: 0.5rem;
+    padding: 1rem toRem(38);
+    margin-top: toRem(24);
+    margin-left: auto;
+    display: block;
+  }
+}
+
+.prescoring-loader {
+  margin: 4rem auto;
+}

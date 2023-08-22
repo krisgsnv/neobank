@@ -1,0 +1,18 @@
+.loader {
+  background: url("@/assets/images/spinner.svg") center/contain no-repeat;
+  animation: spin 0.5s infinite;
+  width: toRem(70);
+  height: toRem(70);
+  &_hidden {
+    display: none;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

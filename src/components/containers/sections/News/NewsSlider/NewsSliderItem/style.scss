@@ -1,0 +1,43 @@
+.news-slider-item {
+  padding: 2rem;
+  border-radius: toRem(28);
+  border: 1px solid rgba(187, 187, 187, 0.2);
+  background: white;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2),
+    0px 0px 4px 0px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  font-weight: 500;
+  @include flex-column;
+  height: 100%;
+  &__img {
+    width: 100%;
+    height: toRem(120);
+    object-fit: cover;
+  }
+  &__title {
+    margin-top: 2rem;
+    font-weight: inherit;
+    line-height: 1.25;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: calc(1.25rem * 1.25 * 4); //минимальная высота блока - 4 строки
+    @media screen and (max-width: $mobile) {
+      margin-top: 1rem;
+    }
+  }
+  &__description {
+    margin-top: 2rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    @media screen and (max-width: $mobile) {
+      margin-top: 1rem;
+    }
+  }
+  @media screen and (max-width: $mobile) {
+    padding: 1.5rem;
+  }
+}

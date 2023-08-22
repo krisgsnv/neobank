@@ -1,0 +1,14 @@
+.news-slider {
+  margin-top: toRem(46);
+  overflow: hidden;
+  &__wrapper {
+    display: flex;
+  }
+  &__spinner {
+    margin: 2rem auto;
+  }
+  &__slide {
+    height: auto;
+    flex-shrink: 0;
+  }
+}

@@ -1,0 +1,20 @@
+.news {
+  margin-top: 3rem;
+  text-align: center;
+  &__h2 {
+    min-height: toRem(50);
+    @include flex-center;
+    color: #1c1c1c;
+    font-weight: 500;
+  }
+  &__text {
+    min-height: toRem(50);
+    @include flex-center;
+    font-weight: 500;
+    color: $black;
+    margin-top: 0.5rem;
+    @media screen and (max-width: $mobile) {
+      margin-top: 1rem;
+    }
+  }
+}

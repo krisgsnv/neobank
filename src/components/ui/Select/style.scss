@@ -1,0 +1,39 @@
+@import "@/components/ui/input/style.scss";
+
+.select {
+  cursor: pointer;
+  position: relative;
+  &__value {
+    @extend .input;
+    cursor: inherit;
+    width: 100%;
+    &::after {
+      content:  url("@/assets/images/expand-down.svg");
+      position: absolute;
+      width: 1.5rem;
+      height: 1.5rem;
+      right: 1rem;
+      top: 1rem;
+    }
+    &_open {
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+      &::after {
+        transform: rotate(180deg);
+      }
+    }
+  }
+  &__options {
+    position: absolute;
+    font-weight: 400;
+    font-size: 0.875rem;
+    border: 1px solid rgba(128, 128, 128, 0.2);
+    border-top: 0;
+  }
+  &__option {
+    background-color: #fffdf4;
+    &_selected {
+      background-color: #e8e4d4;
+    }
+  }
+}

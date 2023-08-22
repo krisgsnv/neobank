@@ -1,0 +1,57 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  padding: 0;
+  border: 0;
+  &:disabled {
+    cursor: default;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+p {
+  margin: 0;
+}
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td {
+  padding: 0;
+}
+
+input {
+  font: inherit;
+  padding: 0;
+  border: 0;
+  margin: 0;
+  outline: none;
+}

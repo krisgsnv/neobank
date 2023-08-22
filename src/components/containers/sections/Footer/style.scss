@@ -1,0 +1,49 @@
+.footer {
+  margin-top: toRem(98);
+  background: linear-gradient(
+      0deg,
+      rgba(178, 178, 178, 0.2) 0%,
+      rgba(178, 178, 178, 0.2) 100%
+    ),
+    #f4f4f4;
+  padding: toRem(96) 0 toRem(92) 0;
+  &__heading {
+    @include flex-between-start;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  &__contacts {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  &__phone {
+    @include heading-size(toRem(30));
+    font-weight: 700;
+  }
+  &__mail {
+    color: #2d3748;
+    font-weight: 500;
+    letter-spacing: 0.02rem;
+    margin-top: 6px;
+  }
+  &__nav {
+    margin-top: 2rem;
+    padding-bottom: toRem(28);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.81);
+  }
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 2rem;
+    row-gap: 0.5rem;
+    letter-spacing: 0.02rem;
+    font-weight: 500;
+  }
+  &__cookies {
+    margin-top: toRem(34);
+    color: #2d3748;
+    font-weight: 500;
+    letter-spacing: 0.02rem;
+  }
+}

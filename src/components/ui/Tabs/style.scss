@@ -1,0 +1,31 @@
+.tabs {
+  &__header {
+    @include flex-start;
+    position: relative;
+    &::after {
+      content: "";
+      height: 2px;
+      width: 100%;
+      background-color: rgba(128, 128, 128, 0.2);
+      position: absolute;
+      left: 0;
+      bottom: 0;
+    }
+  }
+  &__button {
+    color: $brown;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.02rem;
+    padding: 0 1rem toRem(12);
+    background-color: transparent;
+    border-bottom: 2px solid transparent;
+    @include transition(border-color);
+    @media screen and (max-width: $mobile) {
+      padding: 0 0.7rem toRem(12);
+    }
+    &_active {
+      border-color: $brown;
+    }
+  }
+}

@@ -1,0 +1,44 @@
+@import "@/assets/scss/style.scss";
+
+.home-banner {
+  @include flex-between-start;
+  margin-top: toRem(131);
+  gap: 2rem;
+  @media screen and (max-width: $tablet) {
+    margin-top: 6rem;
+    flex-direction: column;
+  }
+  &__h1 {
+    line-height: 1.05;
+    color: $black;
+    @include heading-size(3rem);
+  }
+  &__text {
+    @media screen and (min-width: $mobile) {
+      max-width: 70%;
+    }
+
+    @media screen and (min-width: $tablet) {
+      max-width: 48.5%;
+    }
+  }
+  &__cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1rem;
+    align-self: flex-start;
+    @media screen and (max-width: $tablet) {
+      grid-template-columns: repeat(2, minmax(auto, toRem(190)));
+    }
+  }
+  &__card {
+    border-radius: toRem(13);
+    object-fit: contain;
+    overflow: hidden;
+    max-width: 100%;
+  }
+  &__button {
+    margin-top: toRem(36);
+  }
+}
