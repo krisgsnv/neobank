@@ -17,6 +17,8 @@ import PrescoringService from "@/services/Prescoring";
 import schema from "@/utils/schemas/prescoring";
 import { replaceToDigits } from "@/utils/string";
 import "./style.scss";
+import Range from "@/components/ui/Range";
+import { numberWithSpaces } from "@/utils/number";
 
 type StatusType = "start" | "loading";
 
@@ -37,8 +39,7 @@ const Prescoring = (): JSX.Element => {
 
   const changeAmountHandler = (e: React.ChangeEvent): void => {
     const target = e.target as HTMLInputElement;
-    target.value = replaceToDigits(`${target.value}`);
-    setAmount(+target.value);
+    setAmount(target.valueAsNumber);
   };
 
   const numberChangeHandler = (e: React.ChangeEvent): void => {
@@ -69,23 +70,25 @@ const Prescoring = (): JSX.Element => {
                       <h2 className="h2">Customize your card</h2>
                       <span className="prescoring__steps">Step 1 of 5</span>
                     </div>
-                    <div className="prescoring__range">
-                      <Label text="Your amount" required>
-                        <Input
-                          placeholder="Set amount"
-                          name="amount"
-                          registerParams={{
-                            onChange: changeAmountHandler
-                          }}
-                        />
-                      </Label>
+                    <div className="prescoring__range-wrapper">
+                      <h4 className="prescoring__h4">Select amount</h4>
+                      <Range
+                        name="amount"
+                        min={15000}
+                        max={600000}
+                        step={5000}
+                        className="prescoring__range"
+                        registerParams={{
+                          onChange: changeAmountHandler
+                        }}
+                      />
                     </div>
                   </div>
                   <Divider position="vertical" type="dashed" />
                   <div>
                     <h3 className="h3">You have chosen the amount</h3>
                     <span className="prescoring__choosen-amount price">
-                      {amount.toLocaleString()} ₽
+                      {numberWithSpaces(amount)} ₽
                     </span>
                     <Divider
                       position="horizontal"

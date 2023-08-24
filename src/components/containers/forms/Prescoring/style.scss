@@ -12,6 +12,9 @@
     @media screen and (max-width: $tablet) {
       grid-template-columns: 1fr;
     }
+    @media screen and (max-width: $mobile) {
+      gap: 2rem;
+    }
   }
   &__title {
     @include flex-between-start;
@@ -22,8 +25,20 @@
     margin-top: toRem(7);
     white-space: nowrap;
   }
-  &__range {
+  &__range-wrapper {
     margin-top: 2rem;
+    padding: 1.5rem;
+    border-radius: toRem(10);
+    border: 1px solid $irisblue;
+    @media screen and (max-width: $mobile) {
+      padding: 1rem;
+    }
+  }
+  &__h4 {
+    font-weight: 500;
+  }
+  &__range {
+    margin-top: toRem(20);
   }
   &__choosen-amount {
     display: block;

@@ -12,20 +12,27 @@ interface ButtonPropsType {
   className?: string;
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
+  clickHandler?: () => void;
 }
 
 const Button = ({
   text,
   className,
   type,
-  disabled
+  disabled,
+  clickHandler
 }: ButtonPropsType): JSX.Element => {
   const buttonClasses = classNames("button", className, {
     button_default: !disabled,
     button_disabled: disabled
   });
   return (
-    <button type={type} className={buttonClasses} disabled={disabled}>
+    <button
+      type={type}
+      className={buttonClasses}
+      disabled={disabled}
+      onClick={clickHandler}
+    >
       {text}
     </button>
   );

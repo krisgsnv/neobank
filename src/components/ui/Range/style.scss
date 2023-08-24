@@ -1,0 +1,76 @@
+$value: var(--value);
+$min: var(--min);
+$max: var(--max);
+$range: calc($max - $min);
+$ratio: calc(($value - $min) / $range);
+$sx: calc(0.5 * 1.5rem + $ratio * (100% - 1.5rem));
+
+.range {
+  font-weight: 500;
+  &__input {
+    width: 100%;
+    height: 1.5rem;
+    appearance: none;
+    &::-webkit {
+      &-slider-thumb {
+        appearance: none;
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 50%;
+        background: $irisblue;
+        margin-top: calc(2px * 0.5 - 1.5em * 0.5);
+      }
+      &-slider-runnable-track {
+        height: 2px;
+        background: linear-gradient($irisblue, $irisblue) 0 / $sx 100% no-repeat,
+          $paleblue;
+      }
+    }
+    &::-moz {
+      &-range-thumb {
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 50%;
+        background: $irisblue;
+      }
+      &-range-track {
+        height: 2px;
+        background: linear-gradient($irisblue, $irisblue) 0 / $sx 100% no-repeat,
+          $paleblue;
+      }
+    }
+    &::-ms {
+      &-fill-lower {
+        height: 2px;
+        margin: 0;
+        background: $irisblue;
+        border-right-width: 0;
+      }
+      &-fill-upper,
+      &-fill-lower {
+        background: transparent;
+        border-color: transparent;
+      }
+      &-thumb {
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 50%;
+        background: $irisblue;
+        border: none;
+        box-shadow: none;
+        margin-top: 0;
+      }
+      &-track {
+        height: 2px;
+        border-radius: 0;
+        background: $paleblue;
+        border: none;
+        box-shadow: none;
+      }
+    }
+  }
+  &__controls {
+    @include flex-between-start;
+    color: #786d6d;
+  }
+}
