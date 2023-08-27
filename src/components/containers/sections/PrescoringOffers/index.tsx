@@ -50,7 +50,7 @@ const PrescoringOffers = (): JSX.Element => {
     });
 
   return (
-    <section className="prescoring-offers">
+    <div className="prescoring-offers">
       {offers.map(
         ({ amount, total, months, payment, rate, insurance, salary }, i) => (
           <div key={i} className="prescoring-offer">
@@ -88,7 +88,7 @@ const PrescoringOffers = (): JSX.Element => {
           </div>
         )
       )}
-    </section>
+    </div>
   );
 };
 
