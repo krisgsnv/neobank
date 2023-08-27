@@ -1,0 +1,77 @@
+.prescoring-offers {
+  display: grid;
+  gap: 3.08%;
+  grid-template-columns: repeat(4, 1fr);
+  @media screen and (max-width: $tablet) {
+    grid-template-columns: repeat(2, auto);
+    gap: 1.5rem;
+    justify-content: center;
+  }
+  @media screen and (max-width: $mobile) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.prescoring-offer {
+  text-align: center;
+  border-radius: toRem(28);
+  background: url("@/assets/images/surprise.png") center 2rem/51.37% no-repeat,
+    white;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2),
+    0px 0px 8px 0px rgba(0, 0, 0, 0.08);
+  padding: 10.85%;
+  @media screen and (max-width: $tablet) {
+    padding: 1.5rem;
+  }
+  @media screen and (max-width: $mobile) {
+    background-position: center 1.5rem;
+    background-size: toRem(100);
+  }
+  &__list {
+    margin-top: calc(51.37% + 4rem);
+    @media screen and (max-width: $mobile) {
+      margin-top: calc(toRem(100) + 2rem);
+    }
+  }
+  &__list-item {
+    @include flex-center;
+    flex-wrap: wrap;
+    color: #1c1c1e;
+    font-weight: 500;
+    line-height: 1.12;
+    letter-spacing: 0.02rem;
+    margin-top: toRem(14);
+    white-space: pre-wrap;
+    &_icon {
+      flex-wrap: nowrap;
+      margin-top: toRem(12);
+      &::after {
+        display: block;
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-left: 0.5rem;
+      }
+    }
+    &_enable {
+      &::after {
+        content: url("@/assets/images/check-success.svg");
+      }
+    }
+    &_disable {
+      &::after {
+        content: url("@/assets/images/check-error.svg");
+      }
+    }
+  }
+  &__text {
+    white-space: nowrap;
+  }
+  &__button {
+    margin: 39.4% auto 0;
+    padding: 1rem 3rem;
+    border-radius: 0.5rem;
+    @media screen and (max-width: $mobile) {
+      margin-top: toRem(50);
+    }
+  }
+}
