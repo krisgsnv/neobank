@@ -3,12 +3,19 @@
 .select {
   cursor: pointer;
   position: relative;
+  &__input {
+    display: none;
+  }
   &__value {
     @extend .input;
     cursor: inherit;
     width: 100%;
+    &_error {
+      border-color: $error;
+      border-width: 2px;
+    }
     &::after {
-      content:  url("@/assets/images/expand-down.svg");
+      content: url("@/assets/images/expand-down.svg");
       position: absolute;
       width: 1.5rem;
       height: 1.5rem;
@@ -29,6 +36,7 @@
     font-size: 0.875rem;
     border: 1px solid rgba(128, 128, 128, 0.2);
     border-top: 0;
+    z-index: 1;
   }
   &__option {
     background-color: #fffdf4;

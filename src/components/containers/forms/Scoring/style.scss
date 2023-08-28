@@ -1,0 +1,51 @@
+.scoring {
+  &__h2 {
+    @include heading-size(toRem(30));
+    display: inline-block;
+  }
+  &__step {
+    margin-left: toRem(80);
+    font-weight: 500;
+    display: inline-block;
+    @media screen and (max-width: $tablet) {
+      margin-left: 0;
+      margin-top: 1rem;
+      width: 100%;
+    }
+  }
+}
+
+.scoring-form {
+  margin-top: toRem(43);
+  @media screen and (max-width: $tablet) {
+    margin-top: 2rem;
+  }
+  &__fields {
+    @include flex-start-end;
+    flex-wrap: wrap;
+    gap: 1rem;
+    &_employment {
+      margin-top: 2rem;
+    }
+  }
+  &__label {
+    flex-basis: calc((100% - 2rem) / 3);
+    flex-grow: 1;
+    @media screen and (max-width: $tablet) {
+      flex-basis: calc((100% - 1rem) / 2);
+    }
+    @media screen and (max-width: $mobile) {
+      flex-basis: 100%;
+    }
+  }
+  &__h3 {
+    margin-top: 2rem;
+  }
+  &__submit {
+    margin-top: 1.5rem;
+    margin-left: auto;
+    display: block;
+    border-radius: 0.5rem;
+    padding: 1rem 2.375rem;
+  }
+}

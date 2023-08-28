@@ -131,7 +131,7 @@ const Prescoring = (): JSX.Element => {
                     </Label>
                     <Label text="Your date of birth" required>
                       <Input
-                        placeholder="Select Date and Time"
+                        placeholder="YYYY-MM-DD"
                         name="birthdate"
                       />
                     </Label>

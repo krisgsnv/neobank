@@ -16,22 +16,31 @@ interface Option {
 
 interface SelectPropsType {
   name: string;
-  selectedIndex: number;
+  selectedIndex?: number;
   options: Option[];
   registerParams?: RegisterOptions;
 }
 
 const Select = ({
   name,
-  selectedIndex,
+  selectedIndex = -1,
   options,
   registerParams
 }: SelectPropsType): JSX.Element => {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(selectedIndex);
-  const { register, setValue } = useFormContext<FieldValues>();
+
+  const {
+    register,
+    formState: { errors },
+    setValue,
+    getFieldState
+  } = useFormContext<FieldValues>();
+
+  const errorMessage = errors[name]?.message?.toString();
 
   const selectClasses = classNames("select__value", {
+    select__value_error: getFieldState(name).invalid,
     select__value_open: open
   });
 
@@ -59,29 +68,32 @@ const Select = ({
   };
 
   return (
-    <div className="select">
-      <input type="hidden" {...register(name, registerParams)} />
-      <div onClick={toggleOpen} ref={select} className={selectClasses}>
-        {options[selected].label}
-      </div>
-      {open && (
-        <div className="select__options multiselect__dropdown">
-          {options.map((item, i) => {
-            return (
-              <div
-                key={item.label}
-                className={optionClasses(i)}
-                onClick={() => {
-                  selectHandler(item, i);
-                }}
-              >
-                {item.label}
-              </div>
-            );
-          })}
+    <>
+      <div className="select">
+        <input type="hidden" {...register(name, registerParams)} />
+        <div onClick={toggleOpen} ref={select} className={selectClasses}>
+          {selected !== -1 && options[selected].label}
         </div>
-      )}
-    </div>
+        {open && (
+          <div className="select__options multiselect__dropdown">
+            {options.map((item, i) => {
+              return (
+                <div
+                  key={item.label}
+                  className={optionClasses(i)}
+                  onClick={() => {
+                    selectHandler(item, i);
+                  }}
+                >
+                  {item.label}
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+      {errorMessage && <p className="input-error">{errorMessage}</p>}
+    </>
   );
 };
 

@@ -25,3 +25,9 @@ export const isValidSrc = async (
 export const haveEmptyValues = (obj: Record<string, string>): boolean => {
   return Object.values(obj).some((el) => !el);
 };
+
+export const byField = <T extends keyof U, U>(fieldName: T) => {
+  return (a: U, b: U) => {
+    return a[fieldName] > b[fieldName] ? 1 : -1;
+  };
+};
