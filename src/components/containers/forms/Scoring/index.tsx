@@ -1,4 +1,3 @@
-// import { useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -11,9 +10,8 @@ import Select from "@/components/ui/Select";
 // import Loader from "@/components/ui/Loader";
 
 import type { ScoringFormData } from "@/types/Scoring";
-// import PrescoringService from "@/services/Prescoring";
 import schema from "@/utils/schemas/scoring";
-// import { replaceToDigits } from "@/utils/string";
+import { replaceToDigits } from "@/utils/string";
 import "./style.scss";
 
 const Scoring = (): JSX.Element => {
@@ -24,6 +22,16 @@ const Scoring = (): JSX.Element => {
   const { handleSubmit } = methods;
   const submitHandler: SubmitHandler<ScoringFormData> = (data) => {
     console.log(data);
+  };
+
+  const numberChangeHandler = (e: React.ChangeEvent): void => {
+    const target = e.target as HTMLInputElement;
+    target.value = replaceToDigits(target.value);
+  };
+
+  const numberFixLengthChangeHandler = (e: React.ChangeEvent): void => {
+    const target = e.target as HTMLInputElement;
+    target.value = replaceToDigits(target.value).slice(0, 2);
   };
 
   return (
@@ -91,7 +99,13 @@ const Scoring = (): JSX.Element => {
                 required
                 className="scoring-form__label"
               >
-                <Input placeholder="000000" name="passportIssueBranch" />
+                <Input
+                  placeholder="000000"
+                  name="passportIssueBranch"
+                  registerParams={{
+                    onChange: numberChangeHandler
+                  }}
+                />
               </Label>
             </div>
             <h3 className="scoring-form__h3">Employment</h3>
@@ -116,14 +130,26 @@ const Scoring = (): JSX.Element => {
                 required
                 className="scoring-form__label"
               >
-                <Input name="employerINN" placeholder="000000000000" />
+                <Input
+                  name="employerINN"
+                  placeholder="000000000000"
+                  registerParams={{
+                    onChange: numberChangeHandler
+                  }}
+                />
               </Label>
               <Label
                 text="Your salary"
                 required
                 className="scoring-form__label"
               >
-                <Input name="salary" placeholder="For example 100 000" />
+                <Input
+                  name="salary"
+                  placeholder="For example 100000"
+                  registerParams={{
+                    onChange: numberChangeHandler
+                  }}
+                />
               </Label>
               <Label
                 text="Your position"
@@ -148,6 +174,9 @@ const Scoring = (): JSX.Element => {
                 <Input
                   name="workExperienceTotal"
                   placeholder="For example 10"
+                  registerParams={{
+                    onChange: numberFixLengthChangeHandler
+                  }}
                 />
               </Label>
               <Label
@@ -158,10 +187,17 @@ const Scoring = (): JSX.Element => {
                 <Input
                   name="workExperienceCurrent"
                   placeholder="For example 2"
+                  registerParams={{
+                    onChange: numberFixLengthChangeHandler
+                  }}
                 />
               </Label>
             </div>
-            <Button type="submit" text="Continue" className="scoring-form__submit"/>
+            <Button
+              type="submit"
+              text="Continue"
+              className="scoring-form__submit"
+            />
           </form>
         </FormProvider>
       </FormLayout>

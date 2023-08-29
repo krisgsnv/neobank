@@ -34,7 +34,8 @@ const Select = ({
     register,
     formState: { errors },
     setValue,
-    getFieldState
+    getFieldState,
+    trigger
   } = useFormContext<FieldValues>();
 
   const errorMessage = errors[name]?.message?.toString();
@@ -61,8 +62,9 @@ const Select = ({
 
   const selectHandler = (item: Option, i: number): void => {
     if (i !== selected) {
-      setValue(name, item.value);
       setSelected(i);
+      setValue(name, item.value);
+      void trigger(name);
     }
     toggleOpen();
   };
@@ -70,7 +72,11 @@ const Select = ({
   return (
     <>
       <div className="select">
-        <input type="hidden" {...register(name, registerParams)} />
+        <input
+          type="hidden"
+          className="select__input"
+          {...register(name, registerParams)}
+        />
         <div onClick={toggleOpen} ref={select} className={selectClasses}>
           {selected !== -1 && options[selected].label}
         </div>

@@ -4,7 +4,7 @@ import ExchangeTable from "./ExchangeTable";
 import Multiselect from "@/components/ui/Multiselect";
 import { LocalStorage } from "ttl-localstorage";
 import type { ExchangeType } from "@/types/Exchange";
-import ExchangeService from "@/services/Exchange";
+// import ExchangeService from "@/services/Exchange";
 import "./style.scss";
 import Loader from "@/components/ui/Loader";
 
@@ -30,20 +30,20 @@ const Exchange = (): JSX.Element => {
         list: LocalStorage.get("currency-exchange")
       }));
     } else {
-      ExchangeService.get([...quotes.required, ...currencyExchange.optional])
-        .then((result) => {
-          if (result) {
-            LocalStorage.put("currency-exchange", result, 15 * 60);
-            setCurrencyExchange((prev) => ({
-              ...prev,
-              status: "success",
-              list: result
-            }));
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      // ExchangeService.get([...quotes.required, ...currencyExchange.optional])
+      //   .then((result) => {
+      //     if (result) {
+      //       LocalStorage.put("currency-exchange", result, 15 * 60);
+      //       setCurrencyExchange((prev) => ({
+      //         ...prev,
+      //         status: "success",
+      //         list: result
+      //       }));
+      //     }
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   });
     }
     const timerInterval = setInterval(() => {
       setTimer(new Date());
