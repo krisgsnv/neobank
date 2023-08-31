@@ -1,0 +1,49 @@
+.document-signing {
+  margin-top: toRem(104);
+  &__heading {
+    @include flex-start;
+    @media screen and (max-width: $tablet) {
+      flex-wrap: wrap;
+    }
+  }
+  &__h2 {
+    @include heading-size(toRem(30));
+  }
+  &__step {
+    margin-left: toRem(120);
+    font-weight: 500;
+    margin-top: 0.5rem;
+    @media screen and (max-width: $tablet) {
+      flex-basis: 100%;
+      margin-left: 0;
+      margin-top: 1rem;
+    }
+  }
+  &__text {
+    margin-top: 2rem;
+    color: $additional-text;
+    font-weight: 500;
+    font-size: toRem(20);
+  }
+  &__file {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 2rem;
+    &::before {
+      flex-shrink: 0;
+      flex-basis: toRem(60);
+      height: toRem(60);
+      margin-right: toRem(12);
+      content: url("@/assets/images/document.svg");
+    }
+  }
+  &__buttons {
+    @include flex-end-center;
+    margin-top: 2rem;
+  }
+  &__button {
+    padding: toRem(11) toRem(60);
+    margin-left: toRem(80);
+    border-radius: 0.5rem;
+  }
+}

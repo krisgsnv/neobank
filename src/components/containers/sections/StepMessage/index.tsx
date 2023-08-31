@@ -4,6 +4,7 @@ interface StepMessagePropTypes {
   title: string;
   message: string;
 }
+
 const StepMessage = ({ title, message }: StepMessagePropTypes): JSX.Element => {
   return (
     <section className="step-message">
