@@ -1,0 +1,10 @@
+.main {
+  flex-grow: 1;
+}
+
+.container {
+  padding: 0 15px;
+  @media screen and (min-width: calc($dekstop + 30px)) {
+    padding: 0 calc(50% - $dekstop / 2);
+  }
+}

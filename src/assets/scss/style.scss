@@ -23,13 +23,6 @@ body {
   justify-content: space-between;
 }
 
-.container {
-  padding: 0 15px;
-  @media screen and (min-width: calc($dekstop + 30px)) {
-    padding: 0 calc(50% - $dekstop / 2);
-  }
-}
-
 h1 {
   font-size: toRem(48);
   font-weight: 700;
