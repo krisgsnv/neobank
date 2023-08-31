@@ -1,0 +1,46 @@
+.confirmation {
+  margin-top: toRem(104);
+  &__h2 {
+    @include heading-size(toRem(30));
+    color: $black;
+    text-align: center;
+  }
+  &__code {
+    margin-top: 2rem;
+  }
+  &__error {
+    margin-top: 1rem;
+    color: $error;
+    font-weight: 500;
+    text-align: center;
+  }
+}
+
+.confirmation-code {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  &__num {
+    pointer-events: none;
+    -moz-appearance: textfield;
+    appearance: none;
+    text-align: center;
+    font-weight: 500;
+    line-height: 1.12;
+    letter-spacing: toRem(0.4);
+    border-radius: 0.5rem;
+    width: 3rem;
+    height: 3rem;
+    border: 1px solid $gray;
+    background: transparent url("@/assets/images/code.svg") center no-repeat;
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
+    &_active {
+      border: 1px solid #3182ce;
+      font-size: toRem(20);
+      background-image: none;
+    }
+  }
+}

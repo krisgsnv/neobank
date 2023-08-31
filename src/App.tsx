@@ -6,6 +6,7 @@ import NotFound from "@/pages/NotFound";
 import PageLayout from "@/components/layout/PageLayout";
 import PaymentSchedule from "@/pages/PaymentSchedule";
 import DocumentSigning from "@/pages/DocumentSigning";
+import Confirmation from "@/pages/Confirmation";
 
 import "@/assets/scss/index.scss";
 
@@ -18,6 +19,7 @@ export const App = (): JSX.Element => (
           <Route index element={<Loan />} />
           <Route path=":applicationId">
             <Route index element={<Scoring />} />
+            <Route path="code" element={<Confirmation />} />
             <Route path="document">
               <Route index element={<PaymentSchedule />} />
               <Route path="sign" element={<DocumentSigning />} />
