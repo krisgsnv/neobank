@@ -1,16 +1,21 @@
 .scoring {
+  &__heading {
+    @include flex-start;
+    @media screen and (max-width: $tablet) {
+      flex-wrap: wrap;
+    }
+  }
   &__h2 {
     @include heading-size(toRem(30));
-    display: inline-block;
   }
   &__step {
     margin-left: toRem(80);
     font-weight: 500;
-    display: inline-block;
+    margin-top: 0.5rem;
     @media screen and (max-width: $tablet) {
+      flex-basis: 100%;
       margin-left: 0;
       margin-top: 1rem;
-      width: 100%;
     }
   }
 }

@@ -1,16 +1,15 @@
 import Header from "@/components/containers/sections/Header";
 import Footer from "@/components/containers/sections/Footer";
+import { Outlet } from "react-router";
 
-interface PageLayoutPropsType {
-  children?: React.ReactNode;
-}
-
-const PageLayout = ({ children }: PageLayoutPropsType): JSX.Element => {
+const PageLayout = (): JSX.Element => {
   return (
     <>
       <Header />
       <main>
-        <div className="container">{children}</div>
+        <div className="container">
+          <Outlet />
+        </div>
       </main>
       <Footer />
     </>

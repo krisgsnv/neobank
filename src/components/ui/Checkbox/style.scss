@@ -1,0 +1,19 @@
+.checkbox {
+  flex-basis: toRem(20);
+  flex-shrink: 0;
+  height: toRem(20);
+  border-radius: 2px;
+  border: 1px solid $gray;
+  background: white;
+  &:checked::after {
+    content: url("@/assets/images/checkbox.svg");
+  }
+}
+.checkbox-label {
+  @include flex-start-center;
+  cursor: pointer;
+  &__text {
+    margin-left: toRem(14);
+    color: #1a202c;
+  }
+}

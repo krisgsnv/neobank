@@ -1,4 +1,4 @@
-import { NotFound as NotFoundSection } from "@/components/containers/sections/NotFound";
+import NotFoundSection from "@/components/containers/sections/NotFound";
 
 const NotFound = (): JSX.Element => {
   return <NotFoundSection />;

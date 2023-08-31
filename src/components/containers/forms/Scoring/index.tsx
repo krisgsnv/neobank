@@ -38,8 +38,10 @@ const Scoring = (): JSX.Element => {
     <section className="scoring">
       <FormLayout>
         <FormProvider {...methods}>
-          <h2 className="scoring__h2">Continuation of the application</h2>
-          <span className="scoring__step">Step 2 of 5</span>
+          <div className="scoring__heading">
+            <h2 className="scoring__h2">Continuation of the application</h2>
+            <span className="scoring__step">Step 2 of 5</span>
+          </div>
           <form className="scoring-form" onSubmit={handleSubmit(submitHandler)}>
             <div className="scoring-form__fields">
               <Label

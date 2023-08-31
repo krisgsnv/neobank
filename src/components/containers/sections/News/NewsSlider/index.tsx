@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { LocalStorage } from "ttl-localstorage";
 
-// import News from "@/services/News";
+import News from "@/services/News";
 import type { NewsType } from "@/types/News";
 import NewsSliderItem from "./NewsSliderItem";
 import NewsSliderNav from "./NewsSliderNav";
@@ -24,25 +24,25 @@ const NewsSlider = (): JSX.Element => {
         items: LocalStorage.get("news")
       });
     } else {
-      // News.get()
-      //   .then((data) => {
-      //     News.filter(data)
-      //       .then((filtered) => {
-      //         if (filtered) {
-      //           LocalStorage.put("news", filtered, 15 * 60);
-      //           setNews({
-      //             status: "success",
-      //             items: filtered
-      //           });
-      //         }
-      //       })
-      //       .catch((err) => {
-      //         console.log(err);
-      //       });
-      //   })
-      //   .catch((err) => {
-      //     console.log(err);
-      //   });
+      News.get()
+        .then((data) => {
+          News.filter(data)
+            .then((filtered) => {
+              if (filtered) {
+                LocalStorage.put("news", filtered, 15 * 60);
+                setNews({
+                  status: "success",
+                  items: filtered
+                });
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
     const timerInterval = setInterval(() => {
       setTimer(new Date());

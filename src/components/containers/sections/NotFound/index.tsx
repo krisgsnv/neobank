@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "@/components/ui/Button";
 import "./style.scss";
 
-export const NotFound = (): JSX.Element => {
+const NotFound = (): JSX.Element => {
   const navigate = useNavigate();
   return (
     <section className="not-found">
@@ -21,3 +21,5 @@ export const NotFound = (): JSX.Element => {
     </section>
   );
 };
+
+export default NotFound;
