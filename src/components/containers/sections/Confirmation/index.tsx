@@ -12,7 +12,7 @@ const Confirmation = (): JSX.Element => {
       <h2 className="confirmation__h2">Please enter confirmation code</h2>
       <div className="confirmation-code confirmation__code">
         {code.map((num, i) => (
-          <input key={i} type="number" className="confirmation-code__num" value={0}/>
+          <input key={i} type="number" className="confirmation-code__num" defaultValue={0}/>
         ))}
       </div>
       {error && <p className="confirmation__error">Invalid confirmation code</p>}

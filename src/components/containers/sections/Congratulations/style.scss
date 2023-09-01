@@ -1,0 +1,32 @@
+.congratulations {
+  margin-top: toRem(40);
+  background: url("@/assets/images/surprise.png") top center/toRem(150)
+    no-repeat;
+  padding-top: toRem(150);
+  text-align: center;
+  @include flex-column;
+  gap: 2rem;
+  align-items: center;
+  @media screen and (max-width: $tablet) {
+    background-size: 6.5rem;
+    padding-top: 6.5rem;
+  }
+  &__h2 {
+    @include heading-size(toRem(30));
+    margin-top: 2rem;
+    @media screen and (max-width: $tablet) {
+      max-width: 65%;
+    }
+    @media screen and (max-width: $mobile) {
+      max-width: 80%;
+    }
+  }
+  &__message {
+    @media screen and (max-width: $tablet) {
+      max-width: 60%;
+    }
+    @media screen and (max-width: $mobile) {
+      max-width: 70%;
+    }
+  }
+}
