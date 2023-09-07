@@ -16,6 +16,7 @@
     "@typescript-eslint/quotes": 0,
     "react/react-in-jsx-scope": 0,
     "@typescript-eslint/strict-boolean-expressions": 0,
+    "@typescript-eslint/no-confusing-void-expression": 0,
     "@typescript-eslint/no-misused-promises": [
       2,
       {

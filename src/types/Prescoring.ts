@@ -1,4 +1,4 @@
-export interface PrescoringFormData {
+export interface PrescoringFormDataType {
   amount: number;
   term: number;
   firstName: string;
@@ -8,4 +8,17 @@ export interface PrescoringFormData {
   birthdate: string;
   passportSeries: string;
   passportNumber: string;
-};
+}
+
+export interface PrescoringOfferType {
+  applicationId: number;
+  requestedAmount: number;
+  totalAmount: number;
+  term: number;
+  monthlyPayment: number;
+  rate: number;
+  isInsuranceEnabled: boolean;
+  isSalaryClient: boolean;
+}
+
+export type PrescoringOffersType = PrescoringOfferType[];

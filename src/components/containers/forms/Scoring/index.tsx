@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useForm, FormProvider } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -9,19 +10,32 @@ import Button from "@/components/ui/Button";
 import Select from "@/components/ui/Select";
 // import Loader from "@/components/ui/Loader";
 
-import type { ScoringFormData } from "@/types/Scoring";
+import type { ScoringFormDataType } from "@/types/Scoring";
 import schema from "@/utils/schemas/scoring";
 import { replaceToDigits } from "@/utils/string";
 import "./style.scss";
+import { useParams } from "react-router";
+import ScoringService from "@/services/Scoring";
+import { useAppDispatch } from "@/hooks/useAppDispatch";
+import { increaseStep } from "@/store/stepSlice";
 
 const Scoring = (): JSX.Element => {
-  const methods = useForm<ScoringFormData>({
+  const { applicationId } = useParams();
+  const dispatch = useAppDispatch();
+  const methods = useForm<ScoringFormDataType>({
     resolver: yupResolver(schema)
   });
 
-  const { handleSubmit } = methods;
-  const submitHandler: SubmitHandler<ScoringFormData> = (data) => {
+  const { register, handleSubmit } = methods;
+  const submitHandler: SubmitHandler<ScoringFormDataType> = async (data) => {
     console.log(data);
+    if (applicationId) {
+      const result = await ScoringService.sendFormData(data, +applicationId);
+      console.log(result);
+      if (result) {
+        dispatch(increaseStep());
+      }
+    }
   };
 
   const numberChangeHandler = (e: React.ChangeEvent): void => {
@@ -53,7 +67,7 @@ const Scoring = (): JSX.Element => {
                   name="gender"
                   options={[
                     { value: "MALE", label: "Male" },
-                    { value: "FAMALE", label: "Female" }
+                    { value: "FEMALE", label: "Female" }
                   ]}
                 />
               </Label>
@@ -118,7 +132,7 @@ const Scoring = (): JSX.Element => {
                 className="scoring-form__label"
               >
                 <Select
-                  name="employmentStatus"
+                  name="employment.employmentStatus"
                   options={[
                     { value: "UNEMPLOYED", label: "Unemployed" },
                     { value: "SELF_EMPLOYED", label: "Self-employed" },
@@ -133,7 +147,7 @@ const Scoring = (): JSX.Element => {
                 className="scoring-form__label"
               >
                 <Input
-                  name="employerINN"
+                  name="employment.employerINN"
                   placeholder="000000000000"
                   registerParams={{
                     onChange: numberChangeHandler
@@ -146,7 +160,7 @@ const Scoring = (): JSX.Element => {
                 className="scoring-form__label"
               >
                 <Input
-                  name="salary"
+                  name="employment.salary"
                   placeholder="For example 100000"
                   registerParams={{
                     onChange: numberChangeHandler
@@ -159,7 +173,7 @@ const Scoring = (): JSX.Element => {
                 className="scoring-form__label"
               >
                 <Select
-                  name="position"
+                  name="employment.position"
                   options={[
                     { value: "WORKER", label: "Worker" },
                     { value: "MID_MANAGER", label: "Middle manager" },
@@ -174,7 +188,7 @@ const Scoring = (): JSX.Element => {
                 className="scoring-form__label"
               >
                 <Input
-                  name="workExperienceTotal"
+                  name="employment.workExperienceTotal"
                   placeholder="For example 10"
                   registerParams={{
                     onChange: numberFixLengthChangeHandler
@@ -187,13 +201,14 @@ const Scoring = (): JSX.Element => {
                 className="scoring-form__label"
               >
                 <Input
-                  name="workExperienceCurrent"
+                  name="employment.workExperienceCurrent"
                   placeholder="For example 2"
                   registerParams={{
                     onChange: numberFixLengthChangeHandler
                   }}
                 />
               </Label>
+              <input type="hidden" {...register("account")} />
             </div>
             <Button
               type="submit"

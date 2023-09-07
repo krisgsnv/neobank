@@ -28,33 +28,40 @@ const schema = yup.object().shape({
     .transform(replaceToDigits)
     .matches(/^\d{6}$/, "The division code must be 6 digits")
     .required(),
-  employmentStatus: yup.string().required("Select one of the options"),
-  employerINN: yup
-    .number()
-    .transform((value, originalValue) => parseInt(originalValue))
-    .test(
-      "inn-check",
-      "The INN must be 12 digits",
-      (value) => value !== undefined && /^\d{12}$/.test(value.toString())
-    )
-    .typeError("The INN must be 12 digits")
-    .required("The INN must be 12 digits"),
-  salary: yup
-    .number()
-    .transform((value, originalValue) => parseInt(originalValue))
-    .typeError("Enter your salary")
-    .required(),
-  position: yup.string().required("Select one of the options"),
-  workExperienceTotal: yup
-    .number()
-    .transform((value, originalValue) => parseInt(originalValue))
-    .typeError("Enter your work experience total")
-    .required(),
-  workExperienceCurrent: yup
-    .number()
-    .transform((value, originalValue) => parseInt(originalValue))
-    .typeError("Enter your work experience current")
-    .required()
+  employment: yup.object({
+    employmentStatus: yup.string().required("Select one of the options"),
+    employerINN: yup
+      .number()
+      .transform((value, originalValue) => parseInt(originalValue))
+      .test(
+        "inn-check",
+        "The INN must be 12 digits",
+        (value) => value !== undefined && /^\d{12}$/.test(value.toString())
+      )
+      .typeError("The INN must be 12 digits")
+      .required("The INN must be 12 digits"),
+    salary: yup
+      .number()
+      .transform((value, originalValue) => parseInt(originalValue))
+      .typeError("Enter your salary")
+      .required(),
+    position: yup.string().required("Select one of the options"),
+    workExperienceTotal: yup
+      .number()
+      .transform((value, originalValue) => parseInt(originalValue))
+      .typeError("Enter your work experience total")
+      .required(),
+    workExperienceCurrent: yup
+      .number()
+      .transform((value, originalValue) => parseInt(originalValue))
+      .typeError("Enter your work experience current")
+      .required()
+  }),
+  account: yup
+    .string()
+    .nullable()
+    .transform((value) => (value === "" ? null : value))
+    .default(null)
 });
 
 export default schema;

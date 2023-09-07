@@ -13,6 +13,8 @@
 }
 
 .prescoring-offer {
+  @include flex-column;
+  justify-content: space-between;
   text-align: center;
   border-radius: toRem(28);
   background: url("@/assets/images/surprise.png") center 2rem/51.37% no-repeat,
@@ -42,6 +44,7 @@
     letter-spacing: 0.02rem;
     margin-top: toRem(14);
     white-space: pre-wrap;
+    row-gap: 0.3rem;
     &_icon {
       flex-wrap: nowrap;
       margin-top: toRem(12);

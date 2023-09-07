@@ -1,7 +1,7 @@
-export type ExchangeDataType = [string, number][] | null;
+export type ExchangeDataType = Array<[string, number]> | null;
 
-export type ExchangeType = {
+export interface ExchangeType {
   status: "loading" | "success" | "error";
   list: ExchangeDataType;
   optional: string[];
-};
+}

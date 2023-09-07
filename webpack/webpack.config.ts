@@ -82,6 +82,10 @@ module.exports = {
         target: "http://localhost:3000",
         router: () => "http://localhost:8080"
       },
+      "/application/apply": {
+        target: "http://localhost:3000",
+        router: () => "http://localhost:8080"
+      },
       "/email": {
         target: "http://localhost:3000",
         router: () => "http://localhost:8080"

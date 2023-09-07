@@ -1,10 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+interface StepType {
+  number: number;
+}
+const initialState: StepType = {
+  number: 0
+};
+
 const stepSlice = createSlice({
   name: "step",
-  initialState: {
-    number: 0
-  },
+  initialState,
   reducers: {
     increaseStep: (state) => {
       state.number += 1;

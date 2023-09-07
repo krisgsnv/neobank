@@ -12,26 +12,27 @@ import Button from "@/components/ui/Button";
 import Select from "@/components/ui/Select";
 import Loader from "@/components/ui/Loader";
 
-import type { PrescoringFormData } from "@/types/Prescoring";
+import type { PrescoringFormDataType } from "@/types/Prescoring";
 import PrescoringService from "@/services/Prescoring";
 import schema from "@/utils/schemas/prescoring";
 import { replaceToDigits } from "@/utils/string";
 import "./style.scss";
 import Range from "@/components/ui/Range";
 import { numberWithSpaces } from "@/utils/number";
+import { useAppDispatch } from "@/hooks/useAppDispatch";
+import { initialState, setFormData, setOffers } from "@/store/prescoringSlice";
+import { increaseStep } from "@/store/stepSlice";
 
 type StatusType = "start" | "loading";
 
 const Prescoring = (): JSX.Element => {
   const [status, setStatus] = useState<StatusType>("start");
-  const methods = useForm<PrescoringFormData>({
+  const methods = useForm<PrescoringFormDataType>({
     resolver: yupResolver(schema),
-    defaultValues: {
-      amount: 150000,
-      middleName: null,
-      term: 6
-    }
+    defaultValues: initialState.formData
   });
+
+  const dispatch = useAppDispatch();
 
   const { handleSubmit, getValues } = methods;
   const formValues = getValues();
@@ -47,37 +48,45 @@ const Prescoring = (): JSX.Element => {
     target.value = replaceToDigits(target.value);
   };
 
-  const submitHandler: SubmitHandler<PrescoringFormData> = (data) => {
-    PrescoringService.get(data);
+  const submitHandler: SubmitHandler<PrescoringFormDataType> = async (data) => {
     setStatus("loading");
-    console.log(data);
+    try {
+      const offers = await PrescoringService.getOffers(data);
+      if (offers) {
+        dispatch(setFormData(data));
+        dispatch(setOffers(offers));
+        dispatch(increaseStep());
+      }
+    } catch (error) {
+      setStatus("start");
+    }
   };
   return (
     <Element name="prescoring">
-      <section className="prescoring">
+      <section className="prescoring-form">
         {status === "loading" ? (
           <Loader className="prescoring-loader" />
         ) : (
           <FormLayout>
             <FormProvider {...methods}>
               <form
-                className="prescoring__content"
+                className="prescoring-form__content"
                 onSubmit={handleSubmit(submitHandler)}
               >
-                <div className="prescoring__heading">
+                <div className="prescoring-form__heading">
                   <div>
-                    <div className="prescoring__title">
+                    <div className="prescoring-form__title">
                       <h2 className="h2">Customize your card</h2>
-                      <span className="prescoring__steps">Step 1 of 5</span>
+                      <span className="prescoring-form__steps">Step 1 of 5</span>
                     </div>
-                    <div className="prescoring__range-wrapper">
-                      <h4 className="prescoring__h4">Select amount</h4>
+                    <div className="prescoring-form__range-wrapper">
+                      <h4 className="prescoring-form__h4">Select amount</h4>
                       <Range
                         name="amount"
                         min={15000}
                         max={600000}
                         step={5000}
-                        className="prescoring__range"
+                        className="prescoring-form__range"
                         registerParams={{
                           onChange: changeAmountHandler
                         }}
@@ -87,21 +96,21 @@ const Prescoring = (): JSX.Element => {
                   <Divider position="vertical" type="dashed" />
                   <div>
                     <h3 className="h3">You have chosen the amount</h3>
-                    <span className="prescoring__choosen-amount price">
+                    <span className="prescoring-form__choosen-amount price">
                       {numberWithSpaces(amount)} ₽
                     </span>
                     <Divider
                       position="horizontal"
                       type="solid"
-                      className="prescoring__divider"
+                      className="prescoring-form__divider"
                     />
                   </div>
                 </div>
-                <div className="prescoring-form">
-                  <h3 className="prescoring-form__h3 h3">
+                <div className="prescoring-contact">
+                  <h3 className="prescoring-contact__h3 h3">
                     Contact Information
                   </h3>
-                  <div className="prescoring-form__fields">
+                  <div className="prescoring-contact__fields">
                     <Label text="Your last name" required>
                       <Input placeholder="For Example Doe" name="lastName" />
                     </Label>
@@ -130,10 +139,7 @@ const Prescoring = (): JSX.Element => {
                       <Input placeholder="test@gmail.com" name="email" />
                     </Label>
                     <Label text="Your date of birth" required>
-                      <Input
-                        placeholder="YYYY-MM-DD"
-                        name="birthdate"
-                      />
+                      <Input placeholder="YYYY-MM-DD" name="birthdate" />
                     </Label>
                     <Label text="Your passport series" required>
                       <Input
@@ -156,7 +162,7 @@ const Prescoring = (): JSX.Element => {
                   </div>
                   <Button
                     text="Continue"
-                    className="prescoring-form__submit"
+                    className="prescoring-contact__submit"
                     type="submit"
                   />
                 </div>

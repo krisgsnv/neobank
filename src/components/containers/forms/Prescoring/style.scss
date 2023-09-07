@@ -1,5 +1,4 @@
-.prescoring {
-  padding-top: toRem(46);
+.prescoring-form {
   &__content {
     @include flex-between-stretch;
     flex-wrap: wrap;
@@ -51,7 +50,7 @@
   }
 }
 
-.prescoring-form {
+.prescoring-contact {
   margin-top: 2rem;
   flex-basis: 100%;
   &__fields {
