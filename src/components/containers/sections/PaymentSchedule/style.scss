@@ -43,43 +43,11 @@
       font-size: 1rem;
     }
   }
-}
-
-.payment-table {
-  width: 100%;
-  &__wrapper {
+  &__table {
     overflow-x: auto;
     margin-top: toRem(76);
     @media screen and (max-width: $tablet) {
       margin-top: 2rem;
-    }
-  }
-  &__row {
-    border-bottom: 1px solid #d9d9d9;
-  }
-  &__cell {
-    min-width: toRem(120);
-    color: #1a202c;
-    font-size: toRem(12);
-    font-weight: 500;
-    letter-spacing: 0.015rem;
-    padding: toRem(12) 1rem toRem(12) 0;
-    @media screen and (max-width: $tablet) {
-      flex-basis: 9rem;
-    }
-    &_heading {
-      white-space: nowrap;
-      text-align: left;
-      color: #4a5568;
-      text-transform: uppercase;
-      cursor: pointer;
-      @include flex-start-center;
-    }
-  }
-  &__sort-icon {
-    flex-basis: 1.5rem;
-    &_active {
-      transform: rotate(180deg);
     }
   }
 }
