@@ -1,4 +1,7 @@
+import classNames from "classnames";
 import "./style.scss";
+import { useState } from "react";
+import { byObjectValues } from "@/utils/validation";
 
 type TableRowType = Record<string, string | number>;
 
@@ -9,16 +12,47 @@ interface TablePropsType {
 }
 
 const Table = ({ columns, data, dataKey }: TablePropsType): JSX.Element => {
+  const columnNames = Object.keys(data[0]);
+  const config = columnNames.map((fieldName) => ({
+    key: fieldName,
+    reverse: false
+  }));
+
+  const [sort, setSort] = useState({ data, config });
+
+  const sortIconClasses = (i: number): string =>
+    classNames("table__sort-icon", {
+      "table__sort-icon_desc": sort.config[i].reverse
+    });
+
+  const changeSort = (i: number): void => {
+    const key = columnNames[i];
+
+    setSort(({ config, data }) => {
+      const newConfig = config.map((item) =>
+        item.key === key ? { ...item, reverse: !item.reverse } : item
+      );
+      return {
+        config: newConfig,
+        data: [...data].sort(byObjectValues(newConfig))
+      };
+    });
+  };
+
   return (
     <table className="table">
       <thead>
         <tr className="table__row">
-          {columns.map((name) => (
-            <th className="table__cell " key={name}>
+          {columns.map((name, i) => (
+            <th
+              className="table__cell"
+              key={name}
+              onClick={() => changeSort(i)}
+            >
               <span className="table__cell_heading">
                 {name}
                 <svg
-                  className="table__sort-icon"
+                  className={sortIconClasses(i)}
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
                   height="24"
@@ -36,7 +70,7 @@ const Table = ({ columns, data, dataKey }: TablePropsType): JSX.Element => {
         </tr>
       </thead>
       <tbody>
-        {data.map((item) => (
+        {sort.data.map((item) => (
           <tr key={item[dataKey]} className="table__row">
             {Object.values(item).map((value, i) => (
               <td key={i} className="table__cell">

@@ -24,7 +24,10 @@
   }
   &__sort-icon {
     flex-basis: 1.5rem;
-    &_active {
+    &_asc {
+      transform: none;
+    }
+    &_desc {
       transform: rotate(180deg);
     }
   }
