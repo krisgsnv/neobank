@@ -17,5 +17,8 @@
     &_deny {
       background-color: $error-button;
     }
+    &_home {
+      min-width: 8rem;
+    }
   }
 }

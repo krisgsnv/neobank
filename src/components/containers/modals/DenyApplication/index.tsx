@@ -36,7 +36,7 @@ const DenyApplication = ({
           {isDenied ? (
             <Button
               text="Go home"
-              className="deny-application__button"
+              className="deny-application__button deny-application__button_home"
               clickHandler={toMainPage}
             />
           ) : (
