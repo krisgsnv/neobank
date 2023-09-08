@@ -13,22 +13,24 @@
     @media screen and (max-width: $tablet) {
       flex-basis: 9rem;
     }
-    &_heading {
-      white-space: nowrap;
-      text-align: left;
-      color: #4a5568;
-      text-transform: uppercase;
-      cursor: pointer;
-      @include flex-start-center;
-    }
   }
-  &__sort-icon {
-    flex-basis: 1.5rem;
-    &_asc {
-      transform: none;
+  &__heading {
+    white-space: nowrap;
+    text-align: left;
+    color: #4a5568;
+    text-transform: uppercase;
+    cursor: pointer;
+    @include flex-start-center;
+    &::after {
+      content: url("@/assets/images/sort.svg");
+      display: block;
+      flex-basis: 1.5rem;
+      height: 1.5rem;
     }
-    &_desc {
-      transform: rotate(180deg);
+    &_reversed {
+      &::after {
+        transform: rotate(180deg);
+      }
     }
   }
 }

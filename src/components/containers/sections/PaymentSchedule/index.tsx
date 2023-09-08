@@ -10,7 +10,7 @@ const tableData = [
     date: "2023-08-30",
     totalPayment: 12000,
     interestPayment: 12000,
-    debtPayment: 8000,
+    debtPayment: 9000,
     remainingDebt: 92000
   },
   {
@@ -18,7 +18,7 @@ const tableData = [
     date: "2023-08-30",
     totalPayment: 12000,
     interestPayment: 12000,
-    debtPayment: 8000,
+    debtPayment: 9000,
     remainingDebt: 92000
   },
   {

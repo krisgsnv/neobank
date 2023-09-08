@@ -4,37 +4,59 @@ import { useState } from "react";
 import { byObjectValues } from "@/utils/validation";
 
 type TableRowType = Record<string, string | number>;
+type SortConfigFieldType = keyof TableRowType;
 
 interface TablePropsType {
   columns: string[];
   data: TableRowType[];
-  dataKey: keyof TableRowType;
+  dataKey: SortConfigFieldType;
+}
+
+interface SortConfigType {
+  key: SortConfigFieldType;
+  reverse: boolean;
 }
 
 const Table = ({ columns, data, dataKey }: TablePropsType): JSX.Element => {
-  const columnNames = Object.keys(data[0]);
-  const config = columnNames.map((fieldName) => ({
+  const configFields = Object.keys(data[0]);
+  const config = configFields.map((fieldName) => ({
     key: fieldName,
     reverse: false
   }));
 
-  const [sort, setSort] = useState({ data, config });
+  const sortData = (
+    data: TableRowType[],
+    config: SortConfigType[]
+  ): TableRowType[] => [...data].sort(byObjectValues(config));
 
-  const sortIconClasses = (i: number): string =>
-    classNames("table__sort-icon", {
-      "table__sort-icon_desc": sort.config[i].reverse
+  const [sort, setSort] = useState<{
+    data: TableRowType[];
+    config: SortConfigType[];
+  }>({ data: sortData(data, config), config });
+
+  const getConfigField = (
+    key: SortConfigFieldType
+  ): SortConfigType | undefined => sort.config.find((item) => item.key === key);
+
+  const sortHeadingClasses = (i: number): string =>
+    classNames("table__heading", {
+      table__heading_reversed: getConfigField(configFields[i])?.reverse
     });
 
   const changeSort = (i: number): void => {
-    const key = columnNames[i];
+    const key = configFields[i];
 
     setSort(({ config, data }) => {
-      const newConfig = config.map((item) =>
-        item.key === key ? { ...item, reverse: !item.reverse } : item
-      );
+      const newConfig = config.filter((item) => item.key !== key);
+      const configProp = getConfigField(key) as SortConfigType;
+      const newConfigProp = { key, reverse: !configProp.reverse };
+
+      if (configProp.reverse) newConfig.splice(i, 0, newConfigProp);
+      else newConfig.unshift(newConfigProp);
+
       return {
         config: newConfig,
-        data: [...data].sort(byObjectValues(newConfig))
+        data: sortData(data, newConfig)
       };
     });
   };
@@ -49,22 +71,7 @@ const Table = ({ columns, data, dataKey }: TablePropsType): JSX.Element => {
               key={name}
               onClick={() => changeSort(i)}
             >
-              <span className="table__cell_heading">
-                {name}
-                <svg
-                  className={sortIconClasses(i)}
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                >
-                  <path
-                    d="M12.1921 9.23047L15.9065 13.6879C16.3408 14.2089 15.9702 15 15.292 15L8.70803 15C8.02976 15 7.65924 14.2089 8.09346 13.6879L11.8079 9.23047C11.9079 9.11053 12.0921 9.11053 12.1921 9.23047Z"
-                    fill="#222222"
-                  />
-                </svg>
-              </span>
+              <span className={sortHeadingClasses(i)}>{name}</span>
             </th>
           ))}
         </tr>
