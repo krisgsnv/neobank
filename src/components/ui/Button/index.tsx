@@ -12,7 +12,7 @@ interface ButtonPropsType {
   className?: string;
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
-  clickHandler?: () => void;
+  clickHandler?: (e: React.MouseEvent) => void;
 }
 
 const Button = ({

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import classNames from "classnames";
 import "./style.scss";
 
@@ -6,27 +5,23 @@ interface CheckboxPropsType {
   label: string;
   className?: string;
   checked?: boolean;
+  changeHandler?: () => void;
 }
 
 const Checkbox = ({
   label,
   className,
-  checked = false
+  checked = false,
+  changeHandler
 }: CheckboxPropsType): JSX.Element => {
-  const [isChecked, setIsChecked] = useState(checked);
-
   const labelClasses = classNames("checkbox-label", className);
-
-  const changeHandler = (): void => {
-    setIsChecked((prev) => !prev);
-  };
 
   return (
     <label className={labelClasses}>
       <input
         type="checkbox"
         className="checkbox"
-        checked={isChecked}
+        checked={checked}
         onChange={changeHandler}
       />
       <span className="checkbox-label__text">{label}</span>

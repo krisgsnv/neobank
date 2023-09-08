@@ -7,8 +7,9 @@
   letter-spacing: 0.02em;
   font-size: 1rem;
   line-height: 1.12;
+  outline: none;
+  @include transition(background-color);
   &_default {
-    @include transition(background-color);
     &:hover {
       background-color: $blue;
     }
