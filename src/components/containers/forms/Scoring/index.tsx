@@ -17,7 +17,7 @@ import "./style.scss";
 import { useParams } from "react-router";
 import ScoringService from "@/services/Scoring";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
-import { increaseStep } from "@/store/stepSlice";
+import { setStep } from "@/store/stepSlice";
 
 const Scoring = (): JSX.Element => {
   const { applicationId } = useParams();
@@ -33,7 +33,7 @@ const Scoring = (): JSX.Element => {
       const result = await ScoringService.sendFormData(data, +applicationId);
       console.log(result);
       if (result) {
-        dispatch(increaseStep());
+        dispatch(setStep(3));
       }
     }
   };

@@ -1,7 +1,9 @@
+import { type StatusType } from "./Application";
+
 export type ExchangeDataType = Array<[string, number]> | null;
 
 export interface ExchangeType {
-  status: "loading" | "success" | "error";
+  status: StatusType;
   list: ExchangeDataType;
   optional: string[];
 }

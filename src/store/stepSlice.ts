@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface StepType {
   number: number;
@@ -11,14 +11,11 @@ const stepSlice = createSlice({
   name: "step",
   initialState,
   reducers: {
-    increaseStep: (state) => {
-      state.number += 1;
-    },
-    decreaseStep: (state) => {
-      state.number -= 1;
+    setStep: (state, action: PayloadAction<number>) => {
+      state.number = action.payload;
     }
   }
 });
 
-export const { increaseStep, decreaseStep } = stepSlice.actions;
+export const { setStep } = stepSlice.actions;
 export default stepSlice.reducer;

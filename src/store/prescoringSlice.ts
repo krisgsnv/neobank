@@ -1,3 +1,4 @@
+import { type StatusType } from "@/types/Application";
 import {
   type PrescoringOffersType,
   type PrescoringFormDataType
@@ -7,9 +8,11 @@ import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
 interface PrescoringStateType {
   formData: PrescoringFormDataType;
   offers: PrescoringOffersType;
+  step: number;
+  status: StatusType;
 }
 
-export const initialState: PrescoringStateType = {
+const initialState: PrescoringStateType = {
   offers: [],
   formData: {
     amount: 150000,
@@ -21,7 +24,9 @@ export const initialState: PrescoringStateType = {
     birthdate: "",
     passportSeries: "",
     passportNumber: ""
-  }
+  },
+  step: 0,
+  status: "success"
 };
 
 const prescoringSlice = createSlice({
@@ -33,9 +38,16 @@ const prescoringSlice = createSlice({
     },
     setOffers: (state, action: PayloadAction<PrescoringOffersType>) => {
       state.offers = action.payload;
+    },
+    setPrescoringStep: (state, action: PayloadAction<number>) => {
+      state.step = action.payload;
+    },
+    setStatus: (state, action: PayloadAction<StatusType>) => {
+      state.status = action.payload;
     }
   }
 });
 
-export const { setFormData, setOffers } = prescoringSlice.actions;
+export const { setFormData, setOffers, setPrescoringStep, setStatus } =
+  prescoringSlice.actions;
 export default prescoringSlice.reducer;

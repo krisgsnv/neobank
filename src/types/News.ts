@@ -1,3 +1,5 @@
+import { type StatusType } from "./Application";
+
 export interface NewsItemType {
   title: string;
   description: string;
@@ -15,6 +17,6 @@ export interface NewsItemType {
 export type NewsItems = NewsItemType[] | null;
 
 export interface NewsType {
-  status: "loading" | "success" | "error";
+  status: StatusType;
   items: NewsItems;
 };

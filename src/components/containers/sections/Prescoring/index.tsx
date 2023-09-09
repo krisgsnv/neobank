@@ -5,17 +5,26 @@ import PrescoringMessage from "./PrescoringMessage";
 import PrescoringOffers from "./PrescoringOffers";
 
 import "./style.scss";
+import Loader from "@/components/ui/Loader";
 
 const Prescoring = (): JSX.Element => {
-  const step = useAppSelector((state) => state.step.number);
+  const status = useAppSelector((state) => state.prescoring.status);
+  const prescoringStep = useAppSelector((state) => state.prescoring.step);
+
+  const getPrescoringSection = (): React.ReactNode => {
+    if (prescoringStep === 0) return <PrescoringForm />;
+    else if (prescoringStep === 1) return <PrescoringOffers />;
+    else if (prescoringStep >= 2) return <PrescoringMessage />;
+  };
+
   return (
     <section className="prescoring">
-      {step >= 2 ? (
-        <PrescoringMessage />
-      ) : step === 1 ? (
-        <PrescoringOffers />
+      {status === "loading" ? (
+        <Loader className="prescoring-loader" />
+      ) : status === "error" ? (
+        <p className="prescoring__error">We&#39;re sorry, but there was an error processing your request.</p>
       ) : (
-        <PrescoringForm />
+        getPrescoringSection()
       )}
     </section>
   );

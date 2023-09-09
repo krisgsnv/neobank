@@ -39,7 +39,7 @@ interface SortConfig<T> {
 
 export const byObjectValues = <T extends object>(
   keys: Array<keyof T | SortConfig<T>>
-): (a: T, b: T) => 0 | 1 | -1 => {
+): ((a: T, b: T) => 0 | 1 | -1) => {
   return function (a: T, b: T) {
     const firstKey: keyof T | SortConfig<T> = keys[0];
     const isSimple = typeof firstKey === "string";
@@ -61,4 +61,13 @@ export const byObjectValues = <T extends object>(
     }
     return a[key] > b[key] ? 1 : -1;
   };
-}
+};
+
+export const isArrayEqual = (arr1: unknown[], arr2: unknown[]): boolean => {
+  return (
+    Array.isArray(arr1) &&
+    Array.isArray(arr2) &&
+    arr1.length === arr2.length &&
+    arr1.every((val, index) => val === arr2[index])
+  );
+};

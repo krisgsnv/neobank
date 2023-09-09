@@ -6,8 +6,9 @@ import { useAppSelector } from "@/hooks/useAppSelector";
 import { byField } from "@/utils/validation";
 import { type PrescoringOfferType } from "@/types/Prescoring";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
-import { increaseStep } from "@/store/stepSlice";
+import { setStep } from "@/store/stepSlice";
 import PrescoringService from "@/services/Prescoring";
+import { setPrescoringStep, setStatus } from "@/store/prescoringSlice";
 
 const PrescoringOffers = (): JSX.Element => {
   const offers = useAppSelector((store) => store.prescoring.offers);
@@ -23,10 +24,20 @@ const PrescoringOffers = (): JSX.Element => {
     });
 
   const selectOffer = async (offer: PrescoringOfferType): Promise<void> => {
-    const res = await PrescoringService.selectOffer(offer);
-    if (res) {
-      dispatch(increaseStep());
+    setStatus("loading");
+    try {
+      const res = await PrescoringService.selectOffer(offer);
+      if (res) {
+        dispatch(setStep(2));
+        dispatch(setPrescoringStep(2));
+      }
+    } catch (error) {
+      setStatus("error");
     }
+  };
+
+  const decreaseStep = (): void => {
+    dispatch(setPrescoringStep(0));
   };
 
   return (
@@ -81,6 +92,12 @@ const PrescoringOffers = (): JSX.Element => {
           </div>
         );
       })}
+      <button
+        type="button"
+        className="prescoring__btn"
+        title="Previous"
+        onClick={decreaseStep}
+      ></button>
     </div>
   );
 };
