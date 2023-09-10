@@ -45,11 +45,12 @@ const Scoring = ({ statusChangeHandler }: ScoringPropsType): JSX.Element => {
           dispatch(setStep(3));
           statusChangeHandler("success");
           const status = await Admin.getApplicationStatus(applicationId);
+          if (status === "CC_APPROVED") dispatch(setStep(4));
           setTimeout(() => {
             if (status === "CC_DENIED") {
               dispatch(clear());
               navigate("/");
-            } else dispatch(setStep(4));
+            }
           }, 10000);
         } else throw new Error();
       }

@@ -1,6 +1,12 @@
 import { useState, useEffect } from "react";
 import "./style.scss";
 import classNames from "classnames";
+import { type StatusType } from "@/types/Application";
+import Document from "@/services/Document";
+import { useAppSelector } from "@/hooks/useAppSelector";
+import { useAppDispatch } from "@/hooks/useAppDispatch";
+import { setStep } from "@/store/applicationSlice";
+import { isNumbersSameLength } from "@/utils/number";
 
 type CodeNumType = number | null;
 
@@ -9,7 +15,22 @@ interface Code {
   error: boolean;
 }
 
-const Confirmation = (): JSX.Element => {
+interface ConfirmationPropsType {
+  statusChangeHandler: (status: StatusType) => void;
+}
+
+const Confirmation = ({
+  statusChangeHandler
+}: ConfirmationPropsType): JSX.Element => {
+  const dispatch = useAppDispatch();
+  const applicationId = useAppSelector(
+    (state) => state.application.applicationId
+  );
+
+  const validCode = parseInt(
+    useAppSelector((state) => state.application.sesCode)
+  );
+
   const numClasses = (num: CodeNumType): string =>
     classNames("confirmation-code__num", {
       "confirmation-code__num_active": num
@@ -20,11 +41,38 @@ const Confirmation = (): JSX.Element => {
     error: false
   });
 
+  const getNumericCode = (code: CodeNumType[]): number | null => {
+    const numericValue = parseInt(code.join(""));
+    return isNaN(numericValue) ? null : numericValue;
+  };
+
+  const sendCode = async (): Promise<void> => {
+    statusChangeHandler("loading");
+    const numericValue = getNumericCode(code.value);
+    try {
+      if (applicationId && numericValue) {
+        const result = await Document.sendSESCode(applicationId, numericValue);
+        if (result) {
+          dispatch(setStep(7));
+          statusChangeHandler("success");
+        } else throw new Error();
+      }
+    } catch (error) {
+      statusChangeHandler("error");
+    }
+  };
+
   const addCodeNum = (val: CodeNumType): void => {
     setCode((prev) => {
       const index = prev.value.findIndex((num) => num === null);
       const value = prev.value.map((num, i) => (i === index ? val : num));
-      const error = value.every((num) => num);
+      const numericValue = getNumericCode(value);
+      const error = !!(
+        numericValue &&
+        validCode &&
+        isNumbersSameLength(numericValue, validCode) &&
+        numericValue !== validCode
+      );
       return { error, value };
     });
   };
@@ -33,8 +81,7 @@ const Confirmation = (): JSX.Element => {
     setCode((prev) => {
       const index = prev.value.findLastIndex((num) => num);
       const value = prev.value.map((num, i) => (i === index ? null : num));
-      const error = value.every((num) => num);
-      return { error, value };
+      return { ...prev, value };
     });
   };
 
@@ -56,6 +103,11 @@ const Confirmation = (): JSX.Element => {
     };
   }, []);
 
+  useEffect(() => {
+    if (getNumericCode(code.value) === validCode) {
+      void sendCode();
+    }
+  }, [code.value]);
   return (
     <section className="confirmation">
       <h2 className="confirmation__h2">Please enter confirmation code</h2>

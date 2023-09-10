@@ -25,6 +25,16 @@ const Admin = {
     } catch (error) {
       console.error(error);
     }
+  },
+  getSESCode: async (applicationId: number): Promise<string | undefined> => {
+    try {
+      const response = await axios.get(`/admin/application/${applicationId}`);
+      if (response.status === 200) {
+        return response.data.sesCode;
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
 };
 

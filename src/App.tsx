@@ -27,7 +27,14 @@ export const App = (): JSX.Element => (
                 </ProtectedRoute>
               }
             />
-            <Route path="code" element={<Confirmation />} />
+            <Route
+              path="code"
+              element={
+                <ProtectedRoute step={6}>
+                  <Confirmation />
+                </ProtectedRoute>
+              }
+            />
             <Route path="document">
               <Route
                 index
@@ -40,7 +47,7 @@ export const App = (): JSX.Element => (
               <Route
                 path="sign"
                 element={
-                  <ProtectedRoute step={6}>
+                  <ProtectedRoute step={5}>
                     <DocumentSigning />
                   </ProtectedRoute>
                 }

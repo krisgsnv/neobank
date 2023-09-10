@@ -2,8 +2,49 @@ import documentFile from "@/assets/documents/credit-card-offer.pdf";
 import "./style.scss";
 import Checkbox from "@/components/ui/Checkbox";
 import Button from "@/components/ui/Button";
+import { type StatusType } from "@/types/Application";
+import { useState } from "react";
+import { setSesCode, setStep } from "@/store/applicationSlice";
+import { useAppSelector } from "@/hooks/useAppSelector";
+import { useAppDispatch } from "@/hooks/useAppDispatch";
+import Document from "@/services/Document";
+import Admin from "@/services/Admin";
 
-const DocumentSigning = (): JSX.Element => {
+interface DocumentSigningPropsType {
+  statusChangeHandler: (status: StatusType) => void;
+}
+
+const DocumentSigning = ({
+  statusChangeHandler
+}: DocumentSigningPropsType): JSX.Element => {
+  const [isAgreement, setIsAgreement] = useState(false);
+  const checkBoxHandler = (): void => {
+    setIsAgreement((prev) => !prev);
+  };
+
+  const applicationId = useAppSelector(
+    (state) => state.application.applicationId
+  );
+  const dispatch = useAppDispatch();
+
+  const submitHandler = async (): Promise<void> => {
+    statusChangeHandler("loading");
+    try {
+      if (applicationId) {
+        const result = await Document.signDocument(applicationId);
+        const sesCode = await Admin.getSESCode(applicationId);
+
+        if (result && sesCode) {
+          dispatch(setStep(6));
+          dispatch(setSesCode(sesCode));
+          statusChangeHandler("success");
+        } else throw new Error();
+      }
+    } catch (error) {
+      statusChangeHandler("error");
+    }
+  };
+
   return (
     <section className="document-signing">
       <div className="document-signing__heading">
@@ -30,8 +71,16 @@ const DocumentSigning = (): JSX.Element => {
         <h3>Information on your card</h3>
       </a>
       <div className="document-signing__buttons">
-        <Checkbox label="I agree" />
-        <Button text="Send" className="document-signing__button" />
+        <Checkbox
+          label="I agree"
+          checked={isAgreement}
+          changeHandler={checkBoxHandler}
+        />
+        <Button
+          text="Send"
+          className="document-signing__button"
+          clickHandler={submitHandler}
+        />
       </div>
     </section>
   );

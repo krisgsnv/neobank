@@ -45,7 +45,7 @@ const PaymentSchedule = ({
     if (result) {
       setStatus("success");
       setTableData(result.splice(1));
-    }
+    } else throw new Error();
   };
 
   useEffect(() => {
