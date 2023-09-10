@@ -6,8 +6,8 @@ import { useAppSelector } from "@/hooks/useAppSelector";
 import { byField } from "@/utils/validation";
 import { type PrescoringOfferType } from "@/types/Prescoring";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
-import { setStep } from "@/store/stepSlice";
-import PrescoringService from "@/services/Prescoring";
+import { setStep, setApplicationId } from "@/store/applicationSlice";
+import Application from "@/services/Application";
 import { setPrescoringStep, setStatus } from "@/store/prescoringSlice";
 
 const PrescoringOffers = (): JSX.Element => {
@@ -24,15 +24,17 @@ const PrescoringOffers = (): JSX.Element => {
     });
 
   const selectOffer = async (offer: PrescoringOfferType): Promise<void> => {
-    setStatus("loading");
+    dispatch(setStatus("loading"));
     try {
-      const res = await PrescoringService.selectOffer(offer);
+      const res = await Application.selectOffer(offer);
       if (res) {
+        dispatch(setStatus("success"));
+        dispatch(setApplicationId(offer.applicationId));
         dispatch(setStep(2));
         dispatch(setPrescoringStep(2));
-      }
+      } else throw new Error();
     } catch (error) {
-      setStatus("error");
+      dispatch(setStatus("error"));
     }
   };
 

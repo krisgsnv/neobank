@@ -89,6 +89,14 @@ module.exports = {
       "/email": {
         target: "http://localhost:3000",
         router: () => "http://localhost:8080"
+      },
+      "/admin": {
+        target: "http://localhost:3000",
+        router: () => "http://localhost:8080"
+      },
+      "/document": {
+        target: "http://localhost:3000",
+        router: () => "http://localhost:8080"
       }
     },
     headers: {

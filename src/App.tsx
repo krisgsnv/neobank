@@ -29,8 +29,22 @@ export const App = (): JSX.Element => (
             />
             <Route path="code" element={<Confirmation />} />
             <Route path="document">
-              <Route index element={<PaymentSchedule />} />
-              <Route path="sign" element={<DocumentSigning />} />
+              <Route
+                index
+                element={
+                  <ProtectedRoute step={4}>
+                    <PaymentSchedule />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="sign"
+                element={
+                  <ProtectedRoute step={6}>
+                    <DocumentSigning />
+                  </ProtectedRoute>
+                }
+              />
             </Route>
           </Route>
         </Route>

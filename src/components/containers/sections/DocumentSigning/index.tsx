@@ -2,15 +2,8 @@ import documentFile from "@/assets/documents/credit-card-offer.pdf";
 import "./style.scss";
 import Checkbox from "@/components/ui/Checkbox";
 import Button from "@/components/ui/Button";
-import { useState } from "react";
 
 const DocumentSigning = (): JSX.Element => {
-  const [isAgreement, setIsAgreement] = useState(false);
-
-  const checkBoxHandler = (): void => {
-    setIsAgreement((prev) => !prev);
-  };
-
   return (
     <section className="document-signing">
       <div className="document-signing__heading">
@@ -37,16 +30,8 @@ const DocumentSigning = (): JSX.Element => {
         <h3>Information on your card</h3>
       </a>
       <div className="document-signing__buttons">
-        <Checkbox
-          label="I agree"
-          changeHandler={checkBoxHandler}
-          checked={isAgreement}
-        />
-        <Button
-          text="Send"
-          className="document-signing__button"
-          disabled={!isAgreement}
-        />
+        <Checkbox label="I agree" />
+        <Button text="Send" className="document-signing__button" />
       </div>
     </section>
   );

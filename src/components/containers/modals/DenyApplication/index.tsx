@@ -3,6 +3,8 @@ import "./style.scss";
 import Button from "@/components/ui/Button";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { clear } from "@/store/applicationSlice";
+import { useAppDispatch } from "@/hooks/useAppDispatch";
 
 interface DenyApplicationPropsType {
   closeHandler: () => void;
@@ -13,6 +15,7 @@ const DenyApplication = ({
 }: DenyApplicationPropsType): JSX.Element => {
   const [isDenied, setIsDenied] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const textMessage = isDenied
     ? "Your application has been deny!"
@@ -23,6 +26,7 @@ const DenyApplication = ({
   };
 
   const toMainPage = (): void => {
+    dispatch(clear());
     navigate("/");
   };
 

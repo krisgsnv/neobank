@@ -3,10 +3,13 @@ import "./style.scss";
 
 interface LoaderPropsType {
   className?: string;
+  centered?: boolean;
 }
 
-const Loader = ({ className }: LoaderPropsType): JSX.Element => {
-  const loaderClasses = classNames("loader", className);
+const Loader = ({ className, centered }: LoaderPropsType): JSX.Element => {
+  const loaderClasses = classNames("loader", className, {
+    loader_centered: centered
+  });
   return <div className={loaderClasses}></div>;
 };
 

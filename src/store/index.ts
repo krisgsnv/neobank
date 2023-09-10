@@ -1,4 +1,9 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import {
+  type AnyAction,
+  type Reducer,
+  combineReducers,
+  configureStore
+} from "@reduxjs/toolkit";
 import {
   persistStore,
   persistReducer,
@@ -11,13 +16,21 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
-import stepReducer from "./stepSlice";
+import applicationReducer from "./applicationSlice";
 import prescoringReducer from "./prescoringSlice";
 
-const rootReducer = combineReducers({
-  step: stepReducer,
+const appReducer = combineReducers({
+  application: applicationReducer,
   prescoring: prescoringReducer
 });
+
+const rootReducer: Reducer = (state: RootState, action: AnyAction) => {
+  if (action.type === "application/clear") {
+    void storage.removeItem("persist:root");
+    state = {} satisfies RootState;
+  }
+  return appReducer(state, action);
+};
 
 const persistConfig = {
   key: "root",

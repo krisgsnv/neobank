@@ -19,10 +19,6 @@ interface SortConfigType {
 
 const Table = ({ columns, data, dataKey }: TablePropsType): JSX.Element => {
   const configFields = Object.keys(data[0]);
-  const config = configFields.map((fieldName) => ({
-    key: fieldName,
-    reverse: false
-  }));
 
   const sortData = (
     data: TableRowType[],
@@ -32,7 +28,10 @@ const Table = ({ columns, data, dataKey }: TablePropsType): JSX.Element => {
   const [sort, setSort] = useState<{
     data: TableRowType[];
     config: SortConfigType[];
-  }>({ data: sortData(data, config), config });
+  }>({
+    data,
+    config: []
+  });
 
   const getConfigField = (
     key: SortConfigFieldType
@@ -48,15 +47,17 @@ const Table = ({ columns, data, dataKey }: TablePropsType): JSX.Element => {
 
     setSort(({ config, data }) => {
       const newConfig = config.filter((item) => item.key !== key);
-      const configProp = getConfigField(key) as SortConfigType;
-      const newConfigProp = { key, reverse: !configProp.reverse };
+      const configProp = config.findIndex((item) => item.key === key);
+      const newConfigProp = {
+        key,
+        reverse: configProp >= 0 ? !config[configProp].reverse : true
+      };
 
-      if (configProp.reverse) newConfig.splice(i, 0, newConfigProp);
-      else newConfig.unshift(newConfigProp);
+      newConfig.unshift(newConfigProp);
 
       return {
         config: newConfig,
-        data: sortData(data, newConfig)
+        data: newConfig.length ? sortData(data, newConfig) : data
       };
     });
   };

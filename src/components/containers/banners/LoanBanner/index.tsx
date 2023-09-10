@@ -1,10 +1,14 @@
-import { Link } from "react-scroll";
 import card from "@/assets/images/card1.png";
 import Tooltip from "@/components/ui/Tooltip";
 import Button from "@/components/ui/Button";
 
 import "./style.scss";
+import { useAppSelector } from "@/hooks/useAppSelector";
+
 const LoanBanner = (): JSX.Element => {
+  const step = useAppSelector((state) => state.application.step);
+  console.log(step);
+
   return (
     <section className="loan-banner">
       <h1 className="h1 loan-banner__h1">Platinum digital credit card</h1>
@@ -47,9 +51,7 @@ const LoanBanner = (): JSX.Element => {
           </div>
         </Tooltip>
       </div>
-      <Link to="prescoring" className="loan-banner__anchor" smooth={true}>
-        <Button text="Apply for card" />
-      </Link>
+      <Button text="Apply for card" className="loan-banner__anchor" />
       <img src={card} alt="Card" className="loan-banner__card" />
     </section>
   );

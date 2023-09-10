@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useForm, FormProvider } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -8,33 +7,54 @@ import Label from "@/components/ui/Label";
 import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
 import Select from "@/components/ui/Select";
-// import Loader from "@/components/ui/Loader";
 
 import type { ScoringFormDataType } from "@/types/Scoring";
 import schema from "@/utils/schemas/scoring";
 import { replaceToDigits } from "@/utils/string";
 import "./style.scss";
-import { useParams } from "react-router";
-import ScoringService from "@/services/Scoring";
+import Application from "@/services/Application";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
-import { setStep } from "@/store/stepSlice";
+import { setStep, clear } from "@/store/applicationSlice";
+import { useAppSelector } from "@/hooks/useAppSelector";
+import { type StatusType } from "@/types/Application";
+import Admin from "@/services/Admin";
+import { useNavigate } from "react-router";
 
-const Scoring = (): JSX.Element => {
-  const { applicationId } = useParams();
+interface ScoringPropsType {
+  statusChangeHandler: (status: StatusType) => void;
+}
+
+const Scoring = ({ statusChangeHandler }: ScoringPropsType): JSX.Element => {
+  const navigate = useNavigate();
+  const applicationId = useAppSelector(
+    (state) => state.application.applicationId
+  );
   const dispatch = useAppDispatch();
   const methods = useForm<ScoringFormDataType>({
     resolver: yupResolver(schema)
   });
 
   const { register, handleSubmit } = methods;
+
   const submitHandler: SubmitHandler<ScoringFormDataType> = async (data) => {
-    console.log(data);
-    if (applicationId) {
-      const result = await ScoringService.sendFormData(data, +applicationId);
-      console.log(result);
-      if (result) {
-        dispatch(setStep(3));
+    statusChangeHandler("loading");
+    try {
+      if (applicationId) {
+        const result = await Application.sendScoring(data, applicationId);
+        if (result) {
+          dispatch(setStep(3));
+          statusChangeHandler("success");
+          const status = await Admin.getApplicationStatus(applicationId);
+          setTimeout(() => {
+            if (status === "CC_DENIED") {
+              dispatch(clear());
+              navigate("/");
+            } else dispatch(setStep(4));
+          }, 10000);
+        } else throw new Error();
       }
+    } catch (error) {
+      statusChangeHandler("error");
     }
   };
 

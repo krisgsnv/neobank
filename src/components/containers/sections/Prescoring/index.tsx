@@ -22,7 +22,9 @@ const Prescoring = (): JSX.Element => {
       {status === "loading" ? (
         <Loader className="prescoring-loader" />
       ) : status === "error" ? (
-        <p className="prescoring__error">We&#39;re sorry, but there was an error processing your request.</p>
+        <p className="error">
+          We&#39;re sorry, but there was an error processing your request.
+        </p>
       ) : (
         getPrescoringSection()
       )}
