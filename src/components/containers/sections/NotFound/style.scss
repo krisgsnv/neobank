@@ -1,0 +1,38 @@
+.not-found {
+  padding: 11rem 60% 9.5rem 0;
+  background: url("@/assets/images/not-found.png") right center/50% no-repeat;
+  @include flex-column;
+  align-items: flex-start;
+  row-gap: 2rem;
+  @media screen and (max-width: $tablet) {
+    padding: 50% 2.5rem 0;
+    align-items: center;
+    row-gap: 1.6rem;
+    background-position: top;
+  }
+  @media screen and (max-width: $mobile) {
+    padding-top: toRem(250);
+    background-size: toRem(230);
+  }
+  &__title {
+    @include heading-size(toRem(30));
+    color: #1c1c1e;
+    line-height: 1.12;
+  }
+  &__h2 {
+    font-weight: 500;
+    line-height: 1.12;
+    @include heading-size(toRem(30));
+  }
+  &__message {
+    color: #4b4b4b;
+    font-weight: 500;
+    @media screen and (max-width: $tablet) {
+      text-align: center;
+    }
+  }
+  &__button {
+    padding: 0.5rem 4rem;
+    border-radius: 0.5rem;
+  }
+}

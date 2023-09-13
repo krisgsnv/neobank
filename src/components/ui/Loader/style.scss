@@ -6,6 +6,9 @@
   &_hidden {
     display: none;
   }
+  &_centered {
+    margin: 4rem auto;
+  }
 }
 
 @keyframes spin {

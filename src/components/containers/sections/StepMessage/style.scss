@@ -1,0 +1,33 @@
+.step-message {
+  margin: toRem(166) 0 toRem(142) 0;
+  @include flex-column;
+  align-items: center;
+  text-align: center;
+  &__title {
+    @include heading-size(toRem(30));
+    color: $black;
+    line-height: 1.2;
+    letter-spacing: toRem(0.6);
+    max-width: 45%;
+    @media screen and (max-width: $tablet) {
+      max-width: 65%;
+    }
+    @media screen and (max-width: $mobile) {
+      max-width: 80%;
+    }
+  }
+  &__description {
+    margin-top: 2rem;
+    color: $additional-text;
+    font-weight: 500;
+    letter-spacing: 0.02rem;
+    max-width: 31.5%;
+    @media screen and (max-width: $tablet) {
+      margin-top: 1.5rem;
+      max-width: 50%;
+    }
+    @media screen and (max-width: $mobile) {
+      max-width: 65%;
+    }
+  }
+}

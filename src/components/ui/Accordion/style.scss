@@ -1,10 +1,10 @@
 .accordion {
-  border: 1px solid #e2e8f0;
+  border: 1px solid $paleblue;
 }
 
 .accordion-item {
   padding: 2rem;
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid $paleblue;
   &:first-child {
     border-top: 0;
   }

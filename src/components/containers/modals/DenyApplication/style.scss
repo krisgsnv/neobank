@@ -1,0 +1,24 @@
+.deny-application {
+  &__text {
+    margin-top: 1rem;
+    color: #1a202c;
+    font-weight: 500;
+    letter-spacing: 0.02rem;
+  }
+  &__buttons {
+    @include flex-end-start;
+    gap: toRem(40);
+    margin-top: toRem(35);
+  }
+  &__button {
+    padding: toRem(11) 0.5rem;
+    min-width: 6rem;
+    border-radius: 0.5rem;
+    &_deny {
+      background-color: $error-button;
+    }
+    &_home {
+      min-width: 8rem;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import * as yup from "yup";
-import { today } from "@/utils/date";
-import { getYear, setYear, parse, isValid, format } from "date-fns";
+import { today, transformDateFormat } from "@/utils/date";
+import { getYear, setYear, isValid } from "date-fns";
 
 const schema = yup.object().shape({
   amount: yup
@@ -39,17 +39,9 @@ const schema = yup.object().shape({
         isValid(new Date(value)) &&
         new Date(value) < setYear(today, getYear(today) - 18)
     )
-    .transform((value) => {
-      const pattern = "yyyy-MM-dd";
-      const date = parse(value, pattern, new Date());
-      return (
-        isValid(date) &&
-        pattern.length === value.length &&
-        format(date, pattern)
-      );
-    })
+    .transform((value) => transformDateFormat(value, "yyyy-MM-dd"))
     .typeError("Incorrect date of birth")
-    .required(),
+    .required("Incorrect date of birth"),
   passportSeries: yup
     .string()
     .matches(/^\d{4}$/, "The series must be 4 digits")

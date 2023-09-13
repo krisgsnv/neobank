@@ -1,0 +1,20 @@
+.prescoring {
+  padding-top: toRem(46);
+  &__btn {
+    outline: none;
+    display: block;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    margin-top: 1.5rem;
+    border: 1px solid #afafaf;
+    background: white url("@/assets/images/arrow.svg") center/1.5rem no-repeat;
+    &_next {
+      transform: rotate(180deg);
+      margin-left: auto;
+    }
+  }
+  &__error {
+    text-align: center;
+  }
+}

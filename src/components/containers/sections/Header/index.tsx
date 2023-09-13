@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
 import classNames from "classnames";
 import Button from "@/components/ui/Button";
@@ -12,24 +12,23 @@ const Header = (): JSX.Element => {
     },
     {
       text: "Product",
-      url: "/"
+      url: "/product"
     },
     {
       text: "Account",
-      url: "/"
+      url: "/account"
     },
     {
       text: "Resources",
-      url: "/"
+      url: "/resources"
     }
   ];
 
-  const [activeLink, setActiveLink] = useState(-1);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const linkClasses = (i: number): string =>
+  const linkClasses = ({ isActive }: { isActive: boolean }): string =>
     classNames("header__link nav-link", {
-      header__link_active: i === activeLink
+      header__link_active: isActive
     });
 
   const listClasses = classNames("header__list", {
@@ -40,8 +39,11 @@ const Header = (): JSX.Element => {
     "header__nav-btn_active": menuOpen
   });
 
-  const linkClickHandler = (i: number): void => {
-    setActiveLink(i);
+  const toggleMenuVisibility = (): void => {
+    setMenuOpen((prev) => !prev);
+  };
+
+  const hideMenu = (): void => {
     setMenuOpen(false);
   };
 
@@ -49,27 +51,16 @@ const Header = (): JSX.Element => {
     <header className="header">
       <div className="container">
         <div className="header__inner">
-          <Link
-            to="/"
-            className="header__logo"
-            onClick={() => {
-              setActiveLink(-1);
-            }}
-          >
+          <Link to="/" className="header__logo">
             NeoBank
           </Link>
           <nav>
             <ul className={listClasses}>
-              {links.map((link, i) => (
-                <li
-                  key={link.text}
-                  onClick={() => {
-                    linkClickHandler(i);
-                  }}
-                >
-                  <Link to={link.url} className={linkClasses(i)}>
+              {links.map((link) => (
+                <li key={link.text} onClick={hideMenu}>
+                  <NavLink to={link.url} className={linkClasses}>
                     {link.text}
-                  </Link>
+                  </NavLink>
                 </li>
               ))}
             </ul>
@@ -79,9 +70,7 @@ const Header = (): JSX.Element => {
             type="button"
             className={navBtnClasses}
             title="Menu"
-            onClick={() => {
-              setMenuOpen((prev) => !prev);
-            }}
+            onClick={toggleMenuVisibility}
           ></button>
         </div>
       </div>

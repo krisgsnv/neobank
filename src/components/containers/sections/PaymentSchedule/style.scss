@@ -1,0 +1,53 @@
+.payment-schedule {
+  &__heading {
+    @include flex-start;
+    @media screen and (max-width: $tablet) {
+      flex-wrap: wrap;
+    }
+  }
+  &__h2 {
+    @include heading-size(toRem(30));
+  }
+  &__step {
+    margin-left: toRem(120);
+    font-weight: 500;
+    margin-top: 0.5rem;
+    @media screen and (max-width: $tablet) {
+      flex-basis: 100%;
+      margin-left: 0;
+      margin-top: 1rem;
+    }
+  }
+  &__buttons {
+    @include flex-end-center;
+    gap: toRem(40);
+    margin-top: toRem(43);
+    @media screen and (max-width: $tablet) {
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+  }
+  &__button {
+    border-radius: 0.5rem;
+    padding: toRem(11) toRem(28);
+    &_deny {
+      margin-right: auto;
+      background-color: $error-button;
+    }
+  }
+  &__checkbox {
+    font-size: toRem(18);
+    @media screen and (max-width: $tablet) {
+      order: -1;
+      width: 100%;
+      font-size: 1rem;
+    }
+  }
+  &__table {
+    overflow-x: auto;
+    margin-top: toRem(76);
+    @media screen and (max-width: $tablet) {
+      margin-top: 2rem;
+    }
+  }
+}

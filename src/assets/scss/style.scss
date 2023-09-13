@@ -14,13 +14,13 @@ body {
   background-color: $pastelblue;
   min-width: 320px;
   overflow-x: hidden;
+  min-height: 100vh;
 }
 
-.container {
-  padding: 0 15px;
-  @media screen and (min-width: calc($dekstop + 30px)) {
-    padding: 0 calc(50% - $dekstop / 2);
-  }
+#root {
+  min-height: inherit;
+  @include flex-column;
+  justify-content: space-between;
 }
 
 h1 {
@@ -41,6 +41,12 @@ h3 {
   line-height: 1.3;
 }
 
+h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
 .no-scroll {
   width: 100vw;
   height: 100vh;
@@ -50,4 +56,8 @@ h3 {
 
 .price {
   white-space: nowrap;
+}
+
+.error {
+  text-align: center;
 }

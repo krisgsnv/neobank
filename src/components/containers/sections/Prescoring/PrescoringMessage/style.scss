@@ -1,0 +1,25 @@
+.prescoring-message {
+  padding: 1.5rem 1.5rem toRem(34);
+  border-radius: toRem(10);
+  border: 1px solid #5b35d5;
+  text-align: center;
+  @media screen and (max-width: $tablet) {
+    padding-right: 3rem;
+    padding-left: 3rem;
+  }
+  &__title {
+    @include heading-size(toRem(30));
+    color: $black;
+    line-height: 1.2;
+    letter-spacing: toRem(0.6);
+  }
+  &__description {
+    margin-top: 2rem;
+    color: $additional-text;
+    font-weight: 500;
+    letter-spacing: 0.02rem;
+    @media screen and (max-width: $tablet) {
+      margin-top: 1.5rem;
+    }
+  }
+}
