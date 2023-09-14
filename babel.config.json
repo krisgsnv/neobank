@@ -9,5 +9,12 @@
     ],
     "@babel/preset-typescript"
   ],
-  "plugins": ["react-refresh/babel"]
+  "plugins": [
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        "regenerator": true
+      }
+    ]
+  ]
 }
