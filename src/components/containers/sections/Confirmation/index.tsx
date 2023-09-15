@@ -16,11 +16,11 @@ interface Code {
 }
 
 interface ConfirmationPropsType {
-  statusChangeHandler: (status: StatusType) => void;
+  statusChangeHandler?: (status: StatusType) => void;
 }
 
 const Confirmation = ({
-  statusChangeHandler
+  statusChangeHandler = () => {}
 }: ConfirmationPropsType): JSX.Element => {
   const dispatch = useAppDispatch();
   const applicationId = useAppSelector(

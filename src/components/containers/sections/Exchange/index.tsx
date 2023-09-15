@@ -41,8 +41,11 @@ const Exchange = (): JSX.Element => {
             }));
           }
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
+          setCurrencyExchange((prev) => ({
+            ...prev,
+            status: "error"
+          }));
         });
     }
     const timerInterval = setInterval(() => {

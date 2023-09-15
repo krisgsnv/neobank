@@ -15,19 +15,16 @@ const options = [
 ];
 
 test("Default option", () => {
-  render(
-    <TestForm>
-      <Select name="test" options={options} selectedIndex={1} />
-    </TestForm>
-  );
+  render(<Select name="test" options={options} selectedIndex={1} />, {
+    wrapper: TestForm
+  });
   expect(screen.getByText("2")).toBeInTheDocument();
 });
 
 test("Toggle dropdown on click", async () => {
   const { container } = render(
-    <TestForm>
-      <Select name="test" options={options} selectedIndex={1} />
-    </TestForm>
+    <Select name="test" options={options} selectedIndex={1} />,
+    { wrapper: TestForm }
   );
   const selectedOption = screen.getByText("2");
   expect(container.querySelector(".select__options")).not.toBeInTheDocument();
@@ -36,13 +33,11 @@ test("Toggle dropdown on click", async () => {
 });
 
 test("Select value", async () => {
-  render(
-    <TestForm>
-      <Select name="test" options={options} selectedIndex={1} />
-    </TestForm>
-  );
+  render(<Select name="test" options={options} selectedIndex={1} />, {
+    wrapper: TestForm
+  });
   const selectedOption = screen.getByText("2");
   await userEvent.click(selectedOption);
   await userEvent.click(screen.getByText("1"));
-  expect(selectedOption).toHaveTextContent("1")
+  expect(selectedOption).toHaveTextContent("1");
 });
