@@ -10,7 +10,7 @@ import type store from "@/store";
 import type { RootState } from "@/store";
 import applicationReducer from "@/store/applicationSlice";
 import prescoringReducer from "@/store/prescoringSlice";
-import { BrowserRouter } from "react-router-dom";
+import { MemoryRouter } from "react-router-dom";
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
   preloadedState?: PreloadedState<RootState>;
@@ -42,7 +42,10 @@ export const renderWithProvidersAndRouter = (
   {
     preloadedState = {},
     store = configureStore({
-      reducer: { application: applicationReducer },
+      reducer: {
+        application: applicationReducer,
+        prescoring: prescoringReducer
+      },
       preloadedState
     }),
     ...renderOptions
@@ -51,13 +54,13 @@ export const renderWithProvidersAndRouter = (
 ) => {
   const Wrapper = ({ children }: PropsWithChildren<unknown>): JSX.Element => {
     return (
-      <BrowserRouter>
+      <MemoryRouter initialEntries={[route]}>
         <Provider store={store}>{children}</Provider>
-      </BrowserRouter>
+      </MemoryRouter>
     );
   };
   return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };
 };
 
-export const renderWithRouter = (component: JSX.Element) =>
-  render(<BrowserRouter>{component}</BrowserRouter>);
+export const renderWithRouter = (component: JSX.Element, route: string = "/") =>
+  render(<MemoryRouter initialEntries={[route]}>{component}</MemoryRouter>);

@@ -16,7 +16,7 @@ interface Code {
 }
 
 interface ConfirmationPropsType {
-  statusChangeHandler?: (status: StatusType) => void;
+  statusChangeHandler: (status: StatusType) => void;
 }
 
 const Confirmation = ({
