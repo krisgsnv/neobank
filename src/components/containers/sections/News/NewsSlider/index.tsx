@@ -36,12 +36,18 @@ const NewsSlider = (): JSX.Element => {
                 });
               }
             })
-            .catch((err) => {
-              console.log(err);
+            .catch(() => {
+              setNews({
+                status: "error",
+                items: null
+              });
             });
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
+          setNews({
+            status: "error",
+            items: null
+          });
         });
     }
     const timerInterval = setInterval(() => {

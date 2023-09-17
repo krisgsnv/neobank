@@ -21,7 +21,7 @@ const Checkbox = ({
       <input
         type="checkbox"
         className="checkbox"
-        checked={checked}
+        defaultChecked={checked}
         onChange={changeHandler}
       />
       <span className="checkbox-label__text">{label}</span>

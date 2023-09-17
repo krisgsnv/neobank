@@ -19,7 +19,7 @@ import storage from "redux-persist/lib/storage";
 import applicationReducer from "./applicationSlice";
 import prescoringReducer from "./prescoringSlice";
 
-const appReducer = combineReducers({
+export const appReducer = combineReducers({
   application: applicationReducer,
   prescoring: prescoringReducer
 });

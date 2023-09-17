@@ -20,7 +20,7 @@ interface ConfirmationPropsType {
 }
 
 const Confirmation = ({
-  statusChangeHandler
+  statusChangeHandler = () => {}
 }: ConfirmationPropsType): JSX.Element => {
   const dispatch = useAppDispatch();
   const applicationId = useAppSelector(
